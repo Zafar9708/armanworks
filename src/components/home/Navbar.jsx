@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
   const [activeItem, setActiveItem] = useState('home');
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Scroll hide/show functionality
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Hide navbar when scrolling down, show when scrolling up
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+          setShowNavbar(false);
+        } else {
+          setShowNavbar(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
 
   const toggleMobileDropdown = (name) => {
     setOpenMobileDropdown(openMobileDropdown === name ? null : name);
@@ -12,114 +39,74 @@ const Navbar = () => {
 
   // Company info dropdown items with > icon
   const companyInfoItems = [
-    { name: '› COMPANY PROFILE', href: '#' },
-    { name: '› MANUFACTURING FACILITIES', href: '#' },
-    { name: '› DESIGN AND STRUCTURE', href: '#' },
-    { name: '› SERVICES', href: '#' },
-    { name: '› OUR NETWORK', href: '#' }
+    { name: '› COMPANY PROFILE', href: '/about-profile' },
+    { name: '› MANUFACTURING FACILITIES', href: '/about-manufacturing' },
+    { name: '› DESIGN AND STRUCTURE', href: '/about-design' },
+    { name: '› SERVICES', href: '/about-services' },
+    { name: '› OUR NETWORK', href: '/about-network' }
   ];
 
   // Products dropdown items - SEPARATED
   const productsItems = [
-    { name: '› GRAIN', href: '#' },
-    { name: '› SPICES & SEEDS CLEANING MACHINERY', href: '#' },
-    { name: '› PROCESSING MACHINERY', href: '#' },
-    { name: '› DAAL PLANT', href: '#' },
-    { name: '› SORTEX PLANT ACCESSORIES', href: '#' }
+    { name: '› GRAIN', href: '/products-grain' },
+    { name: '› SPICES & SEEDS CLEANING MACHINERY', href: '/products-spices' },
+    { name: '› PROCESSING MACHINERY', href: '/products-machinery' },
+    { name: '› DAAL PLANT', href: '/products-daal' },
+    { name: '› SORTEX PLANT ACCESSORIES', href: '/about-sortex' }
   ];
 
   // Contact dropdown items
   const contactItems = [
-    { name: '› CONTACT', href: '#' },
-    { name: '› CAREER', href: '#' }
+    { name: '› CONTACT', href: '/contact' },
+    { name: '› CAREER', href: '/career' }
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          
-          {/* Logo and Company Info - Left Side - REDUCED SPACING */}
-          <div className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
-              <img 
-                className="h-32 w-32 md:h-32 md:w-32 mt-3 object-contain -ml-6" 
-                src="/logo.png" 
-                alt="Arman Engineering" 
-              />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-gray-950 text-base md:text-lg  lg:text-xl -ml-14 font-bold uppercase tracking-wide whitespace-nowrap">
-                ARMAN ENGINEERING WORKS
-              </span>
-              <span className="text-[10px] md:text-xs text-gray-600 font-semibold  -ml-14 uppercase tracking-wider whitespace-nowrap">
-                AN ISO 9001 : 2010 CERTIFIED COMPANY
-              </span>
-            </div>
-          </div>
-
-          {/* Desktop Navigation - Right Side - REDUCED SPACING */}
-          <div className="hidden lg:flex items-center space-x-1">
+    <>
+      {/* Main Navbar - with scroll hide */}
+      <nav className={`bg-white shadow-md sticky top-0 z-50 transition-transform duration-300 ${
+        showNavbar ? 'translate-y-0' : '-translate-y-full'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
             
-            {/* HOME - Corner Accent Animation */}
-            <div className="flex items-center">
-              <a 
-                href="#home" 
-                onClick={() => setActiveItem('home')}
-                className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                  activeItem === 'home' 
-                    ? 'text-gray-900' 
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
-              >
-                <span className="relative z-10">HOME</span>
-                
-                {/* Corner Accent Animation - Consistent for all */}
-                {activeItem === 'home' && (
-                  <>
-                    <span 
-                      className="absolute inset-0 animate-expandIn"
-                      style={{ backgroundColor: '#FAF1E6' }}
-                    ></span>
-                    <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
-                  </>
-                )}
-                
-                {/* Hover Line - Black */}
-                <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-              </a>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-5 bg-gray-300 mx-1"></span>
+            {/* Logo and Company Info - Left Side - REDUCED SPACING */}
+            <div className="flex items-center space-x-3">
+              <div className="flex-shrink-0">
+                <img 
+                  className="h-32 w-32 md:h-32 md:w-32 mt-3 object-contain -ml-6" 
+                  src="/logo.png" 
+                  alt="Arman Engineering" 
+                />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-gray-950 text-base md:text-lg  lg:text-xl -ml-14 font-bold uppercase tracking-wide whitespace-nowrap">
+                  ARMAN ENGINEERING WORKS
+                </span>
+                <span className="text-[10px] md:text-xs text-gray-600 font-semibold  -ml-14 uppercase tracking-wider whitespace-nowrap">
+                  AN ISO 9001 : 2010 CERTIFIED COMPANY
+                </span>
+              </div>
             </div>
 
-            {/* ABOUT US with Dropdown - Corner Accent Animation */}
-            <div 
-              className="flex items-center"
-              onMouseEnter={() => setOpenDropdown('about')}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <div className="relative">
-                <button
-                  onClick={() => setActiveItem('about')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                    activeItem === 'about' 
+            {/* Desktop Navigation - Right Side - REDUCED SPACING */}
+            <div className="hidden lg:flex items-center space-x-1">
+              
+              {/* HOME - Corner Accent Animation */}
+              <div className="flex items-center">
+                <a 
+                  href="#home" 
+                  onClick={() => setActiveItem('home')}
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
+                    activeItem === 'home' 
                       ? 'text-gray-900' 
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
-                  <span className="relative z-10">ABOUT US</span>
-                  <svg 
-                    className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="relative z-10">HOME</span>
                   
                   {/* Corner Accent Animation - Consistent for all */}
-                  {activeItem === 'about' && (
+                  {activeItem === 'home' && (
                     <>
                       <span 
                         className="absolute inset-0 animate-expandIn"
@@ -132,66 +119,170 @@ const Navbar = () => {
                   
                   {/* Hover Line - Black */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-                </button>
-                
-                {/* Dropdown - Coming from Left with > icons */}
-                <div 
-                  className={`absolute top-full left-0 mt-1 w-64 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                    openDropdown === 'about' 
-                      ? 'opacity-100 scale-y-100 visible' 
-                      : 'opacity-0 scale-y-0 invisible'
-                  }`}
-                  style={{ backgroundColor: '#FAF1E6' }}
-                >
-                  <div className="relative">
-                    <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
+                </a>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
+              </div>
+
+              {/* ABOUT US with Dropdown - Corner Accent Animation */}
+              <div 
+                className="flex items-center"
+                onMouseEnter={() => setOpenDropdown('about')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <div className="relative">
+                  <button
+                    onClick={() => setActiveItem('about')}
+                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
+                      activeItem === 'about' 
+                        ? 'text-gray-900' 
+                        : 'text-gray-700 hover:text-gray-900'
+                    }`}
+                  >
+                    <span className="relative z-10">ABOUT US</span>
+                    <svg 
+                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                     
-                    {companyInfoItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-4 py-2 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
-                      >
-                        <span className="flex items-center space-x-1.5">
-                          <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
-                          <span>{item.name.substring(2)}</span>
-                        </span>
-                      </a>
-                    ))}
+                    {/* Corner Accent Animation - Consistent for all */}
+                    {activeItem === 'about' && (
+                      <>
+                        <span 
+                          className="absolute inset-0 animate-expandIn"
+                          style={{ backgroundColor: '#FAF1E6' }}
+                        ></span>
+                        <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
+                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
+                      </>
+                    )}
+                    
+                    {/* Hover Line - Black */}
+                    <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
+                  </button>
+                  
+                  {/* Dropdown - Coming from Left with > icons */}
+                  <div 
+                    className={`absolute top-full left-0 mt-1 w-64 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
+                      openDropdown === 'about' 
+                        ? 'opacity-100 scale-y-100 visible' 
+                        : 'opacity-0 scale-y-0 invisible'
+                    }`}
+                    style={{ backgroundColor: '#FAF1E6' }}
+                  >
+                    <div className="relative">
+                      <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
+                      
+                      {companyInfoItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="block px-4 py-2 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
+                        >
+                          <span className="flex items-center space-x-1.5">
+                            <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
+                            <span>{item.name.substring(2)}</span>
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
               </div>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-8 bg-gray-300 mx-1"></span>
-            </div>
 
-            {/* PRODUCTS with Dropdown - Corner Accent Animation */}
-            <div 
-              className="flex items-center"
-              onMouseEnter={() => setOpenDropdown('products')}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <div className="relative">
-                <button
-                  onClick={() => setActiveItem('products')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                    activeItem === 'products' 
+              {/* PRODUCTS with Dropdown - Corner Accent Animation */}
+              <div 
+                className="flex items-center"
+                onMouseEnter={() => setOpenDropdown('products')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <div className="relative">
+                  <button
+                    onClick={() => setActiveItem('products')}
+                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
+                      activeItem === 'products' 
+                        ? 'text-gray-900' 
+                        : 'text-gray-700 hover:text-gray-900'
+                    }`}
+                  >
+                    <span className="relative z-10">PRODUCTS</span>
+                    <svg 
+                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'products' ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                    
+                    {/* Corner Accent Animation - Consistent for all */}
+                    {activeItem === 'products' && (
+                      <>
+                        <span 
+                          className="absolute inset-0 animate-expandIn"
+                          style={{ backgroundColor: '#FAF1E6' }}
+                        ></span>
+                        <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
+                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
+                      </>
+                    )}
+                    
+                    {/* Hover Line - Black */}
+                    <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
+                  </button>
+                  
+                  {/* Dropdown - Coming from Left with > icons */}
+                  <div 
+                    className={`absolute top-full left-0 mt-1 w-80 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
+                      openDropdown === 'products' 
+                        ? 'opacity-100 scale-y-100 visible' 
+                        : 'opacity-0 scale-y-0 invisible'
+                    }`}
+                    style={{ backgroundColor: '#FAF1E6' }}
+                  >
+                    <div className="relative">
+                      <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
+                      
+                      {productsItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="block px-4 py-2.5 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
+                        >
+                          <span className="flex items-center space-x-1.5">
+                            <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
+                            <span className="leading-relaxed">{item.name.substring(2)}</span>
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
+              </div>
+
+              {/* CLIENT - Corner Accent Animation */}
+              <div className="flex items-center">
+                <a 
+                  href="#client" 
+                  onClick={() => setActiveItem('client')}
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
+                    activeItem === 'client' 
                       ? 'text-gray-900' 
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
-                  <span className="relative z-10">PRODUCTS</span>
-                  <svg 
-                    className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'products' ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="relative z-10">CLIENT</span>
                   
                   {/* Corner Accent Animation - Consistent for all */}
-                  {activeItem === 'products' && (
+                  {activeItem === 'client' && (
                     <>
                       <span 
                         className="absolute inset-0 animate-expandIn"
@@ -204,162 +295,26 @@ const Navbar = () => {
                   
                   {/* Hover Line - Black */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-                </button>
-                
-                {/* Dropdown - Coming from Left with > icons */}
-                <div 
-                  className={`absolute top-full left-0 mt-1 w-80 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                    openDropdown === 'products' 
-                      ? 'opacity-100 scale-y-100 visible' 
-                      : 'opacity-0 scale-y-0 invisible'
-                  }`}
-                  style={{ backgroundColor: '#FAF1E6' }}
-                >
-                  <div className="relative">
-                    <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                    
-                    {productsItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-4 py-2.5 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
-                      >
-                        <span className="flex items-center space-x-1.5">
-                          <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
-                          <span className="leading-relaxed">{item.name.substring(2)}</span>
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
+                </a>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
               </div>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-8 bg-gray-300 mx-1"></span>
-            </div>
 
-            {/* CLIENT - Corner Accent Animation */}
-            <div className="flex items-center">
-              <a 
-                href="#client" 
-                onClick={() => setActiveItem('client')}
-                className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                  activeItem === 'client' 
-                    ? 'text-gray-900' 
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
-              >
-                <span className="relative z-10">CLIENT</span>
-                
-                {/* Corner Accent Animation - Consistent for all */}
-                {activeItem === 'client' && (
-                  <>
-                    <span 
-                      className="absolute inset-0 animate-expandIn"
-                      style={{ backgroundColor: '#FAF1E6' }}
-                    ></span>
-                    <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
-                  </>
-                )}
-                
-                {/* Hover Line - Black */}
-                <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-              </a>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-8 bg-gray-300 mx-1"></span>
-            </div>
-
-            {/* GALLERY - Corner Accent Animation */}
-            <div className="flex items-center">
-              <a 
-                href="#gallery" 
-                onClick={() => setActiveItem('gallery')}
-                className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                  activeItem === 'gallery' 
-                    ? 'text-gray-900' 
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
-              >
-                <span className="relative z-10">GALLERY</span>
-                
-                {/* Corner Accent Animation - Consistent for all */}
-                {activeItem === 'gallery' && (
-                  <>
-                    <span 
-                      className="absolute inset-0 animate-expandIn"
-                      style={{ backgroundColor: '#FAF1E6' }}
-                    ></span>
-                    <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
-                  </>
-                )}
-                
-                {/* Hover Line - Black */}
-                <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-              </a>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-8 bg-gray-300 mx-1"></span>
-            </div>
-
-            {/* BLOG - Corner Accent Animation */}
-            <div className="flex items-center">
-              <a 
-                href="#blog" 
-                onClick={() => setActiveItem('blog')}
-                className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                  activeItem === 'blog' 
-                    ? 'text-gray-900' 
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
-              >
-                <span className="relative z-10">BLOG</span>
-                
-                {/* Corner Accent Animation - Consistent for all */}
-                {activeItem === 'blog' && (
-                  <>
-                    <span 
-                      className="absolute inset-0 animate-expandIn"
-                      style={{ backgroundColor: '#FAF1E6' }}
-                    ></span>
-                    <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
-                  </>
-                )}
-                
-                {/* Hover Line - Black */}
-                <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-              </a>
-              {/* Vertical Line - Medium */}
-              <span className="w-px h-8 bg-gray-300 mx-1"></span>
-            </div>
-
-            {/* CONTACT - Corner Accent Animation with Phone & Quote STACKED - TWO LINES FOR PHONE */}
-            <div 
-              className="flex items-center"
-              onMouseEnter={() => setOpenDropdown('contact')}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <div className="relative">
-                <button
-                  onClick={() => setActiveItem('contact')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                    activeItem === 'contact' 
+              {/* GALLERY - Corner Accent Animation */}
+              <div className="flex items-center">
+                <a 
+                  href="#gallery" 
+                  onClick={() => setActiveItem('gallery')}
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
+                    activeItem === 'gallery' 
                       ? 'text-gray-900' 
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
-                  <span className="relative z-10">CONTACT</span>
-                  <svg 
-                    className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'contact' ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="relative z-10">GALLERY</span>
                   
                   {/* Corner Accent Animation - Consistent for all */}
-                  {activeItem === 'contact' && (
+                  {activeItem === 'gallery' && (
                     <>
                       <span 
                         className="absolute inset-0 animate-expandIn"
@@ -372,87 +327,164 @@ const Navbar = () => {
                   
                   {/* Hover Line - Black */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-                </button>
-                
-                {/* Contact Dropdown - ONLY Contact & Career Items */}
-                <div 
-                  className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                    openDropdown === 'contact' 
-                      ? 'opacity-100 scale-y-100 visible' 
-                      : 'opacity-0 scale-y-0 invisible'
+                </a>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
+              </div>
+
+              {/* BLOG - Corner Accent Animation */}
+              <div className="flex items-center">
+                <a 
+                  href="#blog" 
+                  onClick={() => setActiveItem('blog')}
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
+                    activeItem === 'blog' 
+                      ? 'text-gray-900' 
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
-                  style={{ backgroundColor: '#FAF1E6' }}
                 >
-                  <div className="relative">
-                    <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
+                  <span className="relative z-10">BLOG</span>
+                  
+                  {/* Corner Accent Animation - Consistent for all */}
+                  {activeItem === 'blog' && (
+                    <>
+                      <span 
+                        className="absolute inset-0 animate-expandIn"
+                        style={{ backgroundColor: '#FAF1E6' }}
+                      ></span>
+                      <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
+                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
+                    </>
+                  )}
+                  
+                  {/* Hover Line - Black */}
+                  <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
+                </a>
+                {/* Vertical Line - Medium */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
+              </div>
+
+              {/* CONTACT - Corner Accent Animation with Phone & Quote STACKED - TWO LINES FOR PHONE */}
+              <div 
+                className="flex items-center"
+                onMouseEnter={() => setOpenDropdown('contact')}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <div className="relative">
+                  <button
+                    onClick={() => setActiveItem('contact')}
+                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
+                      activeItem === 'contact' 
+                        ? 'text-gray-900' 
+                        : 'text-gray-700 hover:text-gray-900'
+                    }`}
+                  >
+                    <span className="relative z-10">CONTACT</span>
+                    <svg 
+                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'contact' ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                     
-                    {/* Contact Items with > icon - ONLY these two items */}
-                    {contactItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-4 py-2 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
-                      >
-                        <span className="flex items-center space-x-1.5">
-                          <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
-                          <span>{item.name.substring(2)}</span>
-                        </span>
-                      </a>
-                    ))}
+                    {/* Corner Accent Animation - Consistent for all */}
+                    {activeItem === 'contact' && (
+                      <>
+                        <span 
+                          className="absolute inset-0 animate-expandIn"
+                          style={{ backgroundColor: '#FAF1E6' }}
+                        ></span>
+                        <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
+                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
+                      </>
+                    )}
+                    
+                    {/* Hover Line - Black */}
+                    <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
+                  </button>
+                  
+                  {/* Contact Dropdown - ONLY Contact & Career Items */}
+                  <div 
+                    className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
+                      openDropdown === 'contact' 
+                        ? 'opacity-100 scale-y-100 visible' 
+                        : 'opacity-0 scale-y-0 invisible'
+                    }`}
+                    style={{ backgroundColor: '#FAF1E6' }}
+                  >
+                    <div className="relative">
+                      <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
+                      
+                      {/* Contact Items with > icon - ONLY these two items */}
+                      {contactItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="block px-4 py-2 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
+                        >
+                          <span className="flex items-center space-x-1.5">
+                            <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
+                            <span>{item.name.substring(2)}</span>
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* PHONE NUMBERS & REQUEST QUOTE - STACKED WITH TWO LINES FOR PHONE NUMBERS */}
-              <div className="flex flex-col items-end ml-2 pl-2 border-l-2 border-gray-300">
-                {/* Phone Numbers - TWO SEPARATE LINES as requested */}
-                <div className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors group whitespace-nowrap">
-                  <svg className="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span className="text-[11px] font-medium">+91 9898898219</span>
+                {/* PHONE NUMBERS & REQUEST QUOTE - STACKED WITH TWO LINES FOR PHONE NUMBERS */}
+                <div className="flex flex-col items-end ml-2 pl-2 border-l-2 border-gray-300">
+                  {/* Phone Numbers - TWO SEPARATE LINES as requested */}
+                  <div className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors group whitespace-nowrap">
+                    <svg className="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-[11px] font-medium">+91 9898898219</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors group whitespace-nowrap">
+                    <svg className="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-[11px] font-medium">+91 9998551985</span>
+                  </div>
+                  
+                  {/* Request Quote Button */}
+                  <button className="bg-gray-800 text-white px-3 py-1  -mr-4 rounded-md text-[10px] font-semibold hover:bg-gray-900 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg uppercase tracking-wider mt-2">
+                    REQUEST QUOTE
+                  </button>
                 </div>
-                <div className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors group whitespace-nowrap">
-                  <svg className="w-3 h-3 text-gray-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span className="text-[11px] font-medium">+91 9998551985</span>
-                </div>
-                
-                {/* Request Quote Button */}
-                <button className="bg-gray-800 text-white px-3 py-1  -mr-4 rounded-md text-[10px] font-semibold hover:bg-gray-900 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg uppercase tracking-wider mt-2">
-                  REQUEST QUOTE
-                </button>
               </div>
             </div>
-          </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-1.5 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
-            >
-              <svg
-                className={`h-5 w-5 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
+            {/* Mobile menu button */}
+            <div className="lg:hidden flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="inline-flex items-center justify-center p-1.5 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
               >
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+                <svg
+                  className={`h-5 w-5 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  {isOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu - Opens from Left Side */}
+      {/* Mobile Menu - Opens from Left Side - Moved OUTSIDE the nav element */}
       <div 
-        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-white shadow-2xl z-[60] transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -653,11 +685,11 @@ const Navbar = () => {
       {/* Overlay for mobile menu */}
       {isOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-[55]"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
-    </nav>
+    </>
   );
 };
 
