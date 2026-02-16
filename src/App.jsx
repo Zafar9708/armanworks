@@ -7,6 +7,15 @@ import ManufacturingFacilities from './pages/Manufacturing/Manufacturing';
 import DesignStructure from './pages/Design/Design';
 import ServicesPage from './pages/Servives/Services';
 import OurNetworkPage from './pages/Network/Network';
+import ProductsGrain from './pages/Grain/ProductsGrain';
+import SpicesCleaning from './pages/Spices/SpicesCleaning';
+import DaalPlant from './pages/Daal/DaalPlant';
+import SortexAccessories from './pages/SortexAccessories/SortexAccessories';
+import ClientsPage from './pages/Clients/Clients';
+import GalleryPage from './pages/Gallery/Gallery';
+import BlogPage from './pages/Blog/Blog';
+import ContactPage from './pages/Contact/Contact';
+import CareersPage from './pages/Career/Career';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -29,6 +38,24 @@ function App() {
         <Route path='/about-design' element={<DesignStructure />} />
         <Route path='/about-services' element={<ServicesPage />} />
         <Route path='/about-network' element={<OurNetworkPage />} />
+        <Route path='/products-grain' element={<ProductsGrain />} />
+        <Route path='/products-spices' element={<SpicesCleaning />} />
+        <Route path='/products-daal' element={<DaalPlant />} />
+        <Route path='/products-sortex' element={<SortexAccessories />} />
+        <Route path='/client' element={<ClientsPage />} />
+        <Route path='/gallery' element={<GalleryPage />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/career' element={<CareersPage />} />
+
+
+
+
+
+
+
+
+
 
 
 

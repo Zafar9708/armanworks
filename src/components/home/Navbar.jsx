@@ -50,9 +50,9 @@ const Navbar = () => {
   const productsItems = [
     { name: '› GRAIN', href: '/products-grain' },
     { name: '› SPICES & SEEDS CLEANING MACHINERY', href: '/products-spices' },
-    { name: '› PROCESSING MACHINERY', href: '/products-machinery' },
-    { name: '› DAAL PLANT', href: '/products-daal' },
-    { name: '› SORTEX PLANT ACCESSORIES', href: '/about-sortex' }
+    // { name: '› PROCESSING MACHINERY', href: '/products-machinery' },
+    { name: '› MACHINERY DAAL PLANT', href: '/products-daal' },
+    { name: '› SORTEX PLANT ACCESSORIES', href: '/products-sortex' }
   ];
 
   // Contact dropdown items
@@ -271,7 +271,7 @@ const Navbar = () => {
               {/* CLIENT - Corner Accent Animation */}
               <div className="flex items-center">
                 <a 
-                  href="#client" 
+                  href="/client" 
                   onClick={() => setActiveItem('client')}
                   className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
                     activeItem === 'client' 
@@ -303,7 +303,7 @@ const Navbar = () => {
               {/* GALLERY - Corner Accent Animation */}
               <div className="flex items-center">
                 <a 
-                  href="#gallery" 
+                  href="/gallery" 
                   onClick={() => setActiveItem('gallery')}
                   className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
                     activeItem === 'gallery' 
@@ -335,7 +335,7 @@ const Navbar = () => {
               {/* BLOG - Corner Accent Animation */}
               <div className="flex items-center">
                 <a 
-                  href="#blog" 
+                  href="/blog" 
                   onClick={() => setActiveItem('blog')}
                   className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
                     activeItem === 'blog' 

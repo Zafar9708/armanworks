@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Navigation, ShieldCheck, ChevronRight, Home, Zap } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
+import IndiaMap from "../../assets/map/india.svg";
+import WorldMap from "../../assets/map/world.svg";
 
 const NetworkPresence = () => {
   const [activeTab, setActiveTab] = useState('india');
 
-  // Exact coordinates for the blinking dots based on the map URLs provided
+  // Coordinates for the blinking dots
   const indiaNodes = [
     { name: "Gujarat Hub", top: "48%", left: "15%" },
     { name: "Punjab Sector", top: "20%", left: "28%" },
@@ -30,7 +32,7 @@ const NetworkPresence = () => {
       <Navbar />
       <div className="bg-[#F8F9FB] min-h-screen pt-24 font-sans selection:bg-[#D4AF37]">
         
-        {/* --- SECTION 1: PROFESSIONAL HEADER --- */}
+        {/* --- SECTION 1: HEADER --- */}
         <section className="py-20 bg-white border-b border-slate-100">
           <div className="container mx-auto px-6 lg:px-20 text-center">
             <nav className="flex justify-center items-center gap-2 text-[10px] font-black tracking-[0.4em] text-[#D4AF37] uppercase mb-8">
@@ -45,13 +47,13 @@ const NetworkPresence = () => {
           </div>
         </section>
 
-        {/* --- SECTION 2: THE INTERACTIVE MAP INTERFACE --- */}
+        {/* --- SECTION 2: INTERACTIVE MAP --- */}
         <section className="py-12">
           <div className="container mx-auto px-6 lg:px-20">
             
             {/* TAB SELECTOR */}
             <div className="flex justify-center mb-16">
-              <div className="bg-slate-200/50 p-1.5 rounded-full flex border border-slate-200">
+              <div className=" p-1.5 rounded-full flex ">
                 <button 
                   onClick={() => setActiveTab('india')}
                   className={`px-10 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
@@ -72,7 +74,7 @@ const NetworkPresence = () => {
             </div>
 
             {/* MAP VIEWPORT */}
-            <div className="relative bg-[#0F172A] rounded-2xl overflow-hidden shadow-2xl min-h-[500px] lg:min-h-[750px] flex items-center justify-center border border-slate-800">
+            <div className="relative  overflow-hidden min-h-[500px] lg:min-h-[750px] flex items-center justify-center ">
               
               {/* Technical Grid Pattern Overlay */}
               <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
@@ -90,20 +92,20 @@ const NetworkPresence = () => {
                 >
                   {activeTab === 'india' ? (
                     <div className="relative w-full max-w-2xl">
-                      {/* INDIA MAP URL */}
                       <img 
-                        src="http://googleusercontent.com/image_collection/image_retrieval/10385398856887637397_0" 
+                        src={IndiaMap}
                         alt="India Map"
-                        className="w-full h-auto opacity-40 grayscale brightness-150 contrast-125"
+                        className="w-full h-auto block" // Removed all filters
                       />
-                      {/* INDIA BLINKING NODES */}
+
                       {indiaNodes.map((node, i) => (
                         <div key={i} className="absolute group" style={{ top: node.top, left: node.left }}>
                           <span className="relative flex h-4 w-4">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4AF37]"></span>
                           </span>
-                          <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all bg-white text-[#0F172A] text-[9px] font-black px-3 py-1.5 whitespace-nowrap rounded shadow-2xl z-50">
+                          {/* Label on Hover */}
+                          <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 bg-white text-[#0F172A] text-[10px] font-bold px-3 py-2 whitespace-nowrap rounded shadow-2xl z-50 pointer-events-none border border-slate-100">
                             {node.name}
                           </div>
                         </div>
@@ -111,20 +113,20 @@ const NetworkPresence = () => {
                     </div>
                   ) : (
                     <div className="relative w-full max-w-5xl">
-                      {/* WORLD MAP URL */}
                       <img 
-                        src="http://googleusercontent.com/image_collection/image_retrieval/12814060965264586195_0" 
+                        src={WorldMap}
                         alt="World Map"
-                        className="w-full h-auto opacity-30 grayscale invert brightness-200"
+                        className="w-full h-auto block" // Removed all filters
                       />
-                      {/* GLOBAL BLINKING NODES */}
+
                       {globalNodes.map((node, i) => (
                         <div key={i} className="absolute group" style={{ top: node.top, left: node.left }}>
                           <span className="relative flex h-4 w-4">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4AF37]"></span>
                           </span>
-                          <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all bg-white text-[#0F172A] text-[9px] font-black px-3 py-1.5 whitespace-nowrap rounded shadow-2xl z-50">
+                          {/* Label on Hover */}
+                          <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 bg-white text-[#0F172A] text-[10px] font-bold px-3 py-2 whitespace-nowrap rounded shadow-2xl z-50 pointer-events-none border border-slate-100">
                             {node.name}
                           </div>
                         </div>
@@ -134,25 +136,15 @@ const NetworkPresence = () => {
                 </motion.div>
               </AnimatePresence>
 
-              {/* MAP LEGEND / STATUS BAR */}
+              {/* MAP LEGEND */}
               <div className="absolute bottom-10 left-10 hidden md:block">
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></div>
-                    <span className="text-white text-[10px] font-black uppercase tracking-widest">Active Manufacturing Hub</span>
-                  </div>
-                  <div className="h-4 w-px bg-slate-700"></div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-slate-500"></div>
-                    <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">Global Support Center</span>
-                  </div>
-                </div>
+              
               </div>
             </div>
           </div>
         </section>
 
-        {/* --- SECTION 3: NETWORK PILLARS --- */}
+        {/* --- SECTION 3: PILLARS --- */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6 lg:px-20 grid md:grid-cols-3 gap-16">
             <div className="space-y-6 group">
