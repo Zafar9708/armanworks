@@ -13,14 +13,14 @@
 //     const controlNavbar = () => {
 //       if (typeof window !== 'undefined') {
 //         const currentScrollY = window.scrollY;
-        
+
 //         // Hide navbar when scrolling down, show when scrolling up
 //         if (currentScrollY > lastScrollY && currentScrollY > 50) {
 //           setShowNavbar(false);
 //         } else {
 //           setShowNavbar(true);
 //         }
-        
+
 //         setLastScrollY(currentScrollY);
 //       }
 //     };
@@ -69,7 +69,7 @@
 //       }`}>
 //         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 //           <div className="flex justify-between items-center">
-            
+
 //             {/* Logo and Company Info - Left Side - REDUCED SPACING */}
 //             <div className="flex items-center space-x-3">
 //               <div className="flex-shrink-0">
@@ -91,7 +91,7 @@
 
 //             {/* Desktop Navigation - Right Side - REDUCED SPACING */}
 //             <div className="hidden lg:flex items-center space-x-1">
-              
+
 //               {/* HOME - Corner Accent Animation */}
 //               <div className="flex items-center">
 //                 <a 
@@ -104,7 +104,7 @@
 //                   }`}
 //                 >
 //                   <span className="relative z-10">HOME</span>
-                  
+
 //                   {/* Corner Accent Animation - Consistent for all */}
 //                   {activeItem === 'home' && (
 //                     <>
@@ -116,7 +116,7 @@
 //                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                     </>
 //                   )}
-                  
+
 //                   {/* Hover Line - Black */}
 //                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                 </a>
@@ -148,7 +148,7 @@
 //                     >
 //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                     </svg>
-                    
+
 //                     {/* Corner Accent Animation - Consistent for all */}
 //                     {activeItem === 'about' && (
 //                       <>
@@ -160,11 +160,11 @@
 //                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                       </>
 //                     )}
-                    
+
 //                     {/* Hover Line - Black */}
 //                     <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                   </button>
-                  
+
 //                   {/* Dropdown - Coming from Left with > icons */}
 //                   <div 
 //                     className={`absolute top-full left-0 mt-1 w-64 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
@@ -176,7 +176,7 @@
 //                   >
 //                     <div className="relative">
 //                       <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
+
 //                       {companyInfoItems.map((item, index) => (
 //                         <a
 //                           key={index}
@@ -220,7 +220,7 @@
 //                     >
 //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                     </svg>
-                    
+
 //                     {/* Corner Accent Animation - Consistent for all */}
 //                     {activeItem === 'products' && (
 //                       <>
@@ -232,11 +232,11 @@
 //                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                       </>
 //                     )}
-                    
+
 //                     {/* Hover Line - Black */}
 //                     <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                   </button>
-                  
+
 //                   {/* Dropdown - Coming from Left with > icons */}
 //                   <div 
 //                     className={`absolute top-full left-0 mt-1 w-80 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
@@ -248,7 +248,7 @@
 //                   >
 //                     <div className="relative">
 //                       <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
+
 //                       {productsItems.map((item, index) => (
 //                         <a
 //                           key={index}
@@ -280,7 +280,7 @@
 //                   }`}
 //                 >
 //                   <span className="relative z-10">CLIENT</span>
-                  
+
 //                   {/* Corner Accent Animation - Consistent for all */}
 //                   {activeItem === 'client' && (
 //                     <>
@@ -292,7 +292,7 @@
 //                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                     </>
 //                   )}
-                  
+
 //                   {/* Hover Line - Black */}
 //                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                 </a>
@@ -312,7 +312,7 @@
 //                   }`}
 //                 >
 //                   <span className="relative z-10">GALLERY</span>
-                  
+
 //                   {/* Corner Accent Animation - Consistent for all */}
 //                   {activeItem === 'gallery' && (
 //                     <>
@@ -324,7 +324,7 @@
 //                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                     </>
 //                   )}
-                  
+
 //                   {/* Hover Line - Black */}
 //                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                 </a>
@@ -344,7 +344,7 @@
 //                   }`}
 //                 >
 //                   <span className="relative z-10">BLOG</span>
-                  
+
 //                   {/* Corner Accent Animation - Consistent for all */}
 //                   {activeItem === 'blog' && (
 //                     <>
@@ -356,7 +356,7 @@
 //                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                     </>
 //                   )}
-                  
+
 //                   {/* Hover Line - Black */}
 //                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                 </a>
@@ -388,7 +388,7 @@
 //                     >
 //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                     </svg>
-                    
+
 //                     {/* Corner Accent Animation - Consistent for all */}
 //                     {activeItem === 'contact' && (
 //                       <>
@@ -400,11 +400,11 @@
 //                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
 //                       </>
 //                     )}
-                    
+
 //                     {/* Hover Line - Black */}
 //                     <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
 //                   </button>
-                  
+
 //                   {/* Contact Dropdown - ONLY Contact & Career Items */}
 //                   <div 
 //                     className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
@@ -416,7 +416,7 @@
 //                   >
 //                     <div className="relative">
 //                       <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
+
 //                       {/* Contact Items with > icon - ONLY these two items */}
 //                       {contactItems.map((item, index) => (
 //                         <a
@@ -449,7 +449,7 @@
 //                     </svg>
 //                     <span className="text-[11px] font-medium">+91 9998551985</span>
 //                   </div>
-                  
+
 //                   {/* Request Quote Button */}
 //                   <button className="bg-gray-800 text-white px-3 py-1  -mr-4 rounded-md text-[10px] font-semibold hover:bg-gray-900 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg uppercase tracking-wider mt-2">
 //                     REQUEST QUOTE
@@ -541,7 +541,7 @@
 //                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                 </svg>
 //               </button>
-              
+
 //               {openMobileDropdown === 'about' && (
 //                 <div className="ml-3 mt-1 space-y-0.5">
 //                   {companyInfoItems.map((item, index) => (
@@ -577,7 +577,7 @@
 //                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                 </svg>
 //               </button>
-              
+
 //               {openMobileDropdown === 'products' && (
 //                 <div className="ml-3 mt-1 space-y-0.5">
 //                   {productsItems.map((item, index) => (
@@ -640,7 +640,7 @@
 //                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 //                 </svg>
 //               </button>
-              
+
 //               {openMobileDropdown === 'contact' && (
 //                 <div className="ml-3 mt-1 space-y-0.5">
 //                   {contactItems.map((item, index) => (
@@ -673,7 +673,7 @@
 //                 </svg>
 //                 <span className="text-xs font-medium">+91 98765 43211</span>
 //               </div>
-              
+
 //               <button className="w-full bg-gray-800 text-white px-3 py-2 rounded-md text-[11px] font-semibold hover:bg-gray-900 uppercase tracking-wider">
 //                 REQUEST QUOTE
 //               </button>
@@ -705,21 +705,21 @@ const Navbar = () => {
   const [activeItem, setActiveItem] = useState('home');
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
+
   const location = useLocation();
 
   // Set active item based on current path
   useEffect(() => {
     const path = location.pathname;
-    
-    if (path.includes('/about-') || path === '/about' || path === '/about-profile' || 
-        path === '/about-manufacturing' || path === '/about-design' || 
-        path === '/about-services' || path === '/about-network') {
+
+    if (path.includes('/about-') || path === '/about' || path === '/about-profile' ||
+      path === '/about-manufacturing' || path === '/about-design' ||
+      path === '/about-services' || path === '/about-network') {
       setActiveItem('about');
     }
-    else if (path.includes('/products-') || path === '/products' || 
-             path === '/products-grain' || path === '/products-spices' || 
-             path === '/products-daal' || path === '/products-sortex') {
+    else if (path.includes('/products-') || path === '/products' ||
+      path === '/products-grain' || path === '/products-spices' ||
+      path === '/products-daal' || path === '/products-sortex') {
       setActiveItem('products');
     }
     else if (path === '/contact' || path === '/career') {
@@ -744,14 +744,14 @@ const Navbar = () => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY;
-        
+
         // Hide navbar when scrolling down, show when scrolling up
         if (currentScrollY > lastScrollY && currentScrollY > 50) {
           setShowNavbar(false);
         } else {
           setShowNavbar(true);
         }
-        
+
         setLastScrollY(currentScrollY);
       }
     };
@@ -779,10 +779,24 @@ const Navbar = () => {
 
   // Products dropdown items
   const productsItems = [
-    { name: '› GRAIN', href: '/products-grain' },
-    { name: '› SPICES & SEEDS CLEANING MACHINERY', href: '/products-spices' },
-    { name: '› MACHINERY DAAL PLANT', href: '/products-daal' },
-    { name: '› SORTEX PLANT ACCESSORIES', href: '/products-sortex' }
+    // { name: '› GRAVITY SEPARATOR', href: '/products-grain' },
+    // { name: '› FOOD PROCESSING PLANT', href: '/products-spices' },
+    // { name: '› DRUM SEAL MACHINE', href: '/products-daal' },
+    // { name: '› FLOUR MILL PLANT', href: '/products-sortex' },
+    // { name: '› BELT CONVEYOR', href: '/products-sortex' },
+    // { name: '› AIR CLASSIFIER', href: '/products-sortex' },
+    // { name: '› CLEANING PLANT', href: '/products-sortex' },
+    // { name: '› MILL MACHINE', href: '/products-sortex' },
+    // { name: '› DESTONER MACHINE', href: '/products-sortex' },
+    // { name: '› CENTRIFUGAL PUMP', href: '/products-sortex' },
+    // { name: '› PNEUMATIC EQUIPMENT ', href: '/products-sortex' }
+
+
+
+
+
+
+
   ];
 
   // Contact dropdown items
@@ -794,20 +808,19 @@ const Navbar = () => {
   return (
     <>
       {/* Main Navbar - with scroll hide */}
-      <nav className={`bg-white shadow-md sticky top-0 z-50 transition-transform duration-300 ${
-        showNavbar ? 'translate-y-0' : '-translate-y-full'
-      }`}>
+      <nav className={`bg-white shadow-md sticky top-0 z-50 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            
+
             {/* Logo and Company Info - Left Side */}
             <div className="flex items-center space-x-3">
               <div className="flex-shrink-0">
                 <Link to="/">
-                  <img 
-                    className="h-32 w-32 md:h-32 md:w-32 mt-3 object-contain -ml-6 cursor-pointer" 
-                    src="/logo.png" 
-                    alt="Arman Engineering" 
+                  <img
+                    className="h-32 w-32 md:h-32 md:w-32 mt-3 object-contain -ml-6 cursor-pointer"
+                    src="/logo.png"
+                    alt="Arman Engineering"
                   />
                 </Link>
               </div>
@@ -823,24 +836,23 @@ const Navbar = () => {
 
             {/* Desktop Navigation - Right Side */}
             <div className="hidden lg:flex items-center space-x-1">
-              
+
               {/* HOME - Corner Accent Animation */}
               <div className="flex items-center">
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   onClick={() => setActiveItem('home')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                    activeItem === 'home' 
-                      ? 'text-gray-900' 
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${activeItem === 'home'
+                      ? 'text-gray-900'
                       : 'text-gray-700 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   <span className="relative z-10">HOME</span>
-                  
+
                   {/* Corner Accent Animation */}
                   {activeItem === 'home' && (
                     <>
-                      <span 
+                      <span
                         className="absolute inset-0 animate-expandIn"
                         style={{ backgroundColor: '#FAF1E6' }}
                       ></span>
@@ -848,7 +860,7 @@ const Navbar = () => {
                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                     </>
                   )}
-                  
+
                   {/* Hover Line - Black */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                 </Link>
@@ -857,7 +869,7 @@ const Navbar = () => {
               </div>
 
               {/* ABOUT US with Dropdown */}
-              <div 
+              <div
                 className="flex items-center"
                 onMouseEnter={() => setOpenDropdown('about')}
                 onMouseLeave={() => setOpenDropdown(null)}
@@ -865,26 +877,25 @@ const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={() => setActiveItem('about')}
-                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                      activeItem === 'about' 
-                        ? 'text-gray-900' 
+                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${activeItem === 'about'
+                        ? 'text-gray-900'
                         : 'text-gray-700 hover:text-gray-900'
-                    }`}
+                      }`}
                   >
                     <span className="relative z-10">ABOUT US</span>
-                    <svg 
-                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                    
+
                     {/* Corner Accent Animation */}
                     {activeItem === 'about' && (
                       <>
-                        <span 
+                        <span
                           className="absolute inset-0 animate-expandIn"
                           style={{ backgroundColor: '#FAF1E6' }}
                         ></span>
@@ -892,23 +903,22 @@ const Navbar = () => {
                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                       </>
                     )}
-                    
+
                     {/* Hover Line */}
                     <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                   </button>
-                  
+
                   {/* Dropdown */}
-                  <div 
-                    className={`absolute top-full left-0 mt-1 w-64 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                      openDropdown === 'about' 
-                        ? 'opacity-100 scale-y-100 visible' 
+                  <div
+                    className={`absolute top-full left-0 mt-1 w-64 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${openDropdown === 'about'
+                        ? 'opacity-100 scale-y-100 visible'
                         : 'opacity-0 scale-y-0 invisible'
-                    }`}
+                      }`}
                     style={{ backgroundColor: '#FAF1E6' }}
                   >
                     <div className="relative">
                       <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
+
                       {companyInfoItems.map((item, index) => (
                         <Link
                           key={index}
@@ -933,98 +943,21 @@ const Navbar = () => {
               </div>
 
               {/* PRODUCTS with Dropdown */}
-              <div 
-                className="flex items-center"
-                onMouseEnter={() => setOpenDropdown('products')}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <div className="relative">
-                  <button
-                    onClick={() => setActiveItem('products')}
-                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                      activeItem === 'products' 
-                        ? 'text-gray-900' 
-                        : 'text-gray-700 hover:text-gray-900'
-                    }`}
-                  >
-                    <span className="relative z-10">PRODUCTS</span>
-                    <svg 
-                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'products' ? 'rotate-180' : ''}`} 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                    
-                    {/* Corner Accent Animation */}
-                    {activeItem === 'products' && (
-                      <>
-                        <span 
-                          className="absolute inset-0 animate-expandIn"
-                          style={{ backgroundColor: '#FAF1E6' }}
-                        ></span>
-                        <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
-                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
-                      </>
-                    )}
-                    
-                    {/* Hover Line */}
-                    <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
-                  </button>
-                  
-                  {/* Dropdown */}
-                  <div 
-                    className={`absolute top-full left-0 mt-1 w-80 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                      openDropdown === 'products' 
-                        ? 'opacity-100 scale-y-100 visible' 
-                        : 'opacity-0 scale-y-0 invisible'
-                    }`}
-                    style={{ backgroundColor: '#FAF1E6' }}
-                  >
-                    <div className="relative">
-                      <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
-                      {productsItems.map((item, index) => (
-                        <Link
-                          key={index}
-                          to={item.href}
-                          onClick={() => {
-                            setActiveItem('products');
-                            setOpenDropdown(null);
-                          }}
-                          className="block px-4 py-2.5 text-[11px] text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 uppercase tracking-wide font-medium group/item"
-                        >
-                          <span className="flex items-center space-x-1.5">
-                            <span className="text-gray-500 group-hover/item:translate-x-1 transition-transform duration-200">›</span>
-                            <span className="leading-relaxed">{item.name.substring(2)}</span>
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                {/* Vertical Line */}
-                <span className="w-px h-8 bg-gray-300 mx-1"></span>
-              </div>
-
-              {/* CLIENT */}
-              <div className="flex items-center">
-                <Link 
-                  to="/client" 
+             <div className="flex items-center">
+                <Link
+                  to="/products"
                   onClick={() => setActiveItem('client')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                    activeItem === 'client' 
-                      ? 'text-gray-900' 
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${activeItem === 'client'
+                      ? 'text-gray-900'
                       : 'text-gray-700 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
-                  <span className="relative z-10">CLIENT</span>
-                  
+                  <span className="relative z-10">PRODUCTS</span>
+
                   {/* Corner Accent Animation */}
-                  {activeItem === 'client' && (
+                  {activeItem === 'product' && (
                     <>
-                      <span 
+                      <span
                         className="absolute inset-0 animate-expandIn"
                         style={{ backgroundColor: '#FAF1E6' }}
                       ></span>
@@ -1032,7 +965,38 @@ const Navbar = () => {
                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                     </>
                   )}
-                  
+
+                  {/* Hover Line */}
+                  <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
+                </Link>
+                {/* Vertical Line */}
+                <span className="w-px h-8 bg-gray-300 mx-1"></span>
+              </div>
+
+              {/* CLIENT */}
+              <div className="flex items-center">
+                <Link
+                  to="/client"
+                  onClick={() => setActiveItem('client')}
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${activeItem === 'client'
+                      ? 'text-gray-900'
+                      : 'text-gray-700 hover:text-gray-900'
+                    }`}
+                >
+                  <span className="relative z-10">CLIENT</span>
+
+                  {/* Corner Accent Animation */}
+                  {activeItem === 'client' && (
+                    <>
+                      <span
+                        className="absolute inset-0 animate-expandIn"
+                        style={{ backgroundColor: '#FAF1E6' }}
+                      ></span>
+                      <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-black animate-scaleIn"></span>
+                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
+                    </>
+                  )}
+
                   {/* Hover Line */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                 </Link>
@@ -1042,21 +1006,20 @@ const Navbar = () => {
 
               {/* GALLERY */}
               <div className="flex items-center">
-                <Link 
-                  to="/gallery" 
+                <Link
+                  to="/gallery"
                   onClick={() => setActiveItem('gallery')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                    activeItem === 'gallery' 
-                      ? 'text-gray-900' 
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${activeItem === 'gallery'
+                      ? 'text-gray-900'
                       : 'text-gray-700 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   <span className="relative z-10">GALLERY</span>
-                  
+
                   {/* Corner Accent Animation */}
                   {activeItem === 'gallery' && (
                     <>
-                      <span 
+                      <span
                         className="absolute inset-0 animate-expandIn"
                         style={{ backgroundColor: '#FAF1E6' }}
                       ></span>
@@ -1064,7 +1027,7 @@ const Navbar = () => {
                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                     </>
                   )}
-                  
+
                   {/* Hover Line */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                 </Link>
@@ -1074,21 +1037,20 @@ const Navbar = () => {
 
               {/* BLOG */}
               <div className="flex items-center">
-                <Link 
-                  to="/blog" 
+                <Link
+                  to="/blog"
                   onClick={() => setActiveItem('blog')}
-                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${
-                    activeItem === 'blog' 
-                      ? 'text-gray-900' 
+                  className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide group overflow-hidden ${activeItem === 'blog'
+                      ? 'text-gray-900'
                       : 'text-gray-700 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   <span className="relative z-10">BLOG</span>
-                  
+
                   {/* Corner Accent Animation */}
                   {activeItem === 'blog' && (
                     <>
-                      <span 
+                      <span
                         className="absolute inset-0 animate-expandIn"
                         style={{ backgroundColor: '#FAF1E6' }}
                       ></span>
@@ -1096,7 +1058,7 @@ const Navbar = () => {
                       <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                     </>
                   )}
-                  
+
                   {/* Hover Line */}
                   <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                 </Link>
@@ -1105,7 +1067,7 @@ const Navbar = () => {
               </div>
 
               {/* CONTACT with Dropdown and Phone */}
-              <div 
+              <div
                 className="flex items-center"
                 onMouseEnter={() => setOpenDropdown('contact')}
                 onMouseLeave={() => setOpenDropdown(null)}
@@ -1113,26 +1075,25 @@ const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={() => setActiveItem('contact')}
-                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${
-                      activeItem === 'contact' 
-                        ? 'text-gray-900' 
+                    className={`relative px-3 py-2 text-xs font-medium transition-all duration-300 uppercase tracking-wide flex items-center space-x-0.5 group overflow-hidden ${activeItem === 'contact'
+                        ? 'text-gray-900'
                         : 'text-gray-700 hover:text-gray-900'
-                    }`}
+                      }`}
                   >
                     <span className="relative z-10">CONTACT</span>
-                    <svg 
-                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'contact' ? 'rotate-180' : ''}`} 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className={`w-3.5 h-3.5 relative z-10 transition-transform duration-300 ${openDropdown === 'contact' ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                    
+
                     {/* Corner Accent Animation */}
                     {activeItem === 'contact' && (
                       <>
-                        <span 
+                        <span
                           className="absolute inset-0 animate-expandIn"
                           style={{ backgroundColor: '#FAF1E6' }}
                         ></span>
@@ -1140,23 +1101,22 @@ const Navbar = () => {
                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-black animate-scaleIn"></span>
                       </>
                     )}
-                    
+
                     {/* Hover Line */}
                     <span className="absolute bottom-0.5 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4/5 group-hover:left-[10%]"></span>
                   </button>
-                  
+
                   {/* Contact Dropdown */}
-                  <div 
-                    className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${
-                      openDropdown === 'contact' 
-                        ? 'opacity-100 scale-y-100 visible' 
+                  <div
+                    className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg py-2 z-50 transition-all duration-300 origin-top-left ${openDropdown === 'contact'
+                        ? 'opacity-100 scale-y-100 visible'
                         : 'opacity-0 scale-y-0 invisible'
-                    }`}
+                      }`}
                     style={{ backgroundColor: '#FAF1E6' }}
                   >
                     <div className="relative">
                       <div className="absolute -top-1.5 left-6 w-3 h-3 rotate-45" style={{ backgroundColor: '#FAF1E6' }}></div>
-                      
+
                       {contactItems.map((item, index) => (
                         <Link
                           key={index}
@@ -1192,7 +1152,7 @@ const Navbar = () => {
                     </svg>
                     <span className="text-[11px] font-medium">+91 9998551985</span>
                   </div>
-                  
+
                   {/* Request Quote Button */}
                   <Link to="/request-quote">
                     <button className="bg-gray-800 text-white px-3 py-1 -mr-4 rounded-md text-[10px] font-semibold hover:bg-gray-900 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg uppercase tracking-wider mt-2">
@@ -1228,10 +1188,9 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu */}
-      <div 
-        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-white shadow-2xl z-[60] transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+      <div
+        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-white shadow-2xl z-[60] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
       >
         <div className="h-full overflow-y-auto">
           {/* Mobile Menu Header */}
@@ -1262,8 +1221,8 @@ const Navbar = () => {
           {/* Mobile Navigation Items */}
           <div className="p-3 space-y-1">
             {/* HOME */}
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="flex items-center px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
               style={{ backgroundColor: '#FAF1E6' }}
               onClick={() => {
@@ -1282,16 +1241,16 @@ const Navbar = () => {
                 style={{ backgroundColor: openMobileDropdown === 'about' ? '#FAF1E6' : 'transparent' }}
               >
                 <span>ABOUT US</span>
-                <svg 
-                  className={`w-3.5 h-3.5 transition-transform duration-300 ${openMobileDropdown === 'about' ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-300 ${openMobileDropdown === 'about' ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               {openMobileDropdown === 'about' && (
                 <div className="ml-3 mt-1 space-y-0.5">
                   {companyInfoItems.map((item, index) => (
@@ -1314,47 +1273,20 @@ const Navbar = () => {
             </div>
 
             {/* PRODUCTS Mobile Dropdown */}
-            <div className="border-b border-gray-100 pb-1">
-              <button
-                onClick={() => toggleMobileDropdown('products')}
-                className="flex items-center justify-between w-full px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
-                style={{ backgroundColor: openMobileDropdown === 'products' ? '#FAF1E6' : 'transparent' }}
-              >
-                <span>PRODUCTS</span>
-                <svg 
-                  className={`w-3.5 h-3.5 transition-transform duration-300 ${openMobileDropdown === 'products' ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {openMobileDropdown === 'products' && (
-                <div className="ml-3 mt-1 space-y-0.5">
-                  {productsItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={item.href}
-                      className="flex items-center space-x-2 px-3 py-2 text-[11px] text-gray-600 hover:bg-white rounded-lg transition-all duration-200 uppercase tracking-wide leading-relaxed"
-                      style={{ backgroundColor: '#FAF1E6' }}
-                      onClick={() => {
-                        setActiveItem('products');
-                        setIsOpen(false);
-                      }}
-                    >
-                      <span className="text-gray-500">›</span>
-                      <span>{item.name.substring(2)}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link
+              to="/products"
+              className="block px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
+              onClick={() => {
+                setActiveItem('client');
+                setIsOpen(false);
+              }}
+            >
+              PRODUCTS
+            </Link>
 
             {/* CLIENT */}
-            <Link 
-              to="/client" 
+            <Link
+              to="/client"
               className="block px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
               onClick={() => {
                 setActiveItem('client');
@@ -1365,8 +1297,8 @@ const Navbar = () => {
             </Link>
 
             {/* GALLERY */}
-            <Link 
-              to="/gallery" 
+            <Link
+              to="/gallery"
               className="block px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
               onClick={() => {
                 setActiveItem('gallery');
@@ -1377,8 +1309,8 @@ const Navbar = () => {
             </Link>
 
             {/* BLOG */}
-            <Link 
-              to="/blog" 
+            <Link
+              to="/blog"
               className="block px-3 py-2.5 text-gray-700 hover:bg-white rounded-lg transition-all duration-200 uppercase text-xs font-medium"
               onClick={() => {
                 setActiveItem('blog');
@@ -1396,16 +1328,16 @@ const Navbar = () => {
                 style={{ backgroundColor: openMobileDropdown === 'contact' ? '#FAF1E6' : 'transparent' }}
               >
                 <span>CONTACT</span>
-                <svg 
-                  className={`w-3.5 h-3.5 transition-transform duration-300 ${openMobileDropdown === 'contact' ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-300 ${openMobileDropdown === 'contact' ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               {openMobileDropdown === 'contact' && (
                 <div className="ml-3 mt-1 space-y-0.5">
                   {contactItems.map((item, index) => (
@@ -1441,7 +1373,7 @@ const Navbar = () => {
                 </svg>
                 <span className="text-xs font-medium">+91 9998551985</span>
               </div>
-              
+
               <Link to="/request-quote" onClick={() => setIsOpen(false)}>
                 <button className="w-full bg-gray-800 text-white px-3 py-2 rounded-md text-[11px] font-semibold hover:bg-gray-900 uppercase tracking-wider">
                   REQUEST QUOTE
@@ -1454,7 +1386,7 @@ const Navbar = () => {
 
       {/* Overlay for mobile menu */}
       {isOpen && (
-        <div 
+        <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-[55]"
           onClick={() => setIsOpen(false)}
         ></div>

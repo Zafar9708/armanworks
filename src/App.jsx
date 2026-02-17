@@ -16,6 +16,7 @@ import GalleryPage from './pages/Gallery/Gallery';
 import BlogPage from './pages/Blog/Blog';
 import ContactPage from './pages/Contact/Contact';
 import CareersPage from './pages/Career/Career';
+import ProductsPage from './pages/Product/Product';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -34,6 +35,8 @@ function App() {
           } 
         />
         <Route path='/about-profile' element={<AboutUsPage />} />
+        <Route path='/products' element={<ProductsPage />} />
+
         <Route path='/about-manufacturing' element={<ManufacturingFacilities />} />
         <Route path='/about-design' element={<DesignStructure />} />
         <Route path='/about-services' element={<ServicesPage />} />

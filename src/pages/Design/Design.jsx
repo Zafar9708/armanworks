@@ -3,386 +3,590 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, ChevronRight, PenTool, Box, Activity, 
   CheckCircle2, Cpu, Ruler, Monitor, PencilRuler,
-  Compass, Layers, Database, ChevronLeft, X, Send, Phone, Mail,MapPin,Settings
+  Compass, Layers, Database, ChevronLeft, X, Send, 
+  Phone, Mail, MapPin, Settings, GitBranch, 
+  Gauge, Eye, Target, Award, Users, Clock,
+  FileText, Download, Maximize2, Minimize2,
+  Grid3x3, Box as BoxIcon, Wind, Zap, Shield, Trello,
+  Rocket, Sparkles, Lightbulb, Circle, Square, Triangle
 } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
 
 const DesignAndStructure = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [activePhase, setActivePhase] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedView, setSelectedView] = useState('technical');
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const workflow = [
+  const designPhases = [
     {
       id: "01",
       title: "Conceptual Design",
-      phase: "Foundation Phase",
-      desc: "Our expert designers build 2D and 3D models of the plant with accurate, easy, and quick access so that you can take a virtual tour of the project even before construction work begins.",
-      detailedDesc: "We provide a basic model for baseline evaluation and identify the desires and aspirations of each customer type in terms of how they communicate with the design under various conditions. We provide an accurate production forecast, future looks, fundamental understanding of the scope of developments, that includes marketability, labor needs and expected costs.",
-      deliverables: [
-        "Flow Diagrams & P&I Diagrams",
-        "Engineering Specifications",
-        "Utility Requirement Data Sheets",
-        "3D Virtual Walkthrough Models",
-        "Production Forecasting Reports"
-      ],
-      stats: ["3D Visualization", "Flow Analysis", "Requirement Mapping"],
-      icon: PenTool,
+      subtitle: "Foundation & Vision",
+      description: "Transforming requirements into comprehensive design blueprints with 3D visualization and flow analysis.",
+      longDescription: "We provide a basic model for baseline evaluation and identify the desires and aspirations of each customer type in terms of how they communicate with the design under various conditions. We provide an accurate production forecast, future looks, fundamental understanding of the scope of developments, that includes marketability, labor needs and expected costs.",
+      icon: Eye,
       color: "#D4AF37",
+      bgGradient: "from-amber-50 to-orange-50",
+      metrics: [
+        { label: "Accuracy", value: "99.5%", icon: Gauge },
+        { label: "Projects", value: "250+", icon: GitBranch },
+        { label: "Timeline", value: "2-3 Weeks", icon: Clock }
+      ],
+      deliverables: [
+        "3D Conceptual Models",
+        "Flow Diagrams & P&ID",
+        "Equipment Specifications",
+        "Utility Requirements",
+        "Cost Estimates"
+      ],
+      technologies: ["AutoCAD", "SolidWorks", "Revit", "Navisworks"],
       image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200"
     },
     {
       id: "02",
       title: "Preliminary Engineering",
-      phase: "Development Phase",
-      desc: "The preliminary design and Engineering process determines the overall project set-up. Our design team collaborates with you to determine the requirements of your project!",
-      detailedDesc: "To have your dream project, we are preparing ourselves adequately by providing comprehensive planning and layout solutions. We ensure every aspect of your project is carefully considered before moving to detailed engineering.",
-      deliverables: [
-        "Conceptual Layouts & Plot Plans",
-        "Equipment Layout & Arrangement",
-        "Detailed Specifications for Package Items",
-        "Data Sheets for All Equipment",
-        "Initial Cost Estimates"
-      ],
-      stats: ["Plot Planning", "Equipment Layout", "Specification Sheets"],
-      icon: Compass,
+      subtitle: "Development & Planning",
+      description: "Comprehensive planning and layout solutions ensuring every aspect is carefully considered before detailed engineering.",
+      longDescription: "To have your dream project, we are preparing ourselves adequately by providing comprehensive planning and layout solutions. We ensure every aspect of your project is carefully considered before moving to detailed engineering. Our team collaborates with you to determine the exact requirements.",
+      icon: GitBranch,
       color: "#2D5A82",
+      bgGradient: "from-blue-50 to-indigo-50",
+      metrics: [
+        { label: "Coverage", value: "100%", icon: Target },
+        { label: "Reviews", value: "3-Stage", icon: Trello },
+        { label: "Optimization", value: "95%", icon: Zap }
+      ],
+      deliverables: [
+        "Conceptual Layouts",
+        "Equipment Arrangement",
+        "Technical Specifications",
+        "Data Sheets",
+        "Initial Cost Analysis"
+      ],
+      technologies: ["Plant 3D", "AutoCAD P&ID", "Navisworks", "BIM 360"],
       image: "https://images.unsplash.com/photo-1503387762-592dea58ef21?auto=format&fit=crop&q=80&w=1200"
     },
     {
       id: "03",
       title: "Detail Engineering",
-      phase: "Execution Phase",
-      desc: "Our Engineers create a full project concept which includes the designation of equipment, components, structure, installation etc. We cover all the analyses before the launch of the project.",
-      detailedDesc: "Our expert engineers create a detailed outline of the project ensuring every component is precisely engineered for optimal performance, longevity, and safety. We leave nothing to chance.",
-      deliverables: [
-        "Detailed Equipment Specifications",
-        "Structural Design & Analysis",
-        "Installation Methodologies",
-        "Piping & Instrumentation Diagrams",
-        "Construction & Fabrication Drawings"
-      ],
-      stats: ["Equipment Design", "Structural Engineering", "Installation Planning"],
+      subtitle: "Execution & Precision",
+      description: "Complete project engineering with detailed equipment designation, structural analysis, and installation planning.",
+      longDescription: "Our expert engineers create a detailed outline of the project ensuring every component is precisely engineered for optimal performance, longevity, and safety. We cover all analyses before launch, including structural integrity, equipment specifications, and installation methodologies.",
       icon: Settings,
       color: "#D4AF37",
+      bgGradient: "from-amber-50 to-yellow-50",
+      metrics: [
+        { label: "Precision", value: "±0.01mm", icon: Ruler },
+        { label: "Drawings", value: "500+", icon: FileText },
+        { label: "Checks", value: "Multi-level", icon: Shield }
+      ],
+      deliverables: [
+        "Detailed Specifications",
+        "Structural Analysis",
+        "Fabrication Drawings",
+        "Installation Manuals",
+        "Quality Control Plans"
+      ],
+      technologies: ["ANSYS", "STAAD Pro", "ETABS", "Tekla"],
       image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=1200"
+    }
+  ];
+
+  const features = [
+    {
+      icon: BoxIcon,
+      title: "3D Visualization",
+      description: "Virtual walkthroughs and realistic renderings before construction begins",
+      stat: "100%",
+      statLabel: "Clarity"
+    },
+    {
+      icon: Ruler,
+      title: "Precision Engineering",
+      description: "Micron-level accuracy in all design specifications",
+      stat: "±0.01mm",
+      statLabel: "Tolerance"
+    },
+    {
+      icon: Shield,
+      title: "Structural Integrity",
+      description: "25% safety margin above rated load capacity",
+      stat: "25%",
+      statLabel: "Safety Buffer"
+    },
+    {
+      icon: Cpu,
+      title: "Smart Analysis",
+      description: "FEA and CFD simulations for optimal performance",
+      stat: "99.9%",
+      statLabel: "Accuracy"
     }
   ];
 
   return (
     <>
       <Navbar />
-      <div className="bg-[#F4F7FA] text-slate-800 font-sans pt-24 selection:bg-[#D4AF37] selection:text-white">
+      <div className="min-h-screen bg-[#FAFBFC] font-sans">
         
-        {/* --- 1. UNIQUE ARCHITECTURAL HERO (EXACTLY AS YOU HAD IT) --- */}
-        <section className="relative py-32 bg-white border-b border-slate-200 overflow-hidden">
-          {/* Subtle Blueprint Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-               style={{ backgroundImage: 'radial-gradient(#2D5A82 0.5px, transparent 0.5px)', backgroundSize: '30px 30px' }}>
+        {/* HERO SECTION - ARCHITECTURAL */}
+        <section className="relative pt-32 pb-24 overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 w-full h-full" 
+                 style={{ 
+                   backgroundImage: 'linear-gradient(45deg, #D4AF37 1px, transparent 1px), linear-gradient(-45deg, #D4AF37 1px, transparent 1px)',
+                   backgroundSize: '50px 50px'
+                 }}>
+            </div>
           </div>
 
-          <div className="container mx-auto px-6 lg:px-20 relative z-10">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-7">
-                <nav className="flex items-center gap-2 text-[10px] font-black tracking-[0.4em] text-[#D4AF37] uppercase mb-12">
-                  <Compass size={14} /> <ChevronRight size={12} /> Design Engineering
-                </nav>
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.85] mb-10">
-                  PRECISION <br /><span className="text-slate-300">THROUGH</span> <span className="text-[#D4AF37]">DESIGN.</span>
+          <div className="container mx-auto px-6 lg:px-20 relative">
+            {/* Breadcrumb */}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 text-sm text-slate-400 mb-8"
+            >
+              <Home size={16} />
+              <ChevronRight size={14} />
+              <span className="text-slate-600">Design & Engineering</span>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Left Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="inline-flex items-center gap-2 bg-[#D4AF37]/10 px-4 py-2 mb-8">
+                  <PenTool size={16} className="text-[#D4AF37]" />
+                  <span className="text-xs font-bold text-[#D4AF37] tracking-wider">ENGINEERING EXCELLENCE</span>
+                </div>
+
+                <h1 className="text-6xl lg:text-7xl font-light text-slate-900 mb-6">
+                  Where <span className="font-black text-[#D4AF37]">Design</span><br />
+                  Meets Structure
                 </h1>
-                <p className="max-w-xl text-lg text-slate-500 font-light leading-relaxed border-l-2 border-slate-100 pl-8">
-                  From concept to construction, our engineering philosophy ensures every detail is meticulously planned and executed. We don't just design structures; we engineer success.
+
+                <p className="text-lg text-slate-500 leading-relaxed mb-12 max-w-xl">
+                  From conceptual sketches to detailed engineering drawings, 
+                  our integrated design approach ensures every project is built 
+                  on a foundation of precision and innovation.
                 </p>
-                {/* Added only the button that opens the contact form */}
-                <button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="mt-12 group bg-slate-900 text-white px-8 py-4 text-xs font-black tracking-[0.2em] uppercase hover:bg-[#D4AF37] transition-all duration-300 flex items-center gap-3"
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-3 gap-6">
+                  {[
+                    { value: "450+", label: "Projects Engineered" },
+                    { value: "28", label: "Years Experience" },
+                    { value: "100%", label: "ISO Certified" }
+                  ].map((stat, index) => (
+                    <div key={index} className="border-l-2 border-[#D4AF37] pl-4">
+                      <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
+                      <div className="text-xs text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Right - Abstract Visualization */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="relative"
+              >
+                <div className="aspect-square relative">
+                  {/* Rotating Rings */}
+                  <div className="absolute inset-0 animate-spin-slow">
+                    <div className="w-full h-full border-2 border-[#D4AF37]/20 rounded-full"></div>
+                  </div>
+                  <div className="absolute inset-[15%] animate-spin-slower">
+                    <div className="w-full h-full border-2 border-slate-200 rounded-full"></div>
+                  </div>
+                  
+                  {/* Center Content */}
+                  <div className="absolute inset-[30%] bg-white shadow-2xl rounded-sm flex items-center justify-center">
+                    <div className="text-center">
+                      <BoxIcon size={40} className="mx-auto mb-2 text-[#D4AF37]" />
+                      <div className="text-xs font-bold text-slate-400">3D MODEL</div>
+                    </div>
+                  </div>
+
+                  {/* Floating Labels */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600">
+                    BIM LEVEL 2
+                  </div>
+                  <div className="absolute -bottom-4 right-0 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600">
+                    ISO 19650
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURES GRID */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="text-[#D4AF37] text-sm font-bold tracking-widest">CAPABILITIES</span>
+              <h2 className="text-4xl font-light text-slate-900 mt-4 mb-6">
+                Integrated <span className="font-black">Engineering Solutions</span>
+              </h2>
+              <p className="text-slate-400">
+                Comprehensive design capabilities backed by advanced technology and decades of expertise
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative bg-slate-50 p-8 hover:bg-white hover:shadow-xl transition-all duration-300 border border-slate-100"
                 >
-                  Start Your Journey <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  <feature.icon className="text-[#D4AF37] mb-4" size={32} />
+                  <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
+                  <p className="text-sm text-slate-500 mb-4">{feature.description}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-200">
+                    <span className="text-2xl font-black text-[#D4AF37]">{feature.stat}</span>
+                    <span className="text-xs text-slate-400">{feature.statLabel}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DESIGN PHASES - INTERACTIVE TIMELINE */}
+        <section className="py-20 bg-[#FAFBFC]">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="text-center mb-16">
+              <span className="text-[#D4AF37] text-sm font-bold tracking-widest">PROCESS</span>
+              <h2 className="text-4xl font-light text-slate-900 mt-4 mb-6">
+                Three-Phase <span className="font-black">Engineering Approach</span>
+              </h2>
+            </div>
+
+            {/* Phase Navigation */}
+            <div className="flex justify-center mb-16">
+              <div className="inline-flex bg-white p-2 rounded-full shadow-lg">
+                {designPhases.map((phase, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActivePhase(index)}
+                    className={`relative px-8 py-4 text-sm font-bold transition-all ${
+                      activePhase === index 
+                        ? 'text-white' 
+                        : 'text-slate-400 hover:text-slate-600'
+                    }`}
+                  >
+                    {activePhase === index && (
+                      <motion.div
+                        layoutId="activePhase"
+                        className="absolute inset-0 bg-[#D4AF37] rounded-full"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className="relative z-10">{phase.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Phase Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activePhase}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              >
+                <div className="grid lg:grid-cols-2">
+                  {/* Left - Content */}
+                  <div className="p-12 lg:p-16">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-16 h-16 bg-[#D4AF37]/10 flex items-center justify-center rounded-xl">
+                        {React.createElement(designPhases[activePhase].icon, { 
+                          size: 32, 
+                          className: "text-[#D4AF37]" 
+                        })}
+                      </div>
+                      <div>
+                        <div className="text-sm text-[#D4AF37] font-bold mb-1">
+                          PHASE {designPhases[activePhase].id}
+                        </div>
+                        <div className="text-2xl font-bold">{designPhases[activePhase].subtitle}</div>
+                      </div>
+                    </div>
+
+                    <h3 className="text-3xl font-black mb-6">{designPhases[activePhase].title}</h3>
+                    <p className="text-slate-500 leading-relaxed mb-8">
+                      {designPhases[activePhase].longDescription}
+                    </p>
+
+                    {/* Metrics */}
+                    <div className="grid grid-cols-3 gap-4 mb-8">
+                      {designPhases[activePhase].metrics.map((metric, idx) => (
+                        <div key={idx} className="text-center p-4 bg-slate-50 rounded-xl">
+                          <metric.icon className="mx-auto mb-2 text-[#D4AF37]" size={20} />
+                          <div className="font-black text-lg">{metric.value}</div>
+                          <div className="text-xs text-slate-400">{metric.label}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Deliverables */}
+                    <div>
+                      <h4 className="font-bold mb-3">Key Deliverables</h4>
+                      <div className="space-y-2">
+                        {designPhases[activePhase].deliverables.map((item, idx) => (
+                          <div key={idx} className="flex items-center gap-3 text-sm">
+                            <CheckCircle2 size={16} className="text-[#D4AF37]" />
+                            <span className="text-slate-600">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right - Visual */}
+                  <div className="relative h-full min-h-[500px] overflow-hidden">
+                    <img 
+                      src={designPhases[activePhase].image}
+                      alt={designPhases[activePhase].title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/90"></div>
+                    
+                    {/* Tech Stack */}
+                    <div className="absolute bottom-8 left-8 right-8">
+                      <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl">
+                        <h4 className="text-sm font-bold mb-3">TECHNOLOGIES</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {designPhases[activePhase].technologies.map((tech, idx) => (
+                            <span key={idx} className="px-3 py-1 bg-slate-100 text-xs font-medium rounded-full">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* TECHNOLOGY STACK */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <span className="text-[#D4AF37] text-sm font-bold tracking-widest">TECHNOLOGY</span>
+                <h2 className="text-4xl font-light text-slate-900 mt-4 mb-6">
+                  Advanced <span className="font-black">Design Tools</span>
+                </h2>
+                <p className="text-slate-400 mb-8">
+                  We leverage industry-leading software and technologies to deliver 
+                  precise, optimized, and constructible designs.
+                </p>
+
+                <div className="space-y-6">
+                  {[
+                    { cat: "CAD Software", tools: "AutoCAD, SolidWorks, CATIA, Revit" },
+                    { cat: "Analysis Tools", tools: "ANSYS, STAAD Pro, ETABS, CFD" },
+                    { cat: "BIM Platform", tools: "Revit, Navisworks, BIM 360" },
+                    { cat: "Visualization", tools: "3ds Max, Lumion, Twinmotion" }
+                  ].map((item, index) => (
+                    <div key={index} className="border-b border-slate-100 pb-4">
+                      <div className="text-xs font-bold text-slate-400 mb-2">{item.cat}</div>
+                      <div className="font-medium text-slate-700">{item.tools}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: "AutoCAD", users: "15+ Seats" },
+                  { name: "SolidWorks", users: "10+ Seats" },
+                  { name: "ANSYS", users: "5+ Seats" },
+                  { name: "Revit", users: "8+ Seats" }
+                ].map((item, index) => (
+                  <div key={index} className="bg-slate-50 p-6 text-center rounded-xl hover:shadow-lg transition-shadow">
+                    <div className="font-black text-lg mb-1">{item.name}</div>
+                    <div className="text-sm text-[#D4AF37]">{item.users}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section className="py-20 bg-slate-900">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-4xl font-light text-white mb-6">
+                Ready to Start Your <span className="font-black text-[#D4AF37]">Design Journey?</span>
+              </h2>
+              <p className="text-slate-400 mb-12">
+                Let's discuss your project requirements and create a design that sets the foundation for success.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-[#D4AF37] text-slate-900 px-10 py-4 font-bold hover:bg-white transition-colors flex items-center justify-center gap-2"
+                >
+                  <Send size={18} />
+                  Submit Requirements
+                </button>
+                <button className="border border-white text-white px-10 py-4 font-bold hover:bg-white hover:text-slate-900 transition-colors flex items-center justify-center gap-2">
+                  <Download size={18} />
+                  Download Brochure
                 </button>
               </div>
-              <div className="lg:col-span-5 relative hidden lg:block">
-                 <div className="w-full aspect-square border-[1px] border-slate-100 rounded-full flex items-center justify-center relative">
-                    <div className="w-3/4 aspect-square border-[1px] border-[#D4AF37]/20 rounded-full animate-spin-slow"></div>
-                    <Database className="absolute text-slate-100" size={120} />
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-4 py-1 border border-slate-200 text-[9px] font-black tracking-widest text-slate-400">DATA_DRIVEN_LOGIC</div>
-                 </div>
-              </div>
             </div>
-          </div>
-        </section>
-
-        {/* --- 2. THE INTERACTIVE STEP-NODE SECTION (EXACTLY AS YOU HAD IT) --- */}
-        <section className="py-24 bg-[#F4F7FA]">
-          <div className="container mx-auto px-6 lg:px-20">
-            <div className="bg-white shadow-2xl overflow-hidden rounded-sm flex flex-col lg:flex-row min-h-[700px]">
-              
-              {/* Left Side: Navigation Nodes */}
-              <div className="lg:w-80 bg-slate-50 border-r border-slate-100 p-10 flex flex-col justify-between">
-                <div>
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-12">Systemic Workflow</h3>
-                    <div className="space-y-12 relative">
-                        {/* Connecting Line */}
-                        <div className="absolute left-[19px] top-2 bottom-2 w-px bg-slate-200"></div>
-                        
-                        {workflow.map((item, index) => (
-                            <button 
-                                key={index}
-                                onClick={() => setActiveStep(index)}
-                                className="relative z-10 flex items-center gap-6 group text-left outline-none"
-                            >
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[10px] font-black transition-all duration-500 ${
-                                    activeStep === index ? 'bg-[#D4AF37] text-white scale-110 shadow-lg' : 'bg-white border border-slate-200 text-slate-400'
-                                }`}>
-                                    {item.id}
-                                </div>
-                                <div className="transition-all duration-300">
-                                    <p className={`text-[10px] font-black tracking-widest uppercase ${activeStep === index ? 'text-[#D4AF37]' : 'text-slate-400'}`}>Phase {item.id}</p>
-                                    <p className={`text-sm font-bold tracking-tight ${activeStep === index ? 'text-slate-900' : 'text-slate-400'}`}>{item.phase}</p>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="pt-12 border-t border-slate-200">
-                    <p className="text-[9px] font-black text-slate-400 leading-relaxed uppercase tracking-widest">
-                        Validated under <br />ISO 9001 Structural Standards
-                    </p>
-                </div>
-              </div>
-
-              {/* Right Side: Dynamic Content */}
-              <div className="flex-1 p-10 lg:p-20 relative bg-white">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeStep}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.5, ease: "circOut" }}
-                        className="h-full flex flex-col justify-between"
-                    >
-                        <div className="grid lg:grid-cols-2 gap-16">
-                            <div className="space-y-8">
-                                <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-none tracking-tighter">
-                                    {workflow[activeStep].title}
-                                </h2>
-                                <p className="text-lg text-slate-500 font-light leading-relaxed italic border-l-4 border-[#D4AF37] pl-6">
-                                    "{workflow[activeStep].desc}"
-                                </p>
-                                <div className="space-y-4 pt-4">
-                                    {workflow[activeStep].stats.map((stat, i) => (
-                                        <div key={i} className="flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] text-slate-700">
-                                            <div className="h-1.5 w-1.5 bg-[#D4AF37]"></div>
-                                            {stat}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="relative group">
-                                <div className="absolute -top-4 -left-4 w-20 h-20 border-t-2 border-l-2 border-[#D4AF37]/30"></div>
-                                <div className="overflow-hidden rounded-sm bg-slate-100 aspect-[4/5] shadow-xl">
-                                    <img 
-                                        src={workflow[activeStep].image} 
-                                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100" 
-                                        alt="Design Engineering Detail" 
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Technical Footer of the Content Box */}
-                        <div className="mt-16 pt-8 border-t border-slate-100 flex items-center justify-between">
-                            <div className="flex gap-12">
-                                <div>
-                                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Standard Check</p>
-                                    <p className="text-xs font-bold text-slate-800 tracking-tighter uppercase">Verified Logic</p>
-                                </div>
-                                <div>
-                                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Compute Environment</p>
-                                    <p className="text-xs font-bold text-slate-800 tracking-tighter uppercase underline decoration-[#D4AF37]">CAD Workstation 09</p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- 3. THE "STRUCTURE" DEEP-DIVE (EXACTLY AS YOU HAD IT) --- */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6 lg:px-20">
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="relative">
-                <div className="absolute -inset-10 bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-                <div className="relative z-10 border-[1px] border-slate-200 p-2 bg-white">
-                    <img 
-                        src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" 
-                        className="w-full h-auto" 
-                        alt="Structural Analysis heatmap" 
-                    />
-                    
-                </div>
-              </div>
-              <div className="space-y-10">
-                <span className="text-[#D4AF37] text-[10px] font-black tracking-[0.5em] uppercase">Structural Integrity</span>
-                <h2 className="text-5xl font-black text-slate-900 tracking-tighter leading-[0.9]">
-                    Built for <br /><span className="text-slate-300">Endurance.</span>
-                </h2>
-                <p className="text-slate-500 text-lg font-light leading-relaxed">
-                  We follow the <strong>"A.E.W 25%"</strong> rule—every structural frame is engineered to withstand 25% more than its rated maximum load. This cushion of safety is why our installations stay operational long after competitors' machines show fatigue.
-                </p>
-                <div className="grid grid-cols-2 gap-8 pt-6">
-                    <div className="p-8 bg-slate-50 border border-slate-100 hover:border-[#D4AF37] transition-colors group">
-                        <Ruler className="text-[#D4AF37] mb-6 group-hover:scale-110 transition-transform" />
-                        <h5 className="font-bold text-sm uppercase tracking-widest mb-2">Micron Fitment</h5>
-                        <p className="text-[11px] text-slate-400 leading-relaxed uppercase">Laser-aligned joints for zero-tolerance assembly.</p>
-                    </div>
-                    <div className="p-8 bg-slate-50 border border-slate-100 hover:border-[#D4AF37] transition-colors group">
-                        <Layers className="text-[#D4AF37] mb-6 group-hover:scale-110 transition-transform" />
-                        <h5 className="font-bold text-sm uppercase tracking-widest mb-2">Modular Core</h5>
-                        <p className="text-[11px] text-slate-400 leading-relaxed uppercase">Scalable frame design for future capacity expansion.</p>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- 4. LEGACY INDICATOR (EXACTLY AS YOU HAD IT) --- */}
-        <section className="py-24 bg-slate-100/50">
-          <div className="container mx-auto px-6 lg:px-20 text-center">
-             <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-12">The Engineering Standard</h3>
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                {[
-                    { label: "Design Patents", val: "12+" },
-                    { label: "FEA Audits", val: "100%" },
-                    { label: "Active Designs", val: "450+" },
-                    { label: "Engineering Staff", val: "Senior Only" }
-                ].map((stat, i) => (
-                    <div key={i}>
-                        <p className="text-3xl font-black text-slate-900 mb-1">{stat.val}</p>
-                        <p className="text-[9px] font-black text-[#D4AF37] uppercase tracking-widest">{stat.label}</p>
-                    </div>
-                ))}
-             </div>
-          </div>
-        </section>
-
-        {/* --- 5. CONTACT MODAL (ADDED BUTTON AND MODAL) --- */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-6 lg:px-20 text-center">
-            <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-6 tracking-tight">
-              Ready to <span className="text-[#D4AF37]">Engineer</span> Your Project?
-            </h3>
-            <p className="text-slate-500 max-w-2xl mx-auto mb-12">
-              Let's discuss your requirements and create a design that stands the test of time.
-            </p>
-            <button 
-              onClick={() => setIsContactOpen(true)}
-              className="group bg-slate-900 text-white px-12 py-5 text-xs font-black tracking-[0.3em] uppercase hover:bg-[#D4AF37] transition-all duration-500 relative overflow-hidden"
-            >
-              <span className="relative z-10">Start Your Design Journey</span>
-              <div className="absolute inset-0 bg-[#D4AF37] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-            </button>
           </div>
         </section>
 
         {/* CONTACT MODAL */}
         <AnimatePresence>
-          {isContactOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
-              {/* Backdrop */}
+          {isModalOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setIsContactOpen(false)}
-                className="absolute inset-0 bg-slate-900/80 backdrop-blur-md"
+                onClick={() => setIsModalOpen(false)}
+                className="absolute inset-0 bg-slate-900/90 backdrop-blur-md"
               />
 
-              {/* Form Container */}
               <motion.div 
-                initial={{ scale: 0.9, opacity: 0, y: 40 }}
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 40 }}
-                className="bg-white w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 relative overflow-hidden shadow-2xl"
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                className="bg-white w-full max-w-2xl relative overflow-hidden rounded-2xl shadow-2xl"
               >
-                {/* Left Side: Contact Details */}
-                <div className="bg-gray-50 p-12 hidden md:flex flex-col justify-between border-r border-gray-100">
-                  <div>
-                    <h3 className="text-2xl font-black tracking-tighter uppercase mb-4 text-slate-900">Direct <br/> Lines</h3>
-                    <div className="h-1 w-12 bg-[#D4AF37] mb-8"></div>
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed mb-10">
-                      Reach out directly to our engineering headquarters.
-                    </p>
-                    
-                    <div className="space-y-8">
-                      <div className="flex items-start gap-4">
-                        <Phone size={18} className="text-[#D4AF37] mt-1" />
-                        <div>
-                          <p className="text-[10px] font-black uppercase text-slate-400 tracking-tighter">Support Line</p>
-                          <p className="text-sm font-black text-slate-900">+91 98XXX XXXXX</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <Mail size={18} className="text-[#D4AF37] mt-1" />
-                        <div>
-                          <p className="text-[10px] font-black uppercase text-slate-400 tracking-tighter">Technical Email</p>
-                          <p className="text-sm font-black text-slate-900">eng@amran.com</p>
-                        </div>
-                      </div>
+                {/* Header */}
+                <div className="bg-slate-900 p-8 text-white">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-2xl font-light mb-2">
+                        Engineering <span className="font-black text-[#D4AF37]">Consultation</span>
+                      </h3>
+                      <p className="text-slate-400 text-sm">Share your requirements and our team will respond within 24 hours</p>
                     </div>
-                  </div>
-
-                  <div className="pt-10 border-t border-gray-200">
-                      <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.3em]">Amran Engineering Works © 2026</p>
+                    <button 
+                      onClick={() => setIsModalOpen(false)}
+                      className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
                   </div>
                 </div>
 
-                {/* Right Side: The Form Fields */}
-                <div className="p-10 md:p-14 relative bg-white">
+                {/* Form */}
+                <form className="p-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                        Full Name
+                      </label>
+                      <input 
+                        type="text" 
+                        required 
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        placeholder="John Smith"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                        Company
+                      </label>
+                      <input 
+                        type="text" 
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                        Email
+                      </label>
+                      <input 
+                        type="email" 
+                        required 
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                        Phone
+                      </label>
+                      <input 
+                        type="tel" 
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                      Project Type
+                    </label>
+                    <select className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors bg-transparent">
+                      <option>Food Processing Plant</option>
+                      <option>Grain Storage Facility</option>
+                      <option>Material Handling System</option>
+                      <option>Custom Equipment</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+                      Project Requirements
+                    </label>
+                    <textarea 
+                      rows="4" 
+                      required
+                      className="w-full border border-slate-200 p-4 focus:border-[#D4AF37] outline-none transition-colors resize-none"
+                      placeholder="Describe your project requirements, capacity, timeline, etc."
+                    ></textarea>
+                  </div>
+
                   <button 
-                    onClick={() => setIsContactOpen(false)}
-                    className="absolute top-8 right-8 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    type="submit"
+                    className="w-full bg-slate-900 text-white py-5 font-bold hover:bg-[#D4AF37] transition-colors flex items-center justify-center gap-3"
                   >
-                    <X size={20} className="text-slate-400" />
+                    <Send size={18} />
+                    Submit Engineering Request
                   </button>
 
-                  <form className="space-y-7" onSubmit={(e) => e.preventDefault()}>
-                    <div className="relative">
-                      <label className="text-[9px] font-black uppercase tracking-[0.2em] text-[#D4AF37] block mb-1">Full Name</label>
-                      <input type="text" required className="w-full border-b border-gray-200 py-3 focus:border-slate-900 outline-none transition-colors text-sm font-bold text-slate-900 bg-transparent placeholder:text-gray-300" placeholder="ENTER NAME" />
-                    </div>
-
-                    <div className="relative">
-                      <label className="text-[9px] font-black uppercase tracking-[0.2em] text-[#D4AF37] block mb-1">Email Address</label>
-                      <input type="email" required className="w-full border-b border-gray-200 py-3 focus:border-slate-900 outline-none transition-colors text-sm font-bold text-slate-900 bg-transparent placeholder:text-gray-300" placeholder="EMAIL@COMPANY.COM" />
-                    </div>
-
-                    <div className="relative">
-                      <label className="text-[9px] font-black uppercase tracking-[0.2em] text-[#D4AF37] block mb-1">Phone Number</label>
-                      <input type="tel" required className="w-full border-b border-gray-200 py-3 focus:border-slate-900 outline-none transition-colors text-sm font-bold text-slate-900 bg-transparent placeholder:text-gray-300" placeholder="+91 00000 00000" />
-                    </div>
-
-                    <div className="relative">
-                      <label className="text-[9px] font-black uppercase tracking-[0.2em] text-[#D4AF37] block mb-1">Requirement Details</label>
-                      <textarea rows="3" required className="w-full border-b border-gray-200 py-3 focus:border-slate-900 outline-none transition-colors text-sm font-bold text-slate-900 bg-transparent resize-none placeholder:text-gray-300" placeholder="DESCRIBE YOUR PROJECT..."></textarea>
-                    </div>
-
-                    <button className="w-full mt-4 bg-slate-900 text-white py-5 text-[10px] font-black tracking-[0.4em] uppercase hover:bg-[#D4AF37] hover:text-slate-900 transition-all flex items-center justify-center gap-3">
-                      Submit Technical Request <Send size={14} />
-                    </button>
-                  </form>
-                </div>
+                  <p className="text-xs text-center text-slate-400">
+                    Our team will review your requirements and get back to you within 24 hours
+                  </p>
+                </form>
               </motion.div>
             </div>
           )}
         </AnimatePresence>
-
       </div>
       <Footer />
     </>
