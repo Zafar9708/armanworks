@@ -825,10 +825,10 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-gray-950 text-base md:text-lg lg:text-xl -ml-14 font-bold uppercase tracking-wide whitespace-nowrap">
+                <span className="text-gray-950  text-base md:text-lg lg:text-xl -ml-10 font-bold uppercase tracking-wide whitespace-nowrap">
                   ARMAN ENGINEERING WORKS
                 </span>
-                <span className="text-[10px] md:text-xs text-gray-600 font-semibold -ml-14 uppercase tracking-wider whitespace-nowrap">
+                <span className="text-[10px] md:text-xs text-gray-600 font-semibold -ml-10 uppercase tracking-wider whitespace-nowrap">
                   AN ISO 9001 : 2010 CERTIFIED COMPANY
                 </span>
               </div>

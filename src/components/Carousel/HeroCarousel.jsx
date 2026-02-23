@@ -1,22 +1,133 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
-
-const slides = [
-  { id: 1, cert: "ISO 9001:2015 Certified", title: "Huller Machine", subtitle: "New Generation", desc: "Engineered for high-capacity performance with precision hulling technology for global standards.", img: "https://www.maavumill.in/images/huller-machine/huller-flour-mill-machine-in-coimbatore.webp" },
-  { id: 2, cert: "ISO 9001:2015 Certified", title: "Grain Separator", subtitle: "Premium Sorting", desc: "Advanced sorting accuracy using magnetic and vibration-based filtration systems.", img: "https://5.imimg.com/data5/SELLER/Default/2024/7/435636215/EG/VL/AC/20532802/single-drum-magnetic-separator.png" },
-  { id: 3, cert: "ISO 9001:2015 Certified", title: "Daal Plant", subtitle: "Fully Automatic", desc: "Full-scale processing efficiency for industrial-grade pulse production and packaging.", img: "https://shriviratraengineering.in/wp-content/uploads/2024/01/Slider3-1024x683.webp" },
-  { id: 4, cert: "ISO 9001:2015 Certified", title: "Paddy Cleaner", subtitle: "High Velocity", desc: "Instantly removes impurities with high-velocity air and screen technology.", img: "https://cpimg.tistatic.com/09390795/b/4/UL-Series-MS-Paddy-Pre-Cleaner.jpg" },
-  { id: 5, cert: "ISO 9001:2015 Certified", title: "Spice Grinder", subtitle: "Heavy Duty", desc: "Heavy-duty grinding for bulk produce while maintaining nutritional aroma and texture.", img: "https://5.imimg.com/data5/SELLER/Default/2025/12/565467796/XH/QL/FY/14678655/commercial-spice-grinder-machine.jpg" },
-  { id: 6, cert: "ISO 9001:2015 Certified", title: "Sorter Parts", subtitle: "Precision Access", desc: "Genuine precision parts for peak sorting and color grading performance.", img: "https://www.metakcolorsorter.com/wp-content/uploads/2015/10/rice_color_sorter-2-1030x1030.jpg" },
-  { id: 7, cert: "ISO 9001:2015 Certified", title: "Polishing Unit", subtitle: "Grain Excellence", desc: "Adds a premium finish to your harvest, maximizing market value and shelf life.", img: "https://5.imimg.com/data5/SELLER/Default/2023/5/311689499/RQ/UI/WD/21436662/wheat-grain-polisher-machine.jpg" },
-  { id: 8, cert: "ISO 9001:2015 Certified", title: "Processing Expert", subtitle: "Vertical Transport", desc: "Integrated vertical transport and high-strength elevator solutions for modern factories.", img: "https://shriviratraengineering.in/wp-content/uploads/2024/01/Slider3-1024x683.webp" },
-  { id: 9, cert: "ISO 9001:2015 Certified", title: "Dryer System", subtitle: "Moisture Control", desc: "Optimized moisture control with advanced pneumatic heating technology for Dal mills.", img: "https://5.imimg.com/data5/SELLER/Default/2023/11/359441354/VS/SD/AZ/37321722/dal-mill-dryer.png" },
-  { id: 10, cert: "ISO 9001:2015 Certified", title: "Packing Unit", subtitle: "High Accuracy", desc: "Tailored industrial packing solutions for accuracy and extreme high speed.", img: "https://5.imimg.com/data5/SELLER/Default/2024/7/435636215/EG/VL/AC/20532802/single-drum-magnetic-separator.png" },
-];
+import { ChevronLeft, ChevronRight, ArrowUpRight, ShieldCheck, X, Send, MessageCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AmranPremiumCarousel = () => {
   const [index, setIndex] = useState(0);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
+
+  const slides = [
+    { 
+      id: 1, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Gravity Separator", 
+      subtitle: "5 HP Automatic", 
+      desc: "Arman Powder Coated 5 HP Automatic Gravity Separator with 20 ton/day capacity. Ideal for separating kernels and granular products based on specific gravity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
+      fullName: "5 HP Automatic Gravity Separator"
+    },
+    { 
+      id: 2, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Gravity Separator", 
+      subtitle: "3 HP Automatic", 
+      desc: "3 HP automatic gravity separator with single phase connection and powder coated finish for durability and efficient separation of granular products.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
+      fullName: "3 HP Automatic Gravity Separator"
+    },
+    { 
+      id: 3, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Gravity Separator", 
+      subtitle: "5 Fan System", 
+      desc: "High-capacity gravity separator with 5 fans for enhanced separation efficiency. Ideal for large-scale grain processing with 80 ton/day capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
+      fullName: "5 Fan Gravity Separator"
+    },
+    { 
+      id: 4, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Food Processing", 
+      subtitle: "Automatic Plant", 
+      desc: "Complete food processing solution for grinding applications. Features automatic operation, mild steel construction, and 10 HP motor power with 100 kg/hr capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
+      fullName: "Automatic Food Processing Plant"
+    },
+    { 
+      id: 5, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Drum Sealer", 
+      subtitle: "Automatic Cap", 
+      desc: "Electric driven automatic drum cap sealing machine for industrial packaging. Features 2 HP power, 240V voltage, and 100 caps/min capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
+      fullName: "Automatic Drum Cap Sealing Machine"
+    },
+    { 
+      id: 6, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Flour Mill", 
+      subtitle: "50 HP Plant", 
+      desc: "High-capacity automatic flour mill plant for commercial applications. Features 50 HP motor, three phase connection, and 1000 kg/hr capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
+      fullName: "Automatic Flour Mill Plant"
+    },
+    { 
+      id: 7, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Belt Conveyor", 
+      subtitle: "Flat System", 
+      desc: "Flat belt conveyor for packaging applications. Features 400 kg load capacity, automatic operation, and mild steel construction for durability.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
+      fullName: "Mild Steel Flat Belt Conveyor"
+    },
+    { 
+      id: 8, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Air Classifier", 
+      subtitle: "500 kg/hr", 
+      desc: "Industrial machine that separates dry powder materials into fine and coarse fractions based on size and shape using air currents and centrifugal force.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
+      fullName: "Air Classifier Machine"
+    },
+    { 
+      id: 9, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Sortex Plant", 
+      subtitle: "Fully Automatic", 
+      desc: "Complete cleaning solution with 80 HP power, three phase connection, and automatic operation. Ideal for industrial cleaning applications with 4 Ton capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
+      fullName: "Fully Automatic Sortex Cleaning Plant"
+    },
+    { 
+      id: 10, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Dal Mill", 
+      subtitle: "Automatic", 
+      desc: "Automatic dal mill machine for all pulses processing. Features 3 HP motor, SS 304 construction, and 70% head pulses recovery with 200 kg/hr capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
+      fullName: "Automatic Dal Mill Machine"
+    },
+    { 
+      id: 11, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Vibro Destoner", 
+      subtitle: "Automatic", 
+      desc: "Vibro destoner machine for industrial applications. Features 2 HP motor, three phase connection, and powder coated finish with 2 Ton/day capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
+      fullName: "Automatic Vibro Destoner Machine"
+    },
+    { 
+      id: 12, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Centrifugal Fan", 
+      subtitle: "5 HP", 
+      desc: "Centrifugal fan with 3 kW motor power, 10 Bar pressure, and 1200 RPM speed. Ideal for commercial ventilation applications with wall mounting option.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
+      fullName: "5 HP Industrial Centrifugal Fan"
+    },
+    { 
+      id: 13, 
+      cert: "ISO 9001:2015 Certified", 
+      title: "Pneumatic System", 
+      subtitle: "Hydraulic", 
+      desc: "Hydraulic systems with the potential to handle heavier loads and produce more work than pneumatic systems. Features 10 Ton max force with 100kg/hr capacity.", 
+      img: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
+      fullName: "Hydraulic Pneumatic Equipment"
+    }
+  ];
 
   const nextSlide = useCallback(() => {
     setIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -30,6 +141,33 @@ const AmranPremiumCarousel = () => {
     const timer = setInterval(nextSlide, 8000);
     return () => clearInterval(timer);
   }, [nextSlide]);
+
+  const handleTechnicalSpecs = () => {
+    setSelectedProduct(slides[index]);
+    navigate('/contact', { 
+      state: { 
+        product: slides[index].fullName,
+        subject: `Technical Specifications Request for ${slides[index].fullName}`
+      } 
+    });
+  };
+
+  const handleRequestQuote = () => {
+    setSelectedProduct(slides[index]);
+    setIsQuoteOpen(true);
+  };
+
+  const handleQuoteClose = () => {
+    setIsQuoteOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const handleWhatsApp = () => {
+    const product = slides[index];
+    const message = encodeURIComponent(`Hello, I'm interested in ${product.fullName}. Please share more details and quote.`);
+    window.open(`https://wa.me/919998551985?text=${message}`, '_blank');
+    setIsQuoteOpen(false);
+  };
 
   return (
     <div className="relative h-screen min-h-[700px] w-full bg-[#0a0a0a] overflow-hidden">
@@ -97,10 +235,16 @@ const AmranPremiumCarousel = () => {
                 transition={{ delay: 0.6 }}
                 className="flex gap-6 pt-6"
               >
-                <button className="bg-[#D4AF37] text-black px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2">
+                <button 
+                  onClick={handleTechnicalSpecs}
+                  className="bg-[#D4AF37] text-black px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2"
+                >
                   Technical Specs <ArrowUpRight size={16} />
                 </button>
-                <button className="border border-white/20 text-white px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                <button 
+                  onClick={handleRequestQuote}
+                  className="border border-white/20 text-white px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all"
+                >
                   Request Quote
                 </button>
               </motion.div>
@@ -159,6 +303,142 @@ const AmranPremiumCarousel = () => {
           </button>
         ))}
       </div>
+
+      {/* Quote Popup Modal */}
+      <AnimatePresence>
+        {isQuoteOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleQuoteClose}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 40 }}
+              className="bg-white w-full max-w-2xl relative overflow-hidden shadow-2xl"
+            >
+              {/* Header */}
+              <div className="bg-[#0a0a0a] p-8 text-white">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-2xl font-black mb-2">Request Quote</h3>
+                    <p className="text-gray-400 text-sm">
+                      {selectedProduct ? `For: ${selectedProduct.fullName}` : 'Fill the form and our team will respond within 24 hours'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleQuoteClose}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Form */}
+              <form className="p-8 space-y-1" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      placeholder="Company Name"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                      Phone *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    Quantity Required
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                    placeholder="e.g., 1 Unit, 50 Meters, etc."
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    rows="4"
+                    required
+                    className="w-full border border-slate-200 p-4 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold resize-none"
+                    placeholder={`I'm interested in ${selectedProduct?.fullName || 'your products'}. Please share specifications and quote.`}
+                    defaultValue={`I'm interested in ${selectedProduct?.fullName || 'your products'}. Please share specifications and quote.`}
+                  />
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-[#0a0a0a] text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-[#D4AF37] hover:text-black transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Send size={14} />
+                    Submit Request
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleWhatsApp}
+                    className="flex-1 bg-green-600 text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle size={14} />
+                    WhatsApp
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Factory, Zap, Users, Play, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ServiceSection = () => {
+  const navigate = useNavigate();
+
   const services = [
     {
       title: "ADVANCED PROCESSING PLANTS",
@@ -20,6 +23,10 @@ const ServiceSection = () => {
     }
   ];
 
+  const handleClientPortfolioClick = () => {
+    navigate('/client');
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F8F7] text-slate-900 font-sans p-6 md:p-12 lg:p-20">
       <div className="max-w-7xl mx-auto">
@@ -28,10 +35,9 @@ const ServiceSection = () => {
         <div className="space-y-32">
           {services.map((service, index) => (
             <div key={index} className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-              {/* Image Side */}
+              {/* Image Side - Borderless */}
               <div className="w-full lg:w-1/2 relative group">
-                <div className="absolute -inset-4 bg-[#FAF1E6] rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+                <div className="relative aspect-video overflow-hidden">
                   <img 
                     src={service.image} 
                     alt={service.title} 
@@ -40,7 +46,7 @@ const ServiceSection = () => {
                 </div>
               </div>
 
-              {/* Text Side */}
+              {/* Text Side - Exactly as before */}
               <div className="w-full lg:w-1/2 space-y-6">
                 <div className="flex items-center gap-3">
                   {service.icon}
@@ -63,9 +69,9 @@ const ServiceSection = () => {
           ))}
         </div>
 
-        {/* --- Video Section (Middle Break) --- */}
+        {/* --- Video Section (Middle Break) - Borderless --- */}
         <div className="my-32 relative group cursor-pointer">
-          <div className="relative h-[400px] w-full overflow-hidden rounded-3xl shadow-2xl">
+          <div className="relative h-[400px] w-full overflow-hidden">
             <img 
               src="/images/video-placeholder.jpg" 
               className="w-full h-full object-cover brightness-50"
@@ -80,8 +86,8 @@ const ServiceSection = () => {
           </div>
         </div>
 
-        {/* --- Stats / Clients Section --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-12 lg:p-20 rounded-[2rem] shadow-sm border border-slate-100">
+        {/* --- Stats / Clients Section - Borderless Images --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-12 lg:p-20">
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 bg-[#FAF1E6] px-4 py-2 rounded-full">
               <Users size={16} />
@@ -105,7 +111,10 @@ const ServiceSection = () => {
                 </div>
               ))}
             </div>
-            <button className="flex items-center gap-4 bg-slate-900 text-white px-10 py-5 hover:bg-slate-800 transition-all duration-300 shadow-lg">
+            <button 
+              onClick={handleClientPortfolioClick}
+              className="flex items-center gap-4 bg-slate-900 text-white px-10 py-5 hover:bg-slate-800 transition-all duration-300 shadow-lg cursor-pointer"
+            >
               <span className="text-xs font-bold tracking-widest">OUR CLIENT PORTFOLIO</span>
               <ArrowRight size={18} />
             </button>

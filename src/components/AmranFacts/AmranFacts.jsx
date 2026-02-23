@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, ShieldCheck, Factory, Award, CheckCircle, ArrowRight, Minus, Settings } from 'lucide-react';
+import { Users, ShieldCheck, Factory, Award, CheckCircle, ArrowRight, Minus, Settings, X, Send, MessageCircle } from 'lucide-react';
 
 const AmranCompactGallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
 
   const facts = [
     {
@@ -43,6 +44,19 @@ const AmranCompactGallery = () => {
       icon: <Award size={20} strokeWidth={1.5} />,
     }
   ];
+
+  const handleInquiryOpen = () => {
+    setIsInquiryOpen(true);
+  };
+
+  const handleInquiryClose = () => {
+    setIsInquiryOpen(false);
+  };
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent("Hello, I'm interested in partnering with Amran. Please share more details about your products and services.");
+    window.open(`https://wa.me/919998551985?text=${message}`, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans p-6 md:p-12 lg:p-20">
@@ -132,12 +146,137 @@ const AmranCompactGallery = () => {
              />
              <div className="text-center space-y-4 relative z-10">
                <h3 className="text-white text-lg font-black tracking-tighter uppercase leading-tight">Partner with <br/> Excellence</h3>
-               <button className="bg-[#FAF1E6] text-slate-900 px-6 py-3 text-[9px] font-black tracking-[0.2em] hover:bg-white transition-all uppercase">
+               <button 
+                 onClick={handleInquiryOpen}
+                 className="bg-[#FAF1E6] text-slate-900 px-6 py-3 text-[9px] font-black tracking-[0.2em] hover:bg-white transition-all uppercase"
+               >
                  Inquire Now
                </button>
              </div>
           </div>
         </div>
+
+        {/* Inquiry Popup Modal */}
+        <AnimatePresence>
+          {isInquiryOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleInquiryClose}
+                className="absolute inset-0 bg-slate-900/80 backdrop-blur-md"
+              />
+
+              {/* Modal */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 40 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 40 }}
+                className="bg-white w-full max-w-2xl relative overflow-hidden shadow-2xl"
+              >
+                {/* Header */}
+                <div className="bg-slate-900 p-8 text-white">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-2xl font-black mb-2">Partner Inquiry</h3>
+                      <p className="text-slate-400 text-sm">Fill the form and our team will respond within 24 hours</p>
+                    </div>
+                    <button
+                      onClick={handleInquiryClose}
+                      className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Form */}
+                <form className="p-8 space-y-5" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label className="text-[9px] font-black uppercase tracking-wider text-[#FAF1E6] block mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#FAF1E6] outline-none transition-colors text-sm font-bold"
+                        placeholder="John Smith"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-black uppercase tracking-wider text-[#FAF1E6] block mb-2">
+                        Company Name
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#FAF1E6] outline-none transition-colors text-sm font-bold"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label className="text-[9px] font-black uppercase tracking-wider text-[#FAF1E6] block mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#FAF1E6] outline-none transition-colors text-sm font-bold"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-black uppercase tracking-wider text-[#FAF1E6] block mb-2">
+                        Phone *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#FAF1E6] outline-none transition-colors text-sm font-bold"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[9px] font-black uppercase tracking-wider text-[#FAF1E6] block mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      rows="4"
+                      required
+                      className="w-full border border-slate-200 p-4 focus:border-[#FAF1E6] outline-none transition-colors text-sm font-bold resize-none"
+                      placeholder="Tell us about your requirements..."
+                    />
+                  </div>
+
+                  <div className="flex gap-4 pt-4">
+                    <button
+                      type="submit"
+                      className="flex-1 bg-slate-900 text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-[#FAF1E6] hover:text-slate-900 transition-colors flex items-center justify-center gap-2"
+                    >
+                      <Send size={14} />
+                      Submit Inquiry
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleWhatsApp}
+                      className="flex-1 bg-green-600 text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle size={14} />
+                      WhatsApp
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>

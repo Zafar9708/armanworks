@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ArrowRight, Minus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AmranIndustrialBlog = () => {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   const blogs = [
     {
@@ -11,42 +13,42 @@ const AmranIndustrialBlog = () => {
       date: "14th February 2026",
       title: "How to get started in the Pulse/Dal Mill industry",
       desc: "An end-to-end guide on setting up a high-efficiency milling unit with modern machinery and optimal floor planning.",
-      img: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&q=80&w=800"
+      img: "https://4.imimg.com/data4/BX/BO/MY-16736/toor-dal-plant.jpg"
     },
     {
       id: 2,
       date: "12th February 2026",
       title: "How to get started in the Rice Mill industry",
       desc: "Comprehensive insights into paddy processing, whitening, and polishing techniques for premium rice production.",
-      img: "https://images.unsplash.com/photo-1536633310190-827993074a36?auto=format&fit=crop&q=80&w=800"
+      img: "https://5.imimg.com/data5/SELLER/Default/2021/7/NH/RW/TG/81343250/fully-automatic-3-ton-plant-complete.jpg"
     },
     {
       id: 3,
       date: "10th February 2026",
       title: "How to get started in the Flour Mill industry",
       desc: "Mastering the art of wheat grinding and sifting with advanced roller mill technology for high-grade flour.",
-      img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800"
+      img: "https://niceengineering.in/wp-content/uploads/2021/12/flour-mill.jpg"
     },
     {
       id: 4,
       date: "08th February 2026",
       title: "How to get started in the Grain Sorting industry",
       desc: "Utilizing AI-driven color sorters to ensure 99.9% purity and meeting international export quality standards.",
-      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+      img: "https://image.made-in-china.com/365f3j00InikLVSEhHqz/Color-Sorter-Sorting-Machine.webp"
     },
     {
       id: 5,
       date: "05th February 2026",
       title: "How to get started in the Besan Mill industry",
       desc: "A technical walkthrough of processing chana dal into fine besan flour with high-speed pulverizers.",
-      img: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
+      img: "https://samayagrotech.com/images/besan-mill-plant/500-BESAN.webp"
     },
     {
       id: 6,
       date: "01st February 2026",
       title: "How to get started in the Spice Grinding industry",
       desc: "Engineering solutions for maintaining the aroma and essential oils of spices through low-temperature grinding.",
-      img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800"
+      img: "https://www.blenderindia.net/wp-content/uploads/2024/07/spice-masala-herbs-grinding-processing-plant-and-machines1.jpg"
     }
   ];
 
@@ -64,6 +66,11 @@ const AmranIndustrialBlog = () => {
     blogs[(index + 1) % blogs.length],
     blogs[(index + 2) % blogs.length],
   ];
+
+  const handleReadMore = (blogId) => {
+    // You can pass the blog ID as state if needed
+    navigate('/blog', { state: { selectedBlog: blogId } });
+  };
 
   return (
     <div className="bg-[#F8F8F7] py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
@@ -126,7 +133,10 @@ const AmranIndustrialBlog = () => {
                 </p>
 
                 {/* Industrial Gold Read More Link */}
-                <div className="mt-auto flex items-center gap-3 cursor-pointer group/link">
+                <div 
+                  onClick={() => handleReadMore(blog.id)}
+                  className="mt-auto flex items-center gap-3 cursor-pointer group/link"
+                >
                   <span className="text-[11px] font-black tracking-[0.3em] uppercase text-[#D4AF37] border-b border-[#D4AF37]/30 group-hover/link:border-[#D4AF37] transition-all">
                     Read More
                   </span>
@@ -135,6 +145,17 @@ const AmranIndustrialBlog = () => {
               </motion.div>
             ))}
           </AnimatePresence>
+        </div>
+
+        {/* Optional: View All Blogs Button */}
+        <div className="flex justify-center mt-16">
+          <button
+            onClick={() => navigate('/blog')}
+            className="group flex items-center gap-4 bg-white border border-slate-200 px-10 py-5 hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37] transition-all duration-300"
+          >
+            <span className="text-xs font-black tracking-widest uppercase">VIEW ALL BLOGS</span>
+            <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+          </button>
         </div>
       </div>
     </div>
