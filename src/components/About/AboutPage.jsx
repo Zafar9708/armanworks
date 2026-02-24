@@ -23,12 +23,12 @@ const AboutPage = () => {
             
             <h1 className="text-4xl md:text-6xl font-black leading-[1.1] mb-8 uppercase tracking-tighter">
               A Spirit of Innovation <br />
-              <span className="text-[#eaddcf] italic">Built Over 40 Years.</span>
+              <span className="text-[#eaddcf] italic">Built Over 15 Years.</span>
             </h1>
             
             <div className="space-y-6 text-gray-700 text-lg leading-relaxed max-w-2xl">
               <p>
-                Arman Engineering Works, an <span className="font-bold text-gray-900 border-b-2 border-[#FAF1E6]">ISO 9001:2015 certified company</span>, 
+                Arman Engineering Works, an <span className="font-bold text-gray-900 border-b-2 border-[#FAF1E6]">ISO 9001:2010 certified company</span>, 
                 strives to inculcate the spirit of excellence and innovation in the field of food processing. 
                 Our foundation is built on competency, character, and a proud legacy of four decades.
               </p>
@@ -51,7 +51,7 @@ const AboutPage = () => {
             </div>
             {/* Floating Badge */}
             <div className="absolute -bottom-6 -left-6 bg-white shadow-xl p-8 rounded-2xl border border-gray-100 max-w-[200px]">
-              <p className="text-4xl font-black text-gray-900">40+</p>
+              <p className="text-4xl font-black text-gray-900">15+</p>
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">
                 Years of Robust Experience
               </p>

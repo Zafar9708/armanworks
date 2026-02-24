@@ -5,6 +5,30 @@ import Navbar from '../../components/home/Navbar';
 import Footer from '../../components/home/Footer';
 
 const ClientsPage = () => {
+   
+   const logos = [
+    { id: 1, src: "https://cdn.worldvectorlogo.com/logos/siemens-1.svg", name: "Siemens" },
+    { id: 2, src: "https://cdn.worldvectorlogo.com/logos/caterpillar.svg", name: "Caterpillar" },
+    { id: 3, src: "https://cdn.worldvectorlogo.com/logos/bosch-2.svg", name: "Bosch" },
+    { id: 4, src: "https://cdn.worldvectorlogo.com/logos/abb-2.svg", name: "ABB" },
+    { id: 5, src: "https://cdn.worldvectorlogo.com/logos/mitsubishi-1.svg", name: "Mitsubishi" },
+    { id: 6, src: "https://cdn.worldvectorlogo.com/logos/john-deere-2.svg", name: "John Deere" },
+    { id: 7, src: "https://cdn.worldvectorlogo.com/logos/komatsu.svg", name: "Komatsu" },
+    { id: 8, src: "https://cdn.worldvectorlogo.com/logos/volvo-1.svg", name: "Volvo" },
+    { id: 9, src: "https://cdn.worldvectorlogo.com/logos/tata-1.svg", name: "Tata" },
+    { id: 10, src: "https://cdn.worldvectorlogo.com/logos/kubota-1.svg", name: "Kubota" },
+    { id: 11, src: "https://cdn.worldvectorlogo.com/logos/danfoss.svg", name: "Danfoss" },
+    { id: 12, src: "https://cdn.worldvectorlogo.com/logos/ge-general-electric.svg", name: "GE" },
+    { id: 13, src: "https://cdn.worldvectorlogo.com/logos/hyundai-7.svg", name: "Hyundai" },
+    { id: 14, src: "https://cdn.worldvectorlogo.com/logos/hitachi-1.svg", name: "Hitachi" },
+    { id: 15, src: "https://cdn.worldvectorlogo.com/logos/kirloskar.svg", name: "Kirloskar" },
+    { id: 16, src: "https://cdn.worldvectorlogo.com/logos/mahindra-1.svg", name: "Mahindra" },
+    { id: 17, src: "https://cdn.worldvectorlogo.com/logos/skf-1.svg", name: "SKF" },
+    { id: 18, src: "https://cdn.worldvectorlogo.com/logos/eaton-1.svg", name: "Eaton" },
+    { id: 19, src: "https://cdn.worldvectorlogo.com/logos/atlas-copco.svg", name: "Atlas Copco" },
+    { id: 20, src: "https://cdn.worldvectorlogo.com/logos/schneider-electric.svg", name: "Schneider" },
+  ];
+
   return (
     <>
       <Navbar />
@@ -62,11 +86,21 @@ const ClientsPage = () => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-slate-100 border border-slate-100">
-              {[...Array(10)].map((_, i) => (
-                <div key={i} className="bg-white aspect-video flex items-center justify-center p-8 group hover:bg-[#F8F9FB] transition-colors">
-                  <div className="flex flex-col items-center opacity-30 group-hover:opacity-100 group-hover:text-[#D4AF37] transition-all duration-300">
-                    <Building2 size={32} strokeWidth={1.5} />
-                    <span className="text-[9px] font-bold mt-3 uppercase tracking-tighter">Client Logo {i+1}</span>
+              {logos.map((logo) => (
+                <div key={logo.id} className="bg-white aspect-video flex items-center justify-center p-8 group hover:bg-[#F8F9FB] transition-colors">
+                  <div className="flex flex-col items-center">
+                    <img 
+                      src={logo.src} 
+                      alt={logo.name}
+                      className="max-h-12 w-auto"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                    <span className="text-[9px] font-bold mt-3 uppercase tracking-tighter text-slate-400 group-hover:text-[#D4AF37] transition-colors">
+                      {logo.name}
+                    </span>
                   </div>
                 </div>
               ))}

@@ -5,13 +5,14 @@ import {
   Shield, Target, Clock, Users, MapPin, HardHat,
   Award, CheckCircle, ArrowUpRight, Maximize2,
   Wrench, Settings, Gauge, Layers, FileText,
-  Phone, Mail, Calendar, Download
+  Phone, Mail, Calendar, Download, Image as ImageIcon
 } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
 
 const ManufacturingFacilities = () => {
   const [selectedFacility, setSelectedFacility] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
 
   const facilities = [
@@ -19,25 +20,25 @@ const ManufacturingFacilities = () => {
       id: 1,
       name: "Precision Fabrication Division",
       description: "Advanced metal fabrication unit equipped with state-of-the-art CNC plasma cutting and robotic welding systems for high-precision component manufacturing.",
-      image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800",
+      image: "https://www.edgarindustries.com/wp-content/uploads/light_to_heavy_fabrication_large.jpg",
       area: "12,500 sq.ft",
       capacity: "150 tons/month",
       workforce: 48,
       equipment: ["CNC Plasma", "Robotic Welders", "Press Brakes", "Plate Rolls"],
       certifications: ["ISO 9001", "ASME"],
-      established: "1995"
+      established: "2010"
     },
     {
       id: 2,
       name: "Assembly & Integration Hub",
       description: "Dedicated assembly line for complete turnkey projects with modular workstations and comprehensive testing facilities.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
+      image: "https://www.cementl.com/wp-content/uploads/2024/09/2vertical-roller-mill-solution-process-flow.webp",
       area: "15,000 sq.ft",
       capacity: "8 systems/month",
       workforce: 52,
       equipment: ["Overhead Cranes", "Conveyor Systems", "Test Rigs", "Alignment Tools"],
       certifications: ["ISO 9001"],
-      established: "2005"
+      established: "2015"
     },
     {
       id: 3,
@@ -49,7 +50,7 @@ const ManufacturingFacilities = () => {
       workforce: 12,
       equipment: ["CMM", "Laser Trackers", "Spectrometers", "Hardness Testers"],
       certifications: ["NABL", "ISO 17025"],
-      established: "2010"
+      established: "2020"
     },
     {
       id: 4,
@@ -61,7 +62,7 @@ const ManufacturingFacilities = () => {
       workforce: 28,
       equipment: ["5-Axis CNC", "VMCs", "CNC Lathes", "EDM"],
       certifications: ["ISO 9001"],
-      established: "2015"
+      established: "2023"
     },
     {
       id: 5,
@@ -73,7 +74,7 @@ const ManufacturingFacilities = () => {
       workforce: 35,
       equipment: ["Heavy Cranes", "Positioners", "Submerged Arc", "Shot Blasting"],
       certifications: ["ISO 3834"],
-      established: "2000"
+      established: "2025"
     },
     {
       id: 6,
@@ -85,8 +86,28 @@ const ManufacturingFacilities = () => {
       workforce: 15,
       equipment: ["3D Printers", "CAD/CAM", "Simulation Software", "Test Benches"],
       certifications: ["ISO 9001"],
-      established: "2018"
+      established: "2026"
     }
+  ];
+
+  // Equipment images array with names
+  const equipmentImages = [
+    { id: 1, name: "Laser Cutting Machine", src: "https://niceengineering.in/wp-content/uploads/2021/11/facility01.jpg" },
+    { id: 2, name: "CNC Turret Punch Press", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 3, name: "Plasma Cutting Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 4, name: "CNC Turning Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 5, name: "CNC Press Brake", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 6, name: "CNC Bending Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 7, name: "Plate Roller", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 8, name: "CNC Duct Forming Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 9, name: "Laser Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 10, name: "Rooter Balancing Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 11, name: "Power Press Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 12, name: "Iron Worker Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 13, name: "Spout Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 14, name: "Threading Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
+    { id: 15, name: "MIG Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
+    { id: 16, name: "Power Press Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" }
   ];
 
   const stats = [
@@ -168,14 +189,14 @@ const ManufacturingFacilities = () => {
                 <div className="space-y-4">
                   <div className="h-48 bg-slate-200 overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX2x4SB8ae-SjF4B3SFw-7uf2-S0uipgvTcQ&s"
                       alt="Facility"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                   <div className="h-64 bg-slate-200 overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1565608087341-404b25458f63?auto=format&fit=crop&q=80&w=800"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS32Fh0beY0MeRh3zmqw-BLewe9HhBHMU-VQ&s"
                       alt="CNC"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
@@ -191,13 +212,57 @@ const ManufacturingFacilities = () => {
                   </div>
                   <div className="h-48 bg-slate-200 overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800"
+                      src="https://www.architectmagazine.com/wp-content/uploads/sites/5/2025/06/09c53e039086419a907cefa62d8e0f5f.jpg?w=551"
                       alt="Quality"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* EQUIPMENT GALLERY SECTION - NEW */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6 lg:px-20">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl font-light text-slate-900 mb-4">
+                Our <span className="font-bold text-[#D4AF37]">Equipment Gallery</span>
+              </h2>
+              <p className="text-slate-500">
+                State-of-the-art machinery for precision manufacturing and fabrication
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {equipmentImages.map((item) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (item.id % 4) * 0.1 }}
+                  className="group relative aspect-square overflow-hidden cursor-pointer bg-slate-50"
+                  onClick={() => setSelectedImage(item)}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  
+                  {/* Overlay with name and icon on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <p className="text-white text-sm font-medium mb-2">{item.name}</p>
+                      <div className="flex items-center gap-2 text-[#D4AF37]">
+                        <Maximize2 size={16} />
+                        <span className="text-xs">Click to view full</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -400,7 +465,7 @@ const ManufacturingFacilities = () => {
           </div>
         </section>
 
-        {/* DETAIL MODAL */}
+        {/* FACILITY DETAIL MODAL */}
         <AnimatePresence>
           {selectedFacility && (
             <motion.div
@@ -484,6 +549,45 @@ const ManufacturingFacilities = () => {
                       </div>
                     </div>
                   )}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* IMAGE FULLSCREEN MODAL - NEW */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95"
+              onClick={() => setSelectedImage(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="relative max-w-6xl w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute -top-12 right-0 text-white hover:text-[#D4AF37] transition-colors flex items-center gap-2"
+                >
+                  <span className="text-sm">Close</span>
+                  <X size={20} />
+                </button>
+                
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.name}
+                  className="w-full h-auto max-h-[85vh] object-contain"
+                />
+                
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <h3 className="text-white text-xl font-medium">{selectedImage.name}</h3>
                 </div>
               </motion.div>
             </motion.div>

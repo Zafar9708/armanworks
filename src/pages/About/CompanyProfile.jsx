@@ -17,19 +17,19 @@ const AboutUsContent = () => {
     mission: {
       title: "Our Mission",
       content: "Building competency and character through constant innovation to provide world-class food processing units that empower global food producers with high-yield technology.",
-      image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
+      image: "/images/mission.png",
       icon: <Target className="text-[#D4AF37]" size={32} />
     },
     vision: {
       title: "Our Vision",
       content: "To be globally recognized as the most trustworthy Plant Manufacturing Engineer, providing finest quality Turnkey solutions and setting industry benchmarks.",
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
+      image: "/images/vision.png",
       icon: <Eye className="text-[#D4AF37]" size={32} />
     },
     values: {
       title: "Our Values",
       content: "Exceptional service, timely delivery, and the manufacturing of reputable quality machinery at competitive prices with unwavering integrity.",
-      image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800",
+      image: "/images/values.png",
       icon: <ShieldCheck className="text-[#D4AF37]" size={32} />
     }
   };
@@ -66,7 +66,7 @@ const AboutUsContent = () => {
                   Established as a Partnership firm in the year 2010, we “Arman Engineering Works” are a leading Manufacturer Wholesaler Trader and Service Provider of a wide range of Gravity Separator, Food Processing Plant, Plant Installation Service etc.
                 </p>
               </motion.div>
-              <div className="h-[350px] overflow-hidden rounded-sm shadow-xl"><img src="https://images.unsplash.com/photo-1565608087341-404b25458f63?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" alt="Corporate" /></div>
+              <div className="h-[350px] overflow-hidden rounded-sm shadow-xl"><img src="/images/profile.png" className="w-full h-full object-cover" alt="Corporate" /></div>
             </div>
           </div>
         </section>
@@ -125,7 +125,7 @@ const AboutUsContent = () => {
             </div>
             <div className="space-y-8 bg-white p-10 shadow-sm border border-gray-100">
               <div className="flex items-center gap-3 text-[#D4AF37]"><Microscope size={24} /><span className="text-xs font-black uppercase tracking-widest">Research & Development</span></div>
-              <div className="h-48 overflow-hidden rounded-sm"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover" alt="R&D" /></div>
+              <div className="h-48 overflow-hidden rounded-sm"><img src="https://www.andritz.com/resource/blob/51976/c720ed450f00c29453b9e67e1b2065e6/picture-2-astroe-research-development-pumps-pumps-data.png" className="w-full h-full object-cover" alt="R&D" /></div>
               <p className="text-slate-600 text-sm leading-relaxed">Our untiring efforts over four decades of time have helped us gain rich experience to pave the way for revolutionary innovation in food processing technology. A deep understanding of industry and customer requirements has gained us a leading position.</p>
             </div>
           </div>
