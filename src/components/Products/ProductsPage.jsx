@@ -15,8 +15,8 @@ const ProductsShowcase = () => {
       name: "5 HP Automatic Gravity Separator",
       category: "separator",
       categoryName: "Gravity Separators",
-      price: "2,65,000",
-      priceUnit: "Piece",
+      // price: "2,65,000",
+      // priceUnit: "Piece",
       description: "Arman Powder Coated 5 HP Automatic Gravity Separator, 20 ton/day capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
       specs: {
@@ -33,8 +33,8 @@ const ProductsShowcase = () => {
       name: "3 HP Automatic Gravity Separator",
       category: "separator",
       categoryName: "Gravity Separators",
-      price: "2,75,000",
-      priceUnit: "Piece",
+      // price: "2,75,000",
+      // priceUnit: "Piece",
       description: "Powder Coated Single Phase 3 HP Automatic Gravity Separator, 20 ton/day",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -51,8 +51,8 @@ const ProductsShowcase = () => {
       name: "5 Fan Gravity Separator",
       category: "separator",
       categoryName: "Gravity Separators",
-      price: "3,05,000",
-      priceUnit: "Piece",
+      // price: "3,05,000",
+      // priceUnit: "Piece",
       description: "Automatic Powder Coated 5 Fan Gravity Separator, 80 ton/day capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
       specs: {
@@ -69,8 +69,8 @@ const ProductsShowcase = () => {
       name: "Automatic Food Processing Plant",
       category: "processing",
       categoryName: "Food Processing",
-      price: "8,50,000",
-      priceUnit: "Piece",
+      // price: "8,50,000",
+      // priceUnit: "Piece",
       description: "Mild Steel Automatic Food Processing Plant, 100 kg/hr capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -87,8 +87,8 @@ const ProductsShowcase = () => {
       name: "Automatic Drum Cap Sealing Machine",
       category: "sealing",
       categoryName: "Sealing Machines",
-      price: "25,000",
-      priceUnit: "Piece",
+      // price: "25,000",
+      // priceUnit: "Piece",
       description: "Automatic Drum Cap Sealing Machine, 100 caps/min capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
       specs: {
@@ -105,8 +105,8 @@ const ProductsShowcase = () => {
       name: "Automatic Flour Mill Plant",
       category: "mill",
       categoryName: "Mill Machines",
-      price: "8,50,000",
-      priceUnit: "Piece",
+      // price: "8,50,000",
+      // priceUnit: "Piece",
       description: "50 HP Automatic Flour Mill Plant, 1000 kg/hr capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -123,8 +123,8 @@ const ProductsShowcase = () => {
       name: "Mild Steel Flat Belt Conveyor",
       category: "conveyor",
       categoryName: "Conveyors",
-      price: "8,500",
-      priceUnit: "Meter",
+      // price: "8,500",
+      // priceUnit: "Meter",
       description: "Mild Steel Flat Belt Conveyor, Load Capacity: 400 kg",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
       specs: {
@@ -141,8 +141,8 @@ const ProductsShowcase = () => {
       name: "Air Classifier Machine",
       category: "classifier",
       categoryName: "Air Classifiers",
-      price: "2,85,000",
-      priceUnit: "Piece",
+      // price: "2,85,000",
+      // priceUnit: "Piece",
       description: "Air Classifier Machine, 500 kg/hr capacity for paddy",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -159,8 +159,8 @@ const ProductsShowcase = () => {
       name: "Fully Automatic Sortex Cleaning Plant",
       category: "cleaning",
       categoryName: "Cleaning Plants",
-      price: "45,00,000",
-      priceUnit: "Piece",
+      // price: "45,00,000",
+      // priceUnit: "Piece",
       description: "Fully Automatic Sortex Cleaning Plant, 4 Ton capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
       specs: {
@@ -177,8 +177,8 @@ const ProductsShowcase = () => {
       name: "Automatic Dal Mill Machine",
       category: "mill",
       categoryName: "Mill Machines",
-      price: "1,80,000",
-      priceUnit: "Piece",
+      // price: "1,80,000",
+      // priceUnit: "Piece",
       description: "Automatic Dal Mill Machine, Single Phase, 200 kg/hr capacity",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420335972/MT/PQ/VJ/28748905/rice-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -195,8 +195,8 @@ const ProductsShowcase = () => {
       name: "Automatic Vibro Destoner Machine",
       category: "destoner",
       categoryName: "Destoners",
-      price: "2,55,000",
-      priceUnit: "Piece",
+      // price: "2,55,000",
+      // priceUnit: "Piece",
       description: "MS Powder Coated Automatic Vibro Destoner Machine, Three Phase, 2 Ton/Day",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420334120/FW/BN/UO/28748905/flour-mill-plant-installation-service-500x500.jpeg",
       specs: {
@@ -213,8 +213,8 @@ const ProductsShowcase = () => {
       name: "5 HP Industrial Centrifugal Fan",
       category: "pump",
       categoryName: "Centrifugal Fans",
-      price: "55,000",
-      priceUnit: "Piece",
+      // price: "55,000",
+      // priceUnit: "Piece",
       description: "Wall Mounted 5 HP Industrial Centrifugal Fan, For Commercial Use",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420331053/UO/QR/UR/28748905/oil-mill-plant-installation-services-500x500.jpg",
       specs: {
@@ -231,8 +231,8 @@ const ProductsShowcase = () => {
       name: "Hydraulic Pneumatic Equipment",
       category: "pneumatic",
       categoryName: "Pneumatic",
-      price: "85,000",
-      priceUnit: "Piece",
+      // price: "85,000",
+      // priceUnit: "Piece",
       description: "Hydraulic Pneumatic Equipment, Capacity: 100kg/hr",
       image: "https://5.imimg.com/data5/SELLER/Default/2024/5/420470046/XP/HM/QE/28748905/dal-mills-plant-installation-services-500x500.jpeg",
       specs: {
@@ -360,10 +360,10 @@ const ProductsShowcase = () => {
                   </div>
 
                   {/* Price */}
-                  <div className="pt-2">
+                  {/* <div className="pt-2">
                     <span className="text-xl md:text-2xl font-black text-[#D4AF37]">₹{product.price}</span>
                     <span className="text-[10px] text-slate-400 ml-1">/{product.priceUnit}</span>
-                  </div>
+                  </div> */}
 
                   {/* View Details - Appears on Hover */}
                   <motion.div

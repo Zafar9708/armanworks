@@ -14,6 +14,7 @@ import AmranFacts from '../AmranFacts/AmranFacts';
 import ClientLogoSlider from '../ClientLogoSlider/ClientLogoSlider';
 import AmranBlogSection from '../Blog/AmranBlogSection';
 import AmranContactSection from '../Contact/ContatcUS';
+import ContactSection from './ContactSection';
 
 const HomePage = () => {
   return (
@@ -27,6 +28,7 @@ const HomePage = () => {
       <AmranFacts />
       <ClientLogoSlider />
       <AmranBlogSection />
+      <ContactSection />
       <AmranContactSection />
       <Footer />
       <WhatsAppFixed />

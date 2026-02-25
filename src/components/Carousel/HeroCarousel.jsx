@@ -12,7 +12,7 @@ const AmranPremiumCarousel = () => {
   const slides = [
     { 
       id: 1, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Gravity Separator", 
       subtitle: "5 HP Automatic", 
       desc: "Arman Powder Coated 5 HP Automatic Gravity Separator with 20 ton/day capacity. Ideal for separating kernels and granular products based on specific gravity.", 
@@ -21,7 +21,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 2, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Gravity Separator", 
       subtitle: "3 HP Automatic", 
       desc: "3 HP automatic gravity separator with single phase connection and powder coated finish for durability and efficient separation of granular products.", 
@@ -30,7 +30,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 3, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Gravity Separator", 
       subtitle: "5 Fan System", 
       desc: "High-capacity gravity separator with 5 fans for enhanced separation efficiency. Ideal for large-scale grain processing with 80 ton/day capacity.", 
@@ -39,7 +39,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 4, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Food Processing", 
       subtitle: "Automatic Plant", 
       desc: "Complete food processing solution for grinding applications. Features automatic operation, mild steel construction, and 10 HP motor power with 100 kg/hr capacity.", 
@@ -48,7 +48,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 5, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Drum Sealer", 
       subtitle: "Automatic Cap", 
       desc: "Electric driven automatic drum cap sealing machine for industrial packaging. Features 2 HP power, 240V voltage, and 100 caps/min capacity.", 
@@ -57,7 +57,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 6, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Flour Mill", 
       subtitle: "50 HP Plant", 
       desc: "High-capacity automatic flour mill plant for commercial applications. Features 50 HP motor, three phase connection, and 1000 kg/hr capacity.", 
@@ -66,7 +66,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 7, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Belt Conveyor", 
       subtitle: "Flat System", 
       desc: "Flat belt conveyor for packaging applications. Features 400 kg load capacity, automatic operation, and mild steel construction for durability.", 
@@ -75,7 +75,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 8, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Air Classifier", 
       subtitle: "500 kg/hr", 
       desc: "Industrial machine that separates dry powder materials into fine and coarse fractions based on size and shape using air currents and centrifugal force.", 
@@ -84,7 +84,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 9, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Sortex Plant", 
       subtitle: "Fully Automatic", 
       desc: "Complete cleaning solution with 80 HP power, three phase connection, and automatic operation. Ideal for industrial cleaning applications with 4 Ton capacity.", 
@@ -93,7 +93,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 10, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Dal Mill", 
       subtitle: "Automatic", 
       desc: "Automatic dal mill machine for all pulses processing. Features 3 HP motor, SS 304 construction, and 70% head pulses recovery with 200 kg/hr capacity.", 
@@ -102,7 +102,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 11, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Vibro Destoner", 
       subtitle: "Automatic", 
       desc: "Vibro destoner machine for industrial applications. Features 2 HP motor, three phase connection, and powder coated finish with 2 Ton/day capacity.", 
@@ -111,7 +111,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 12, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Centrifugal Fan", 
       subtitle: "5 HP", 
       desc: "Centrifugal fan with 3 kW motor power, 10 Bar pressure, and 1200 RPM speed. Ideal for commercial ventilation applications with wall mounting option.", 
@@ -120,7 +120,7 @@ const AmranPremiumCarousel = () => {
     },
     { 
       id: 13, 
-      cert: "ISO 9001:2015 Certified", 
+      cert: "ISO 9001:2010 Certified", 
       title: "Pneumatic System", 
       subtitle: "Hydraulic", 
       desc: "Hydraulic systems with the potential to handle heavier loads and produce more work than pneumatic systems. Features 10 Ton max force with 100kg/hr capacity.", 

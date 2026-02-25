@@ -44,7 +44,7 @@ const AboutPage = () => {
             {/* The Main Image - Integrated cleanly */}
             <div className="relative rounded-3xl overflow-hidden border-8 border-[#FAF1E6]">
               <img 
-                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" 
+                src="/images/arman_about.jpeg" 
                 alt="Manufacturing Floor" 
                 className="w-full h-[500px] object-cover"
               />
