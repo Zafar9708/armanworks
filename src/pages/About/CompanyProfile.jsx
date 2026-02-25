@@ -35,14 +35,21 @@ const AboutUsContent = () => {
   };
 
   const manufacturingImages = [
-    { id: 1, name: "Precision Gravity Separator", url: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" },
-    { id: 2, name: "Food Processing Plant", url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" },
-    { id: 3, name: "Quality Control Lab", url: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800" },
-    { id: 4, name: "CNC Machining Unit", url: "https://images.unsplash.com/photo-1565608087341-404b25458f63?auto=format&fit=crop&q=80&w=800" },
-    { id: 5, name: "Heavy Assembly Bay", url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800" },
-    { id: 6, name: "Automated Welding Line", url: "https://images.unsplash.com/photo-1535813548-6601f6945379?auto=format&fit=crop&q=80&w=800" },
-    { id: 7, name: "Advanced R&D Center", url: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800" },
-    { id: 8, name: "Logistics Division", url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800" },
+    { id: 1, name: "Laser Cutting Machine", src: "https://niceengineering.in/wp-content/uploads/2021/11/facility01.jpg" },
+    { id: 2, name: "CNC Turret Punch Press", src: "https://cdn.shopify.com/s/files/1/0612/1019/8116/files/JFY_products_punching_pi_MT300E-2-1024x683.png?v=1760543130" },
+    { id: 3, name: "Plasma Cutting Machine", src: "https://www.ibelltools.com/cdn/shop/files/IBLP60ProMain_665x700.jpg?v=1740047355" },
+    { id: 4, name: "CNC Turning Machine", src: "https://www.cncmasters.com/wp-content/uploads/2023/03/Lathe.jpg" },
+    { id: 5, name: "CNC Press Brake", src: "https://5.imimg.com/data5/UE/AL/BX/SELLER-2361754/cnc-press-brake-india.jpeg" },
+    { id: 6, name: "CNC Bending Machine", src: "https://cpimg.tistatic.com/10309206/b/4/3-Phase-CNC-Bending-Machine-Automation-Grade-Fully-automatic.jpeg" },
+    { id: 7, name: "Plate Roller", src: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Plate_Roll.jpg" },
+    { id: 8, name: "CNC Duct Forming Machine", src: "https://www.mytcnc.com/wp-content/uploads/2022/07/Spiral-Duct-Machine.png" },
+    { id: 9, name: "Laser Welding Machine", src: "https://www.shen-chong.com/wp-content/uploads/2024/08/handheld-laser-welding-machine.jpg" },
+    { id: 10, name: "Rooter Balancing Machine", src: "https://vtm.group/wp-content/uploads/2025/07/9a710.jpg" },
+    { id: 11, name: "Power Press Machine", src: "https://5.imimg.com/data5/SELLER/Default/2023/12/373092019/AZ/NY/YA/143133929/100-ton-c-type-power-press-machine.jpg" },
+    { id: 12, name: "Iron Worker Machine", src: "https://5.imimg.com/data5/SELLER/Default/2022/3/ZJ/UO/YR/2469737/hiw-165-ton-hydraulic-multipurpose-iron-worker-machine.JPG" },
+    { id: 13, name: "Spout Welding Machine", src: "https://image.made-in-china.com/202f0j00DZkocCrIbibQ/Whistling-Kettle-Spout-Welding-Machine-Stainless-Steel-Kettle-Lug-Ear-Spot-Welder.webp" },
+    { id: 14, name: "Threading Machine", src: "https://niceengineering.in/wp-content/uploads/2021/11/facility09.jpg" },
+    { id: 15, name: "MIG Welding Machine", src: "https://5.imimg.com/data5/EV/TG/MY-14456517/mig-250-amps-three-phase-welding-machine.png" },
   ];
 
   return (
@@ -147,7 +154,7 @@ const AboutUsContent = () => {
               >
                 {/* Image: Grayscale by default, color and zoom on hover */}
                 <img 
-                  src={img.url} 
+                  src={img.src} 
                   className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-40" 
                   alt={img.name} 
                 />

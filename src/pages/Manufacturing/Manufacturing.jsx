@@ -44,7 +44,7 @@ const ManufacturingFacilities = () => {
       id: 3,
       name: "Quality Assurance Laboratory",
       description: "Climate-controlled metrology lab with advanced inspection equipment ensuring micron-level accuracy for all manufactured components.",
-      image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800",
+      image: "https://swanispice.com/assets/images/quality-assurance-2.png",
       area: "3,200 sq.ft",
       accuracy: "±0.001mm",
       workforce: 12,
@@ -56,7 +56,7 @@ const ManufacturingFacilities = () => {
       id: 4,
       name: "CNC Machining Center",
       description: "High-precision machining facility with multi-axis CNC machines for complex component manufacturing.",
-      image: "https://images.unsplash.com/photo-1565608087341-404b25458f63?auto=format&fit=crop&q=80&w=800",
+      image: "https://www.millscnc.co.uk/wp-content/uploads/2022/04/Mills-Volz-DVF-5000-2-2048x1371-1-875x625.jpeg",
       area: "8,500 sq.ft",
       machines: "15 units",
       workforce: 28,
@@ -68,7 +68,7 @@ const ManufacturingFacilities = () => {
       id: 5,
       name: "Heavy Fabrication Bay",
       description: "Specialized facility for heavy structural components with advanced material handling and welding capabilities.",
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
+      image: "https://jaypee-hew.com/wp-content/uploads/2013/07/Picture25.jpg",
       area: "10,000 sq.ft",
       capacity: "200 tons/month",
       workforce: 35,
@@ -80,7 +80,7 @@ const ManufacturingFacilities = () => {
       id: 6,
       name: "R&D & Prototyping Lab",
       description: "Innovation center dedicated to developing new manufacturing processes and product improvements.",
-      image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800",
+      image: "https://i0.wp.com/www.protoshop.in/wp-content/uploads/2024/02/DPLabCompressed-scaled.webp?fit=1024%2C512&ssl=1",
       area: "4,000 sq.ft",
       projects: "8-10 annually",
       workforce: 15,
@@ -93,21 +93,21 @@ const ManufacturingFacilities = () => {
   // Equipment images array with names
   const equipmentImages = [
     { id: 1, name: "Laser Cutting Machine", src: "https://niceengineering.in/wp-content/uploads/2021/11/facility01.jpg" },
-    { id: 2, name: "CNC Turret Punch Press", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 3, name: "Plasma Cutting Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 4, name: "CNC Turning Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 5, name: "CNC Press Brake", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 6, name: "CNC Bending Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 7, name: "Plate Roller", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 8, name: "CNC Duct Forming Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 9, name: "Laser Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 10, name: "Rooter Balancing Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 11, name: "Power Press Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 12, name: "Iron Worker Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 13, name: "Spout Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 14, name: "Threading Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" },
-    { id: 15, name: "MIG Welding Machine", src: "https://images.unsplash.com/photo-1565538420870-3af636ecb0ed?auto=format&fit=crop&q=80&w=800" },
-    { id: 16, name: "Power Press Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" }
+    { id: 2, name: "CNC Turret Punch Press", src: "https://cdn.shopify.com/s/files/1/0612/1019/8116/files/JFY_products_punching_pi_MT300E-2-1024x683.png?v=1760543130" },
+    { id: 3, name: "Plasma Cutting Machine", src: "https://www.ibelltools.com/cdn/shop/files/IBLP60ProMain_665x700.jpg?v=1740047355" },
+    { id: 4, name: "CNC Turning Machine", src: "https://www.cncmasters.com/wp-content/uploads/2023/03/Lathe.jpg" },
+    { id: 5, name: "CNC Press Brake", src: "https://5.imimg.com/data5/UE/AL/BX/SELLER-2361754/cnc-press-brake-india.jpeg" },
+    { id: 6, name: "CNC Bending Machine", src: "https://cpimg.tistatic.com/10309206/b/4/3-Phase-CNC-Bending-Machine-Automation-Grade-Fully-automatic.jpeg" },
+    { id: 7, name: "Plate Roller", src: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Plate_Roll.jpg" },
+    { id: 8, name: "CNC Duct Forming Machine", src: "https://www.mytcnc.com/wp-content/uploads/2022/07/Spiral-Duct-Machine.png" },
+    { id: 9, name: "Laser Welding Machine", src: "https://www.shen-chong.com/wp-content/uploads/2024/08/handheld-laser-welding-machine.jpg" },
+    { id: 10, name: "Rooter Balancing Machine", src: "https://vtm.group/wp-content/uploads/2025/07/9a710.jpg" },
+    { id: 11, name: "Power Press Machine", src: "https://5.imimg.com/data5/SELLER/Default/2023/12/373092019/AZ/NY/YA/143133929/100-ton-c-type-power-press-machine.jpg" },
+    { id: 12, name: "Iron Worker Machine", src: "https://5.imimg.com/data5/SELLER/Default/2022/3/ZJ/UO/YR/2469737/hiw-165-ton-hydraulic-multipurpose-iron-worker-machine.JPG" },
+    { id: 13, name: "Spout Welding Machine", src: "https://image.made-in-china.com/202f0j00DZkocCrIbibQ/Whistling-Kettle-Spout-Welding-Machine-Stainless-Steel-Kettle-Lug-Ear-Spot-Welder.webp" },
+    { id: 14, name: "Threading Machine", src: "https://niceengineering.in/wp-content/uploads/2021/11/facility09.jpg" },
+    { id: 15, name: "MIG Welding Machine", src: "https://5.imimg.com/data5/EV/TG/MY-14456517/mig-250-amps-three-phase-welding-machine.png" },
+    // { id: 16, name: "Power Press Machine", src: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=800" }
   ];
 
   const stats = [
@@ -381,7 +381,7 @@ const ManufacturingFacilities = () => {
                 
                 <div className="space-y-4">
                   {[
-                    { standard: "ISO 9001:2015", desc: "Quality Management Systems" },
+                    { standard: "ISO 9001:2010", desc: "Quality Management Systems" },
                     { standard: "ISO 3834-2", desc: "Welding Quality Requirements" },
                     { standard: "ISO 17025", desc: "Testing Laboratory Competence" },
                     { standard: "ASME Section IX", desc: "Welding Qualifications" }
@@ -436,7 +436,7 @@ const ManufacturingFacilities = () => {
                       </div>
                       <div>
                         <div className="text-xs text-slate-400">Call Us</div>
-                        <div className="font-medium">+91 123 456 7890</div>
+                        <div className="font-medium">+91 9898898219</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 text-white">

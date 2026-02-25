@@ -8,7 +8,8 @@ import {
   Gauge, Eye, Target, Award, Users, Clock,
   FileText, Download, Maximize2, Minimize2,
   Grid3x3, Box as BoxIcon, Wind, Zap, Shield, Trello,
-  Rocket, Sparkles, Lightbulb, Circle, Square, Triangle
+  Rocket, Sparkles, Lightbulb, Circle, Square, Triangle,
+  Image as ImageIcon, AlertCircle
 } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
@@ -18,6 +19,19 @@ const DesignAndStructure = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedView, setSelectedView] = useState('technical');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
+
+  // Handle image load errors
+  const handleImageError = (phaseId) => {
+    setImageErrors(prev => ({ ...prev, [phaseId]: true }));
+  };
+
+  // Fallback images for each phase (using reliable CDN images)
+  const fallbackImages = {
+    "01": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop",
+    "02": "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=800&auto=format&fit=crop",
+    "03": "https://images.unsplash.com/photo-1581092160562-40aa08e6afa5?w=800&auto=format&fit=crop"
+  };
 
   const designPhases = [
     {
@@ -42,7 +56,12 @@ const DesignAndStructure = () => {
         "Cost Estimates"
       ],
       technologies: ["AutoCAD", "SolidWorks", "Revit", "Navisworks"],
-      image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200"
+      image: "https://www.hatchwise.com/external/wp-content/uploads/2021/08/process_chart.png",
+      // Adding high-quality backup images
+      backupImages: [
+        "https://images.pexels.com/photos/3862627/pexels-photo-3862627.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/3761509/pexels-photo-3761509.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
       id: "02",
@@ -66,7 +85,11 @@ const DesignAndStructure = () => {
         "Initial Cost Analysis"
       ],
       technologies: ["Plant 3D", "AutoCAD P&ID", "Navisworks", "BIM 360"],
-      image: "https://images.unsplash.com/photo-1503387762-592dea58ef21?auto=format&fit=crop&q=80&w=1200"
+      image: "https://cirdev.s3.us-west-1.amazonaws.com/cir/1758187950327Preliminary-Engineering.png",
+      backupImages: [
+        "https://images.pexels.com/photos/3862634/pexels-photo-3862634.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/3862629/pexels-photo-3862629.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
       id: "03",
@@ -90,7 +113,11 @@ const DesignAndStructure = () => {
         "Quality Control Plans"
       ],
       technologies: ["ANSYS", "STAAD Pro", "ETABS", "Tekla"],
-      image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=1200"
+      image: "https://madathara.in/wp-content/uploads/2024/08/Slide2-fotor-2024081419233-2-1024x683.jpg",
+      backupImages: [
+        "https://images.pexels.com/photos/3862626/pexels-photo-3862626.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/3862635/pexels-photo-3862635.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     }
   ];
 
@@ -100,28 +127,32 @@ const DesignAndStructure = () => {
       title: "3D Visualization",
       description: "Virtual walkthroughs and realistic renderings before construction begins",
       stat: "100%",
-      statLabel: "Clarity"
+      statLabel: "Clarity",
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&auto=format&fit=crop"
     },
     {
       icon: Ruler,
       title: "Precision Engineering",
       description: "Micron-level accuracy in all design specifications",
       stat: "±0.01mm",
-      statLabel: "Tolerance"
+      statLabel: "Tolerance",
+      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&auto=format&fit=crop"
     },
     {
       icon: Shield,
       title: "Structural Integrity",
       description: "25% safety margin above rated load capacity",
       stat: "25%",
-      statLabel: "Safety Buffer"
+      statLabel: "Safety Buffer",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e6afa5?w=400&auto=format&fit=crop"
     },
     {
       icon: Cpu,
       title: "Smart Analysis",
       description: "FEA and CFD simulations for optimal performance",
       stat: "99.9%",
-      statLabel: "Accuracy"
+      statLabel: "Accuracy",
+      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&auto=format&fit=crop"
     }
   ];
 
@@ -132,8 +163,8 @@ const DesignAndStructure = () => {
         
         {/* HERO SECTION - ARCHITECTURAL */}
         <section className="relative pt-32 pb-24 overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
+          {/* Background Pattern with proper opacity */}
+          <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-full h-full" 
                  style={{ 
                    backgroundImage: 'linear-gradient(45deg, #D4AF37 1px, transparent 1px), linear-gradient(-45deg, #D4AF37 1px, transparent 1px)',
@@ -161,17 +192,17 @@ const DesignAndStructure = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="inline-flex items-center gap-2 bg-[#D4AF37]/10 px-4 py-2 mb-8">
+                <div className="inline-flex items-center gap-2 bg-[#D4AF37]/10 px-4 py-2 mb-8 rounded-sm">
                   <PenTool size={16} className="text-[#D4AF37]" />
                   <span className="text-xs font-bold text-[#D4AF37] tracking-wider">ENGINEERING EXCELLENCE</span>
                 </div>
 
-                <h1 className="text-6xl lg:text-7xl font-light text-slate-900 mb-6">
+                <h1 className="text-6xl lg:text-7xl font-light text-slate-900 mb-6 leading-tight">
                   Where <span className="font-black text-[#D4AF37]">Design</span><br />
                   Meets Structure
                 </h1>
 
-                <p className="text-lg text-slate-500 leading-relaxed mb-12 max-w-xl">
+                <p className="text-lg text-slate-600 leading-relaxed mb-12 max-w-xl">
                   From conceptual sketches to detailed engineering drawings, 
                   our integrated design approach ensures every project is built 
                   on a foundation of precision and innovation.
@@ -186,7 +217,7 @@ const DesignAndStructure = () => {
                   ].map((stat, index) => (
                     <div key={index} className="border-l-2 border-[#D4AF37] pl-4">
                       <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
-                      <div className="text-xs text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                      <div className="text-xs text-slate-500 uppercase tracking-wider">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -212,24 +243,32 @@ const DesignAndStructure = () => {
                   <div className="absolute inset-[30%] bg-white shadow-2xl rounded-sm flex items-center justify-center">
                     <div className="text-center">
                       <BoxIcon size={40} className="mx-auto mb-2 text-[#D4AF37]" />
-                      <div className="text-xs font-bold text-slate-400">3D MODEL</div>
+                      <div className="text-xs font-bold text-slate-500">3D MODEL</div>
                     </div>
                   </div>
 
                   {/* Floating Labels */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600">
+                  <motion.div 
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3 }}
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600 rounded-sm"
+                  >
                     BIM LEVEL 2
-                  </div>
-                  <div className="absolute -bottom-4 right-0 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600">
+                  </motion.div>
+                  <motion.div 
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, delay: 1 }}
+                    className="absolute -bottom-4 right-0 bg-white px-4 py-2 shadow-lg text-xs font-bold text-slate-600 rounded-sm"
+                  >
                     ISO 19650
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* FEATURES GRID */}
+        {/* FEATURES GRID - WITH IMAGES */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-6 lg:px-20">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -237,7 +276,7 @@ const DesignAndStructure = () => {
               <h2 className="text-4xl font-light text-slate-900 mt-4 mb-6">
                 Integrated <span className="font-black">Engineering Solutions</span>
               </h2>
-              <p className="text-slate-400">
+              <p className="text-slate-500">
                 Comprehensive design capabilities backed by advanced technology and decades of expertise
               </p>
             </div>
@@ -249,14 +288,25 @@ const DesignAndStructure = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative bg-slate-50 p-8 hover:bg-white hover:shadow-xl transition-all duration-300 border border-slate-100"
+                  whileHover={{ y: -5 }}
+                  className="group relative bg-white p-8 hover:shadow-2xl transition-all duration-300 border border-slate-100 rounded-lg overflow-hidden"
                 >
+                  {/* Background Image with proper opacity */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                    <img 
+                      src={feature.image} 
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  
                   <feature.icon className="text-[#D4AF37] mb-4" size={32} />
-                  <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-sm text-slate-500 mb-4">{feature.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-200">
+                  <h3 className="font-bold text-lg mb-2 text-slate-900">{feature.title}</h3>
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed">{feature.description}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                     <span className="text-2xl font-black text-[#D4AF37]">{feature.stat}</span>
-                    <span className="text-xs text-slate-400">{feature.statLabel}</span>
+                    <span className="text-xs text-slate-500 font-medium">{feature.statLabel}</span>
                   </div>
                 </motion.div>
               ))}
@@ -281,10 +331,10 @@ const DesignAndStructure = () => {
                   <button
                     key={index}
                     onClick={() => setActivePhase(index)}
-                    className={`relative px-8 py-4 text-sm font-bold transition-all ${
+                    className={`relative px-8 py-4 text-sm font-bold transition-all rounded-full ${
                       activePhase === index 
                         ? 'text-white' 
-                        : 'text-slate-400 hover:text-slate-600'
+                        : 'text-slate-500 hover:text-slate-800'
                     }`}
                   >
                     {activePhase === index && (
@@ -324,12 +374,12 @@ const DesignAndStructure = () => {
                         <div className="text-sm text-[#D4AF37] font-bold mb-1">
                           PHASE {designPhases[activePhase].id}
                         </div>
-                        <div className="text-2xl font-bold">{designPhases[activePhase].subtitle}</div>
+                        <div className="text-2xl font-bold text-slate-900">{designPhases[activePhase].subtitle}</div>
                       </div>
                     </div>
 
-                    <h3 className="text-3xl font-black mb-6">{designPhases[activePhase].title}</h3>
-                    <p className="text-slate-500 leading-relaxed mb-8">
+                    <h3 className="text-3xl font-black mb-6 text-slate-900">{designPhases[activePhase].title}</h3>
+                    <p className="text-slate-600 leading-relaxed mb-8">
                       {designPhases[activePhase].longDescription}
                     </p>
 
@@ -338,19 +388,19 @@ const DesignAndStructure = () => {
                       {designPhases[activePhase].metrics.map((metric, idx) => (
                         <div key={idx} className="text-center p-4 bg-slate-50 rounded-xl">
                           <metric.icon className="mx-auto mb-2 text-[#D4AF37]" size={20} />
-                          <div className="font-black text-lg">{metric.value}</div>
-                          <div className="text-xs text-slate-400">{metric.label}</div>
+                          <div className="font-black text-lg text-slate-900">{metric.value}</div>
+                          <div className="text-xs text-slate-500">{metric.label}</div>
                         </div>
                       ))}
                     </div>
 
                     {/* Deliverables */}
                     <div>
-                      <h4 className="font-bold mb-3">Key Deliverables</h4>
+                      <h4 className="font-bold mb-3 text-slate-900">Key Deliverables</h4>
                       <div className="space-y-2">
                         {designPhases[activePhase].deliverables.map((item, idx) => (
                           <div key={idx} className="flex items-center gap-3 text-sm">
-                            <CheckCircle2 size={16} className="text-[#D4AF37]" />
+                            <CheckCircle2 size={16} className="text-[#D4AF37] flex-shrink-0" />
                             <span className="text-slate-600">{item}</span>
                           </div>
                         ))}
@@ -358,22 +408,47 @@ const DesignAndStructure = () => {
                     </div>
                   </div>
 
-                  {/* Right - Visual */}
-                  <div className="relative h-full min-h-[500px] overflow-hidden">
-                    <img 
-                      src={designPhases[activePhase].image}
-                      alt={designPhases[activePhase].title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/90"></div>
+                  {/* Right - Visual (Improved) */}
+                  <div className="relative h-full min-h-[600px] overflow-hidden bg-slate-100">
+                    {/* Image with error handling */}
+                    {!imageErrors[designPhases[activePhase].id] ? (
+                      <img 
+                        src={designPhases[activePhase].image}
+                        alt={designPhases[activePhase].title}
+                        className="absolute inset-0 w-full h-full object-contain p-8"
+                        onError={() => handleImageError(designPhases[activePhase].id)}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <ImageIcon size={48} className="mx-auto mb-4 text-slate-300" />
+                          <p className="text-slate-400 mb-4">Image unavailable</p>
+                          <div className="grid grid-cols-2 gap-4 p-8">
+                            {designPhases[activePhase].backupImages.map((backupImg, idx) => (
+                              <img 
+                                key={idx}
+                                src={backupImg}
+                                alt={`Backup ${idx + 1}`}
+                                className="w-full h-32 object-cover rounded-lg shadow-md"
+                                onError={(e) => e.target.style.display = 'none'}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Subtle gradient overlay - removed heavy opacity */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/30 pointer-events-none"></div>
                     
                     {/* Tech Stack */}
                     <div className="absolute bottom-8 left-8 right-8">
-                      <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl">
-                        <h4 className="text-sm font-bold mb-3">TECHNOLOGIES</h4>
+                      <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+                        <h4 className="text-sm font-bold mb-3 text-slate-900">TECHNOLOGIES</h4>
                         <div className="flex flex-wrap gap-2">
                           {designPhases[activePhase].technologies.map((tech, idx) => (
-                            <span key={idx} className="px-3 py-1 bg-slate-100 text-xs font-medium rounded-full">
+                            <span key={idx} className="px-3 py-1 bg-slate-100 text-xs font-medium rounded-full text-slate-700">
                               {tech}
                             </span>
                           ))}
@@ -396,7 +471,7 @@ const DesignAndStructure = () => {
                 <h2 className="text-4xl font-light text-slate-900 mt-4 mb-6">
                   Advanced <span className="font-black">Design Tools</span>
                 </h2>
-                <p className="text-slate-400 mb-8">
+                <p className="text-slate-600 mb-8 leading-relaxed">
                   We leverage industry-leading software and technologies to deliver 
                   precise, optimized, and constructible designs.
                 </p>
@@ -418,15 +493,19 @@ const DesignAndStructure = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { name: "AutoCAD", users: "15+ Seats" },
-                  { name: "SolidWorks", users: "10+ Seats" },
-                  { name: "ANSYS", users: "5+ Seats" },
-                  { name: "Revit", users: "8+ Seats" }
+                  { name: "AutoCAD", users: "15+ Seats", color: "from-red-50 to-red-100" },
+                  { name: "SolidWorks", users: "10+ Seats", color: "from-blue-50 to-blue-100" },
+                  { name: "ANSYS", users: "5+ Seats", color: "from-green-50 to-green-100" },
+                  { name: "Revit", users: "8+ Seats", color: "from-purple-50 to-purple-100" }
                 ].map((item, index) => (
-                  <div key={index} className="bg-slate-50 p-6 text-center rounded-xl hover:shadow-lg transition-shadow">
-                    <div className="font-black text-lg mb-1">{item.name}</div>
-                    <div className="text-sm text-[#D4AF37]">{item.users}</div>
-                  </div>
+                  <motion.div 
+                    key={index} 
+                    whileHover={{ scale: 1.05 }}
+                    className={`bg-gradient-to-br ${item.color} p-6 text-center rounded-xl hover:shadow-lg transition-shadow cursor-default`}
+                  >
+                    <div className="font-black text-lg mb-1 text-slate-900">{item.name}</div>
+                    <div className="text-sm text-[#D4AF37] font-bold">{item.users}</div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -437,21 +516,21 @@ const DesignAndStructure = () => {
         <section className="py-20 bg-slate-900">
           <div className="container mx-auto px-6 lg:px-20">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl font-light text-white mb-6">
+              <h2 className="text-4xl font-light text-white mb-6 leading-tight">
                 Ready to Start Your <span className="font-black text-[#D4AF37]">Design Journey?</span>
               </h2>
-              <p className="text-slate-400 mb-12">
+              <p className="text-slate-400 mb-12 text-lg">
                 Let's discuss your project requirements and create a design that sets the foundation for success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-[#D4AF37] text-slate-900 px-10 py-4 font-bold hover:bg-white transition-colors flex items-center justify-center gap-2"
+                  className="bg-[#D4AF37] text-slate-900 px-10 py-4 font-bold hover:bg-white transition-colors flex items-center justify-center gap-2 rounded-lg"
                 >
                   <Send size={18} />
                   Submit Requirements
                 </button>
-                <button className="border border-white text-white px-10 py-4 font-bold hover:bg-white hover:text-slate-900 transition-colors flex items-center justify-center gap-2">
+                <button className="border border-white text-white px-10 py-4 font-bold hover:bg-white hover:text-slate-900 transition-colors flex items-center justify-center gap-2 rounded-lg">
                   <Download size={18} />
                   Download Brochure
                 </button>
@@ -460,7 +539,7 @@ const DesignAndStructure = () => {
           </div>
         </section>
 
-        {/* CONTACT MODAL */}
+        {/* CONTACT MODAL - IMPROVED */}
         <AnimatePresence>
           {isModalOpen && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -469,7 +548,7 @@ const DesignAndStructure = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsModalOpen(false)}
-                className="absolute inset-0 bg-slate-900/90 backdrop-blur-md"
+                className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
               />
 
               <motion.div 
@@ -501,12 +580,12 @@ const DesignAndStructure = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
-                        Full Name
+                        Full Name *
                       </label>
                       <input 
                         type="text" 
                         required 
-                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-slate-900"
                         placeholder="John Smith"
                       />
                     </div>
@@ -516,7 +595,7 @@ const DesignAndStructure = () => {
                       </label>
                       <input 
                         type="text" 
-                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-slate-900"
                         placeholder="Company Name"
                       />
                     </div>
@@ -525,12 +604,12 @@ const DesignAndStructure = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
-                        Email
+                        Email *
                       </label>
                       <input 
                         type="email" 
                         required 
-                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-slate-900"
                         placeholder="john@company.com"
                       />
                     </div>
@@ -540,7 +619,7 @@ const DesignAndStructure = () => {
                       </label>
                       <input 
                         type="tel" 
-                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors"
+                        className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-slate-900"
                         placeholder="+91 98765 43210"
                       />
                     </div>
@@ -550,7 +629,7 @@ const DesignAndStructure = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
                       Project Type
                     </label>
-                    <select className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors bg-transparent">
+                    <select className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors bg-transparent text-slate-900">
                       <option>Food Processing Plant</option>
                       <option>Grain Storage Facility</option>
                       <option>Material Handling System</option>
@@ -561,19 +640,19 @@ const DesignAndStructure = () => {
 
                   <div>
                     <label className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
-                      Project Requirements
+                      Project Requirements *
                     </label>
                     <textarea 
                       rows="4" 
                       required
-                      className="w-full border border-slate-200 p-4 focus:border-[#D4AF37] outline-none transition-colors resize-none"
+                      className="w-full border border-slate-200 p-4 focus:border-[#D4AF37] outline-none transition-colors resize-none rounded-lg text-slate-900"
                       placeholder="Describe your project requirements, capacity, timeline, etc."
                     ></textarea>
                   </div>
 
                   <button 
                     type="submit"
-                    className="w-full bg-slate-900 text-white py-5 font-bold hover:bg-[#D4AF37] transition-colors flex items-center justify-center gap-3"
+                    className="w-full bg-slate-900 text-white py-5 font-bold hover:bg-[#D4AF37] transition-colors flex items-center justify-center gap-3 rounded-lg"
                   >
                     <Send size={18} />
                     Submit Engineering Request
@@ -589,6 +668,24 @@ const DesignAndStructure = () => {
         </AnimatePresence>
       </div>
       <Footer />
+
+      {/* Add keyframe animations for spinner */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes spin-slower {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        .animate-spin-slower {
+          animation: spin-slower 12s linear infinite;
+        }
+      `}</style>
     </>
   );
 };
