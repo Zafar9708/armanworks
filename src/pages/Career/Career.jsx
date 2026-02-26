@@ -9,7 +9,8 @@ import {
   TrendingUp, Shield, Coffee, Globe,
   Mail, Phone, Linkedin, Twitter,
   ArrowRight, Building2, UserCheck,
-  Filter, Search, Star, Bookmark
+  Filter, Search, Star, Bookmark,
+  AlertCircle, MessageCircle
 } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
@@ -37,6 +38,9 @@ const CareerPage = () => {
     linkedin: '',
     portfolio: ''
   });
+
+  const whatsappNumber = "919898898219";
+  const whatsappMessage = encodeURIComponent("Hello! I'm interested in career opportunities at Arman Engineering.");
 
   const departments = [
     { id: 'all', name: 'All Departments', icon: Briefcase, count: 8 },
@@ -813,7 +817,7 @@ const CareerPage = () => {
           )}
         </AnimatePresence>
 
-        {/* Application Form Modal */}
+        {/* Application Form Modal - FIXED VERSION */}
         <AnimatePresence>
           {isApplyModalOpen && selectedJob && (
             <motion.div
@@ -821,284 +825,328 @@ const CareerPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              onClick={() => setIsApplyModalOpen(false)}
             >
-              <div className="absolute inset-0 bg-black/60" onClick={() => setIsApplyModalOpen(false)} />
-              
+              {/* Modal Content - Stop propagation to prevent closing when clicking inside */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative z-10"
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white w-full max-w-2xl shadow-2xl overflow-hidden rounded-sm max-h-[85vh] flex flex-col"
               >
-                {/* Header */}
-                <div className="sticky top-0 bg-white border-b border-slate-100 p-6">
+                {/* Header - Fixed */}
+                <div className="bg-[#FBFBFB] p-5 border-b border-slate-100 flex-shrink-0">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h2 className="text-2xl font-light text-slate-900">
-                        Apply for <span className="font-bold text-[#D4AF37]">{selectedJob.title}</span>
+                      <h2 className="text-xl font-black text-slate-900 tracking-tighter">
+                        APPLY FOR <span className="text-[#D4AF37]">{selectedJob.title}</span>
                       </h2>
-                      <p className="text-sm text-slate-500 mt-1">
-                        Fill in your details below. Resume is optional.
+                      <p className="text-slate-500 text-xs mt-1">
+                        Fill in your details below. Fields marked with <span className="text-[#D4AF37]">*</span> are required.
                       </p>
                     </div>
                     <button
                       onClick={() => setIsApplyModalOpen(false)}
-                      className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                      className="text-slate-400 hover:text-slate-600 transition-colors p-1"
                     >
-                      <X size={20} />
+                      <X size={18} />
                     </button>
                   </div>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmitApplication} className="p-6 space-y-5">
-                  {/* Full Name */}
-                  <div>
-                    <label className="block text-xs font-medium text-slate-500 mb-1">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                      placeholder="John Doe"
-                    />
-                  </div>
+                {/* Scrollable Form Body - REMOVED all motion animations from form elements */}
+                <div className="p-5 bg-white overflow-y-auto flex-1">
+                  <form onSubmit={handleSubmitApplication} className="space-y-4">
+                    {/* Personal Information Section */}
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-[10px] uppercase tracking-widest mb-2 pb-1 border-b border-slate-200">
+                        PERSONAL INFORMATION
+                      </h3>
+                      
+                      {/* Full Name */}
+                      <div className="space-y-1 mb-3">
+                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                          Full Name <span className="text-[#D4AF37]">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          required
+                          className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                          placeholder="John Doe"
+                        />
+                      </div>
 
-                  {/* Email & Phone */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="+91 98765 43210"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Experience & Current Company */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Years of Experience *
-                      </label>
-                      <select
-                        required
-                        value={formData.experience}
-                        onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                      >
-                        <option value="">Select experience</option>
-                        <option value="fresher">Fresher (0 years)</option>
-                        <option value="1-2">1-2 years</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="5-8">5-8 years</option>
-                        <option value="8+">8+ years</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Current Company (Optional)
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.currentCompany}
-                        onChange={(e) => setFormData({ ...formData, currentCompany: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="Current/Last company"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Notice Period & Expected Salary */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Notice Period *
-                      </label>
-                      <select
-                        required
-                        value={formData.noticePeriod}
-                        onChange={(e) => setFormData({ ...formData, noticePeriod: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                      >
-                        <option value="">Select notice period</option>
-                        <option value="immediate">Immediate</option>
-                        <option value="15">15 days</option>
-                        <option value="30">30 days</option>
-                        <option value="45">45 days</option>
-                        <option value="60">60 days</option>
-                        <option value="90">90 days</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Expected Salary *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.expectedSalary}
-                        onChange={(e) => setFormData({ ...formData, expectedSalary: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="e.g., 5 LPA"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Resume Upload - Optional */}
-                  <div>
-                    <label className="block text-xs font-medium text-slate-500 mb-1">
-                      Resume (Optional - PDF or Word, max 5MB)
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        className="hidden"
-                        id="resume-upload"
-                      />
-                      <label
-                        htmlFor="resume-upload"
-                        className="flex items-center justify-center w-full p-4 border-2 border-dashed border-slate-200 rounded-xl hover:border-[#D4AF37] transition-colors cursor-pointer group"
-                      >
-                        <div className="text-center">
-                          <Upload className="w-6 h-6 text-slate-400 mx-auto mb-2 group-hover:text-[#D4AF37] transition-colors" />
-                          <p className="text-sm text-slate-500">
-                            {formData.resume ? formData.resume.name : 'Click to upload or drag and drop'}
-                          </p>
-                          <p className="text-xs text-slate-400 mt-1">
-                            PDF, DOC, DOCX (Max 5MB)
-                          </p>
+                      {/* Email & Phone */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Email Address <span className="text-[#D4AF37]">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="john@example.com"
+                          />
                         </div>
-                      </label>
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Phone Number <span className="text-[#D4AF37]">*</span>
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            required
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="+91 98765 43210"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Experience & Current Company */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Years of Experience <span className="text-[#D4AF37]">*</span>
+                          </label>
+                          <select
+                            name="experience"
+                            value={formData.experience}
+                            onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                            required
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm appearance-none"
+                            style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23999\'%3E%3Cpath strokeLinecap=\'round\' strokeLinejoin=\'round\' strokeWidth=\'2\' d=\'M19 9l-7 7-7-7\'%3E%3C/path%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem center', backgroundSize: '0.75rem' }}
+                          >
+                            <option value="">Select</option>
+                            <option value="fresher">Fresher (0 years)</option>
+                            <option value="1-2">1-2 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-8">5-8 years</option>
+                            <option value="8+">8+ years</option>
+                          </select>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Current Company
+                          </label>
+                          <input
+                            type="text"
+                            name="currentCompany"
+                            value={formData.currentCompany}
+                            onChange={(e) => setFormData({ ...formData, currentCompany: e.target.value })}
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="Current/Last company"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Cover Letter */}
-                  <div>
-                    <label className="block text-xs font-medium text-slate-500 mb-1">
-                      Cover Letter / Why join us? (Optional)
-                    </label>
-                    <textarea
-                      value={formData.coverLetter}
-                      onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
-                      rows="4"
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm resize-none"
-                      placeholder="Tell us why you're interested in this position..."
-                    />
-                  </div>
-
-                  {/* Professional Links */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* Professional Details Section */}
                     <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        LinkedIn Profile (Optional)
-                      </label>
-                      <input
-                        type="url"
-                        value={formData.linkedin}
-                        onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="https://linkedin.com/in/..."
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-slate-500 mb-1">
-                        Portfolio/Website (Optional)
-                      </label>
-                      <input
-                        type="url"
-                        value={formData.portfolio}
-                        onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#D4AF37] outline-none transition-colors text-sm"
-                        placeholder="https://..."
-                      />
-                    </div>
-                  </div>
+                      <h3 className="font-bold text-slate-900 text-[10px] uppercase tracking-widest mb-2 pb-1 border-b border-slate-200">
+                        PROFESSIONAL DETAILS
+                      </h3>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full bg-[#D4AF37] text-white py-3.5 rounded-xl font-medium transition-all flex items-center justify-center gap-2 ${
-                      isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-slate-900'
-                    }`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Submitting Application...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        Submit Application
-                      </>
+                      {/* Notice Period & Expected Salary */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Notice Period <span className="text-[#D4AF37]">*</span>
+                          </label>
+                          <select
+                            name="noticePeriod"
+                            value={formData.noticePeriod}
+                            onChange={(e) => setFormData({ ...formData, noticePeriod: e.target.value })}
+                            required
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm appearance-none"
+                            style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23999\'%3E%3Cpath strokeLinecap=\'round\' strokeLinejoin=\'round\' strokeWidth=\'2\' d=\'M19 9l-7 7-7-7\'%3E%3C/path%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem center', backgroundSize: '0.75rem' }}
+                          >
+                            <option value="">Select</option>
+                            <option value="immediate">Immediate</option>
+                            <option value="15">15 days</option>
+                            <option value="30">30 days</option>
+                            <option value="45">45 days</option>
+                            <option value="60">60 days</option>
+                            <option value="90">90 days</option>
+                          </select>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Expected Salary <span className="text-[#D4AF37]">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="expectedSalary"
+                            value={formData.expectedSalary}
+                            onChange={(e) => setFormData({ ...formData, expectedSalary: e.target.value })}
+                            required
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="e.g., 5 LPA"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Resume Upload */}
+                      <div className="space-y-1 mb-3">
+                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                          Resume (PDF or Word, max 5MB)
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            onChange={handleFileChange}
+                            className="hidden"
+                            id="resume-upload"
+                          />
+                          <label
+                            htmlFor="resume-upload"
+                            className="flex items-center justify-center w-full p-3 border-2 border-dashed border-slate-200 rounded-sm hover:border-[#D4AF37] transition-colors cursor-pointer group"
+                          >
+                            <div className="text-center">
+                              <Upload className="w-4 h-4 text-slate-400 mx-auto mb-1 group-hover:text-[#D4AF37] transition-colors" />
+                              <p className="text-[10px] text-slate-500">
+                                {formData.resume ? formData.resume.name : 'Click to upload or drag and drop'}
+                              </p>
+                              <p className="text-[8px] text-slate-400 mt-0.5">
+                                PDF, DOC, DOCX (Max 5MB)
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Cover Letter */}
+                      <div className="space-y-1 mb-3">
+                        <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                          Cover Letter / Why join us?
+                        </label>
+                        <textarea
+                          name="coverLetter"
+                          value={formData.coverLetter}
+                          onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
+                          rows="3"
+                          className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs resize-none rounded-sm"
+                          placeholder="Tell us why you're interested in this position... (Optional)"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Professional Links Section */}
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-[10px] uppercase tracking-widest mb-2 pb-1 border-b border-slate-200">
+                        PROFESSIONAL LINKS
+                      </h3>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            LinkedIn Profile
+                          </label>
+                          <input
+                            type="url"
+                            name="linkedin"
+                            value={formData.linkedin}
+                            onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="https://linkedin.com/in/..."
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-slate-400 uppercase tracking-widest">
+                            Portfolio/Website
+                          </label>
+                          <input
+                            type="url"
+                            name="portfolio"
+                            value={formData.portfolio}
+                            onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })}
+                            className="w-full bg-[#FBFBFB] border border-slate-200 p-2.5 outline-none focus:border-[#D4AF37] transition-colors text-xs rounded-sm"
+                            placeholder="https://..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Submit Button - REMOVED motion animation */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`w-full bg-[#D4AF37] text-white font-bold py-3 rounded-sm flex items-center justify-center gap-2 tracking-[0.2em] uppercase text-[10px] transition-colors shadow-md ${
+                        isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#B8952E]'
+                      }`}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          SUBMITTING...
+                        </>
+                      ) : (
+                        <>
+                          SUBMIT APPLICATION
+                          <Send size={12} />
+                        </>
+                      )}
+                    </button>
+
+                    {/* WhatsApp Option */}
+                    <div className="relative my-4">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-slate-200"></div>
+                      </div>
+                      <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-white px-3 text-slate-400 text-[8px] font-black tracking-widest">OR</span>
+                      </div>
+                    </div>
+
+                    {/* WhatsApp Button - REMOVED motion animation */}
+                    <a
+                      href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-[#25D366] text-white font-bold py-3 rounded-sm flex items-center justify-center gap-2 tracking-[0.2em] uppercase text-[10px] hover:bg-[#20BA5C] transition-colors shadow-md"
+                    >
+                      <MessageCircle size={14} fill="white" />
+                      CHAT ON WHATSAPP
+                    </a>
+
+                    {/* Status Messages */}
+                    {applicationStatus === 'success' && (
+                      <div className="bg-green-50 text-green-600 text-xs p-3 rounded-sm flex items-center gap-2 border border-green-200">
+                        <CheckCircle size={14} />
+                        Application submitted successfully! We'll review and get back to you soon.
+                      </div>
                     )}
-                  </button>
 
-                  {/* Status Messages */}
-                  {applicationStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="bg-green-50 text-green-600 text-sm p-4 rounded-xl flex items-center gap-2"
-                    >
-                      <CheckCircle size={16} />
-                      Application submitted successfully! We'll review and get back to you soon.
-                    </motion.div>
-                  )}
-
-                  {applicationStatus === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="bg-red-50 text-red-500 text-sm p-4 rounded-xl flex items-center gap-2"
-                    >
-                      <AlertCircle size={16} />
-                      Failed to submit application. Please try again.
-                    </motion.div>
-                  )}
-                </form>
+                    {applicationStatus === 'error' && (
+                      <div className="bg-red-50 text-red-500 text-xs p-3 rounded-sm flex items-center gap-2 border border-red-200">
+                        <AlertCircle size={14} />
+                        Failed to submit application. Please try again.
+                      </div>
+                    )}
+                  </form>
+                </div>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Floating Action Button */}
-        <motion.a
+        <a
           href="mailto:careers@armaneng.com"
-          className="fixed bottom-6 right-6 w-14 h-14 bg-[#D4AF37] rounded-full shadow-lg flex items-center justify-center text-white z-40 hover:bg-slate-900 transition-colors"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          className="fixed bottom-6 right-6 w-12 h-12 bg-[#D4AF37] rounded-full shadow-lg flex items-center justify-center text-white z-40 hover:bg-slate-900 transition-colors"
         >
-          <Mail size={24} />
-        </motion.a>
+          <Mail size={20} />
+        </a>
       </div>
       <Footer />
     </>

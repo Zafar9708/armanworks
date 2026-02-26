@@ -170,11 +170,11 @@ const AmranPremiumCarousel = () => {
   };
 
   return (
-    <div className="relative h-screen min-h-[700px] w-full bg-[#0a0a0a] overflow-hidden">
+    <div className="relative h-screen min-h-[600px] md:min-h-[700px] w-full bg-[#0a0a0a] overflow-hidden">
       
       {/* BACKGROUND TEXT WATERMARK */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
-        <h1 className="text-[25vw] font-black text-white leading-none uppercase">ARMAN</h1>
+        <h1 className="text-[20vw] md:text-[25vw] font-black text-white leading-none uppercase">ARMAN</h1>
       </div>
 
       <AnimatePresence mode="wait">
@@ -186,117 +186,125 @@ const AmranPremiumCarousel = () => {
           transition={{ duration: 1 }}
           className="absolute inset-0 flex items-center"
         >
-          <div className="container mx-auto px-6 lg:px-20 grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* CONTENT SECTION */}
-            <div className="z-20 space-y-8 order-2 lg:order-1">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex items-center gap-3 text-[#D4AF37]"
-              >
-                <ShieldCheck size={20} />
-                <span className="text-xs font-bold tracking-[0.4em] uppercase">{slides[index].cert}</span>
-              </motion.div>
+          <div className="container mx-auto px-4 md:px-6 lg:px-20 h-full flex items-center">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center w-full">
+              
+              {/* CONTENT SECTION - Moved up on mobile */}
+              <div className="z-20 space-y-4 md:space-y-6 lg:space-y-8 order-2 lg:order-1 mt-8 lg:mt-0">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center gap-2 md:gap-3 text-[#D4AF37]"
+                >
+                  <ShieldCheck size={16} className="md:w-5 md:h-5" />
+                  <span className="text-[8px] md:text-[10px] lg:text-xs font-bold tracking-[0.2em] md:tracking-[0.3em] lg:tracking-[0.4em] uppercase">{slides[index].cert}</span>
+                </motion.div>
 
-              <div className="space-y-2">
-                <motion.h3 
+                <div className="space-y-1 md:space-y-2">
+                  <motion.h3 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-white/40 text-sm md:text-base lg:text-xl font-bold uppercase tracking-widest"
+                  >
+                    {slides[index].subtitle}
+                  </motion.h3>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[1.1]"
+                  >
+                    {slides[index].title.split(' ')[0]} <br />
+                    <span className="text-[#D4AF37]">{slides[index].title.split(' ')[1] || ""}</span>
+                  </motion.h2>
+                </div>
+
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-gray-400 text-sm sm:text-base md:text-lg max-w-md leading-relaxed"
+                >
+                  {slides[index].desc}
+                </motion.p>
+
+                <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-white/40 text-xl font-bold uppercase tracking-widest"
+                  transition={{ delay: 0.6 }}
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 pt-2 md:pt-4 lg:pt-6"
                 >
-                  {slides[index].subtitle}
-                </motion.h3>
-                <motion.h2 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9]"
-                >
-                  {slides[index].title.split(' ')[0]} <br />
-                  <span className="text-[#D4AF37]">{slides[index].title.split(' ')[1] || ""}</span>
-                </motion.h2>
+                  <button 
+                    onClick={handleTechnicalSpecs}
+                    className="bg-[#D4AF37] text-black px-6 sm:px-8 md:px-10 py-3 md:py-4 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2"
+                  >
+                    Technical Specs <ArrowUpRight size={14} className="md:w-4 md:h-4" />
+                  </button>
+                  <button 
+                    onClick={handleRequestQuote}
+                    className="border border-white/20 text-white px-6 sm:px-8 md:px-10 py-3 md:py-4 font-black text-[10px] md:text-xs uppercase tracking-widest hover:bg-white/10 transition-all"
+                  >
+                    Request Quote
+                  </button>
+                </motion.div>
               </div>
 
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="text-gray-400 text-lg max-w-md leading-relaxed"
-              >
-                {slides[index].desc}
-              </motion.p>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex gap-6 pt-6"
-              >
-                <button 
-                  onClick={handleTechnicalSpecs}
-                  className="bg-[#D4AF37] text-black px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2"
+              {/* IMAGE SECTION - Better positioned on mobile */}
+              <div className="relative flex justify-center items-center order-1 lg:order-2 h-[200px] sm:h-[250px] md:h-[350px] lg:h-auto">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="relative z-10"
                 >
-                  Technical Specs <ArrowUpRight size={16} />
-                </button>
-                <button 
-                  onClick={handleRequestQuote}
-                  className="border border-white/20 text-white px-10 py-4 font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all"
-                >
-                  Request Quote
-                </button>
-              </motion.div>
-            </div>
-
-            {/* IMAGE SECTION */}
-            <div className="relative flex justify-center items-center order-1 lg:order-2">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
-                animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="relative z-10"
-              >
-                {/* Visual Depth Circle */}
-                <div className="absolute inset-0 bg-[#D4AF37]/10 blur-[120px] rounded-full" />
+                  {/* Visual Depth Circle */}
+                  <div className="absolute inset-0 bg-[#D4AF37]/10 blur-[80px] md:blur-[120px] rounded-full" />
+                  
+                  <img 
+                    src={slides[index].img} 
+                    alt={slides[index].title}
+                    className="h-[150px] sm:h-[200px] md:h-[300px] lg:h-[450px] xl:h-[500px] w-auto object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.8)]"
+                  />
+                </motion.div>
                 
-                <img 
-                  src={slides[index].img} 
-                  alt={slides[index].title}
-                  className="h-[350px] md:h-[500px] w-auto object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.8)]"
-                />
-              </motion.div>
-              
-              {/* Massive Slide Number Background */}
-              <span className="absolute -right-10 top-1/2 -translate-y-1/2 text-[20rem] font-black text-white/[0.03] leading-none pointer-events-none">
-                {(index + 1).toString().padStart(2, '0')}
-              </span>
+                {/* Massive Slide Number Background - Hidden on mobile */}
+                <span className="hidden lg:block absolute -right-10 top-1/2 -translate-y-1/2 text-[20rem] font-black text-white/[0.03] leading-none pointer-events-none">
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
+              </div>
             </div>
           </div>
         </motion.div>
       </AnimatePresence>
 
-      {/* CONTROLS */}
-      <div className="absolute bottom-12 right-12 z-50 flex items-center gap-4">
-        <button onClick={prevSlide} className="w-14 h-14 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all">
-          <ChevronLeft size={24} />
+      {/* CONTROLS - Better positioned on mobile */}
+      <div className="absolute bottom-4 md:bottom-8 lg:bottom-12 right-4 md:right-8 lg:right-12 z-50 flex items-center gap-2 md:gap-3 lg:gap-4">
+        <button 
+          onClick={prevSlide} 
+          className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all bg-black/30 backdrop-blur-sm"
+        >
+          <ChevronLeft size={18} className="md:w-5 md:h-5 lg:w-6 lg:h-6" />
         </button>
-        <div className="h-[1px] w-20 bg-white/10" />
-        <button onClick={nextSlide} className="w-14 h-14 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all">
-          <ChevronRight size={24} />
+        <div className="h-[1px] w-12 md:w-16 lg:w-20 bg-white/10" />
+        <button 
+          onClick={nextSlide} 
+          className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-black transition-all bg-black/30 backdrop-blur-sm"
+        >
+          <ChevronRight size={18} className="md:w-5 md:h-5 lg:w-6 lg:h-6" />
         </button>
       </div>
 
-      {/* PROGRESS TRACKER */}
-      <div className="absolute left-12 top-1/2 -translate-y-1/2 z-50 space-y-4 hidden lg:block">
+      {/* PROGRESS TRACKER - Hidden on mobile/tablet */}
+      <div className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-50 space-y-4 hidden xl:block">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
             className="group flex items-center gap-4 outline-none"
           >
-            <div className={`h-1 transition-all duration-500 ${index === i ? "w-12 bg-[#D4AF37]" : "w-4 bg-white/20"}`} />
+            <div className={`h-1 transition-all duration-500 ${index === i ? "w-12 bg-[#D4AF37]" : "w-4 bg-white/20 group-hover:w-6"}`} />
             <span className={`text-[10px] font-bold tracking-widest transition-all ${index === i ? "text-[#D4AF37] opacity-100" : "text-white opacity-0 group-hover:opacity-40"}`}>
               {(i + 1).toString().padStart(2, '0')}
             </span>
@@ -304,10 +312,10 @@ const AmranPremiumCarousel = () => {
         ))}
       </div>
 
-      {/* Quote Popup Modal */}
+      {/* Quote Popup Modal - Responsive */}
       <AnimatePresence>
         {isQuoteOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-4">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -322,115 +330,115 @@ const AmranPremiumCarousel = () => {
               initial={{ scale: 0.9, opacity: 0, y: 40 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 40 }}
-              className="bg-white w-full max-w-2xl relative overflow-hidden shadow-2xl"
+              className="bg-white w-full max-w-lg md:max-w-2xl relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
             >
               {/* Header */}
-              <div className="bg-[#0a0a0a] p-8 text-white">
+              <div className="bg-[#0a0a0a] p-5 md:p-8 text-white">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-2xl font-black mb-2">Request Quote</h3>
-                    <p className="text-gray-400 text-sm">
+                    <h3 className="text-xl md:text-2xl font-black mb-1 md:mb-2">Request Quote</h3>
+                    <p className="text-gray-400 text-xs md:text-sm">
                       {selectedProduct ? `For: ${selectedProduct.fullName}` : 'Fill the form and our team will respond within 24 hours'}
                     </p>
                   </div>
                   <button
                     onClick={handleQuoteClose}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-1 md:p-2 hover:bg-white/10 rounded-lg transition-colors"
                   >
-                    <X size={20} />
+                    <X size={18} className="md:w-5 md:h-5" />
                   </button>
                 </div>
               </div>
 
               {/* Form */}
-              <form className="p-8 space-y-1" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid md:grid-cols-2 gap-5">
+              <form className="p-5 md:p-8 space-y-4 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                       Full Name *
                     </label>
                     <input
                       type="text"
                       required
-                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="John Smith"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                       Company Name
                     </label>
                     <input
                       type="text"
-                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="Company Name"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-5">
+                <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                       Email *
                     </label>
                     <input
                       type="email"
                       required
-                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="john@company.com"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                       Phone *
                     </label>
                     <input
                       type="tel"
                       required
-                      className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                      className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="+91 98765 43210"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                  <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                     Quantity Required
                   </label>
                   <input
                     type="text"
-                    className="w-full border-b border-slate-200 py-3 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold"
+                    className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                     placeholder="e.g., 1 Unit, 50 Meters, etc."
                   />
                 </div>
 
                 <div>
-                  <label className="text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-2">
+                  <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                     Message *
                   </label>
                   <textarea
-                    rows="4"
+                    rows="3"
                     required
-                    className="w-full border border-slate-200 p-4 focus:border-[#D4AF37] outline-none transition-colors text-sm font-bold resize-none"
+                    className="w-full border border-slate-200 p-3 md:p-4 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold resize-none"
                     placeholder={`I'm interested in ${selectedProduct?.fullName || 'your products'}. Please share specifications and quote.`}
                     defaultValue={`I'm interested in ${selectedProduct?.fullName || 'your products'}. Please share specifications and quote.`}
                   />
                 </div>
 
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 pt-2 md:pt-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-[#0a0a0a] text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-[#D4AF37] hover:text-black transition-colors flex items-center justify-center gap-2"
+                    className="w-full sm:flex-1 bg-[#0a0a0a] text-white py-3 md:py-4 text-[9px] md:text-[10px] font-black tracking-wider uppercase hover:bg-[#D4AF37] hover:text-black transition-colors flex items-center justify-center gap-2"
                   >
-                    <Send size={14} />
+                    <Send size={12} className="md:w-3.5 md:h-3.5" />
                     Submit Request
                   </button>
                   <button
                     type="button"
                     onClick={handleWhatsApp}
-                    className="flex-1 bg-green-600 text-white py-4 text-[10px] font-black tracking-wider uppercase hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+                    className="w-full sm:flex-1 bg-green-600 text-white py-3 md:py-4 text-[9px] md:text-[10px] font-black tracking-wider uppercase hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
                   >
-                    <MessageCircle size={14} />
+                    <MessageCircle size={12} className="md:w-3.5 md:h-3.5" />
                     WhatsApp
                   </button>
                 </div>

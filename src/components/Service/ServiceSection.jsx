@@ -20,7 +20,7 @@ const ServiceSection = () => {
     {
       title: "Turnkey Solutions",
       description: "Food processing technology evolves at a breakneck pace. However it's important for you to make improvement as well at the same time...",
-      image: "https://media.licdn.com/dms/image/v2/C4D12AQGCyTiKaNjy2g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1598868532931?e=2147483647&v=beta&t=ThzicLvOQS07pPA3MRsVDNnh_xJU2KLMJta-NjMW_kk",
+      image: "https://images.pexels.com/photos/7688160/pexels-photo-7688160.jpeg",
     }
   ];
 
@@ -92,7 +92,7 @@ const ServiceSection = () => {
           >
             <div className="w-full sm:w-1/2 aspect-[4/3] overflow-hidden rounded-sm shadow-md">
               <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" 
+                src="https://media.bizj.us/view/img/11983229/gettyimages-1044743952*1200xx5000-2818-0-514.jpg" 
                 alt="Clients" 
                 className="w-full h-full object-cover"
               />

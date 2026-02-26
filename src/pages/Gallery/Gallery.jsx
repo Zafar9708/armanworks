@@ -7,10 +7,30 @@ import {
   ChevronLeft, ChevronRight, Wrench, Sparkles,
   Grid, LayoutGrid, Instagram, Facebook, Linkedin,
   Phone, Mail, Clock, Award, Shield, Truck,
-  Maximize2, Minimize2, Play, Pause
+  Maximize2, Minimize2, Play, Pause, Video
 } from 'lucide-react';
 import Footer from '../../components/home/Footer';
 import Navbar from '../../components/home/Navbar';
+
+// Import video (make sure these paths are correct for your project)
+import video1 from '../../assets/video/video1.mp4';
+import video2 from '../../assets/video/video2.mp4';
+import video3 from '../../assets/video/video3.mp4';
+import video4 from '../../assets/video/video4.mp4';
+import video5 from '../../assets/video/video5.mp4';
+import video6 from '../../assets/video/video6.mp4';
+import video7 from '../../assets/video/video7.mp4';
+import video8 from '../../assets/video/video8.mp4';
+import video9 from '../../assets/video/video9.mp4';
+import video10 from '../../assets/video/video10.mp4';
+import video11 from '../../assets/video/video11.mp4';
+import video12 from '../../assets/video/video12.mp4';
+import video13 from '../../assets/video/video13.mp4';
+import video14 from '../../assets/video/video14.mp4';
+import video15 from '../../assets/video/video15.mp4';
+import video16 from '../../assets/video/video16.mp4';
+import video17 from '../../assets/video/video17.mp4';
+import video18 from '../../assets/video/video18.mp4';
 
 const GalleryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -23,12 +43,42 @@ const GalleryPage = () => {
   const [selectedYear, setSelectedYear] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(null);
+  const [videoLoaded, setvideoLoaded] = useState({});
+  const [showAllvideo, setShowAllvideo] = useState(false);
+  const videoRefs = useRef([]);
+  const observerRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+
+  // Company video data - 18 video without titles and descriptions
+  const companyvideo = [
+    { id: 1, videorc: video1, duration: "2:45", date: "2024-03-15", category: "factory" },
+    { id: 2, videorc: video2, duration: "1:30", date: "2024-03-20", category: "installation" },
+    { id: 3, videorc: video3, duration: "3:15", date: "2024-03-25", category: "team" },
+    { id: 4, videorc: video4, duration: "2:20", date: "2024-03-28", category: "factory" },
+    { id: 5, videorc: video5, duration: "1:45", date: "2024-04-01", category: "machines" },
+    { id: 6, videorc: video6, duration: "2:10", date: "2024-04-05", category: "installation" },
+    { id: 7, videorc: video7, duration: "3:00", date: "2024-04-08", category: "factory" },
+    { id: 8, videorc: video8, duration: "1:55", date: "2024-04-12", category: "team" },
+    { id: 9, videorc: video9, duration: "2:30", date: "2024-04-15", category: "machines" },
+    { id: 10, videorc: video10, duration: "2:15", date: "2024-04-18", category: "installation" },
+    { id: 11, videorc: video11, duration: "1:40", date: "2024-04-20", category: "factory" },
+    { id: 12, videorc: video12, duration: "3:30", date: "2024-04-22", category: "team" },
+    { id: 13, videorc: video13, duration: "2:50", date: "2024-04-25", category: "machines" },
+    { id: 14, videorc: video14, duration: "1:35", date: "2024-04-28", category: "installation" },
+    { id: 15, videorc: video15, duration: "2:25", date: "2024-05-01", category: "factory" },
+    { id: 16, videorc: video16, duration: "3:10", date: "2024-05-03", category: "team" },
+    { id: 17, videorc: video17, duration: "2:05", date: "2024-05-05", category: "machines" },
+    { id: 18, videorc: video18, duration: "1:50", date: "2024-05-08", category: "installation" }
+  ];
+
+  // Determine which video to display
+  const displayedvideo = showAllvideo ? companyvideo : companyvideo.slice(0, 3);
 
   const categories = [
     { id: 'all', name: 'All Photos', icon: Image, count: 24 },
@@ -246,6 +296,65 @@ const GalleryPage = () => {
     }
   ];
 
+  // Set up intersection observer for lazy loading video
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const videoElement = entry.target;
+            const videoId = videoElement.dataset.videoId;
+            
+            // Mark video as loaded in view
+            setvideoLoaded(prev => ({ ...prev, [videoId]: true }));
+            
+            // Load video source
+            const source = videoElement.querySelector('source');
+            if (source && !source.src) {
+              const videoData = companyvideo.find(v => v.id === parseInt(videoId));
+              if (videoData) {
+                source.src = videoData.videorc;
+                videoElement.load();
+              }
+            }
+            
+            // Stop observing after loading
+            observerRef.current.unobserve(videoElement);
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      }
+    );
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Update observer when video change
+  useEffect(() => {
+    if (observerRef.current) {
+      // Clear existing refs
+      videoRefs.current.forEach((video) => {
+        if (video) {
+          observerRef.current.unobserve(video);
+        }
+      });
+      
+      // Observe current video
+      videoRefs.current.forEach((video) => {
+        if (video) {
+          observerRef.current.observe(video);
+        }
+      });
+    }
+  }, [showAllvideo]);
+
   // Filter images
   const filteredImages = galleryImages.filter(img => {
     if (selectedCategory !== 'all' && img.category !== selectedCategory) return false;
@@ -281,9 +390,18 @@ const GalleryPage = () => {
     }
   };
 
+  const handleVideoPlay = (index) => {
+    // Pause all other video
+    videoRefs.current.forEach((video, i) => {
+      if (i !== index && video) {
+        video.pause();
+      }
+    });
+    setActiveVideoIndex(activeVideoIndex === index ? null : index);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
     console.log('Form submitted:', formData);
     setIsContactModalOpen(false);
     setFormData({ name: '', email: '', phone: '', message: '' });
@@ -291,8 +409,8 @@ const GalleryPage = () => {
 
   const stats = [
     { icon: Camera, value: '500+', label: 'Photos' },
+    { icon: Video, value: '50+', label: 'video' },
     { icon: Award, value: '15+', label: 'Years' },
-    { icon: Shield, value: '100%', label: 'Quality' },
     { icon: Truck, value: '50+', label: 'Projects' }
   ];
 
@@ -300,7 +418,7 @@ const GalleryPage = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-white">
-        {/* Hero Section - Minimal */}
+        {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-32 pb-20">
           <div className="container mx-auto px-6 lg:px-20">
             <motion.div
@@ -311,7 +429,7 @@ const GalleryPage = () => {
             >
               <div className="flex items-center gap-2 text-[#D4AF37] text-sm font-medium mb-4">
                 <Sparkles size={16} />
-                <span>GALLERY</span>
+                <span>GALLERY & video</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-light text-white mb-4">
                 Capturing <span className="font-bold text-[#D4AF37]">Excellence</span>
@@ -347,9 +465,139 @@ const GalleryPage = () => {
           </div>
         </section>
 
-        {/* Gallery Section */}
-        <section className="py-12">
+        {/* Video Section */}
+        <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-6 lg:px-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-light text-slate-900 mb-3">
+                Company <span className="font-bold text-[#D4AF37]">video</span>
+              </h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">
+                Watch our latest video showcasing our work and facilities
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedvideo.map((video, index) => (
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="relative aspect-video bg-black group">
+                    {/* Video Element with Lazy Loading */}
+                    <video
+                      ref={el => videoRefs.current[index] = el}
+                      data-video-id={video.id}
+                      className="w-full h-full object-cover"
+                      controls={activeVideoIndex === index}
+                      playsInline
+                      onClick={() => handleVideoPlay(index)}
+                      onPlay={() => setActiveVideoIndex(index)}
+                      onPause={() => setActiveVideoIndex(null)}
+                    >
+                      {/* Source will be loaded by intersection observer */}
+                      <source src="" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    {/* Custom Play Button - Only show when video is not playing */}
+                    {activeVideoIndex !== index && (
+                      <button
+                        onClick={() => handleVideoPlay(index)}
+                        className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors"
+                      >
+                        <div className="w-14 h-14 bg-[#D4AF37] rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                          <Play size={22} className="text-white ml-1" />
+                        </div>
+                      </button>
+                    )}
+
+                    {/* Duration Badge */}
+                    <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                      {video.duration}
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                      {video.category}
+                    </div>
+
+                    {/* Loading Indicator */}
+                    {!videoLoaded[video.id] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                        <div className="w-6 h-6 border-2 border-white border-t-[#D4AF37] rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Date only - no title/description */}
+                  <div className="p-2 text-right">
+                    <span className="text-xs text-slate-400">
+                      {new Date(video.date).toLocaleDateString('en-IN', { 
+                        day: 'numeric', 
+                        month: 'short',
+                        year: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* View All / Show Less Button */}
+            {!showAllvideo && companyvideo.length > 3 && (
+              <div className="text-center mt-10">
+                <button
+                  onClick={() => setShowAllvideo(true)}
+                  className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-6 py-3 font-medium hover:bg-slate-900 transition-colors rounded-lg"
+                >
+                  <Video size={18} />
+                  View All video ({companyvideo.length})
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
+
+            {showAllvideo && (
+              <div className="text-center mt-10">
+                <button
+                  onClick={() => setShowAllvideo(false)}
+                  className="inline-flex items-center gap-2 bg-slate-200 text-slate-700 px-6 py-3 font-medium hover:bg-slate-300 transition-colors rounded-lg"
+                >
+                  <ChevronLeft size={16} />
+                  Show Less
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Photo Gallery Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-6 lg:px-20">
+            {/* Section Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-light text-slate-900 mb-3">
+                Photo <span className="font-bold text-[#D4AF37]">Gallery</span>
+              </h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">
+                Explore our collection of photos showcasing our work and achievements
+              </p>
+            </motion.div>
+
             {/* Filters Bar */}
             <div className="mb-8">
               {/* Search and View Toggle */}
@@ -507,6 +755,7 @@ const GalleryPage = () => {
                           src={image.thumbnail}
                           alt={image.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading="lazy"
                         />
                         
                         {/* Overlay */}
