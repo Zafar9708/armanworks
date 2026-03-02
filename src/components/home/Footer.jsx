@@ -123,6 +123,9 @@ const Footer = () => {
                   <a href={`tel:${whatsappNumber}`} className="flex items-center gap-3 text-slate-300 hover:text-[#D4AF37] transition-colors">
                     <Phone size={16} className="text-[#D4AF37]" />
                     <span className="text-sm">+91 98988 98219</span>
+                    <Phone size={16} className="text-[#D4AF37]" />
+                    <span className="text-sm">+91 9998551985</span>
+
                   </a>
                   <a href="mailto:info@armanengineering.com" className="flex items-center gap-3 text-slate-300 hover:text-[#D4AF37] transition-colors">
                     <Mail size={16} className="text-[#D4AF37]" />
@@ -146,7 +149,7 @@ const Footer = () => {
 
         {/* Certifications - Clean row */}
         <div className="py-6 border-y border-white/5 flex flex-wrap justify-center sm:justify-between gap-4">
-           <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-slate-500"><Award size={14} className="text-[#D4AF37]"/> ISO 9001:2015</div>
+           <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-slate-500"><Award size={14} className="text-[#D4AF37]"/> ISO 9001:2010</div>
            <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-slate-500"><CheckCircle size={14} className="text-[#D4AF37]"/> MSME Certified</div>
            <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-slate-500"><Globe size={14} className="text-[#D4AF37]"/> NSIC Registered</div>
         </div>

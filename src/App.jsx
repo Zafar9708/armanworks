@@ -17,6 +17,8 @@ import BlogPage from './pages/Blog/Blog';
 import ContactPage from './pages/Contact/Contact';
 import CareersPage from './pages/Career/Career';
 import ProductsPage from './pages/Product/Product';
+import AdminLogin from './pages/Login/AdminLogin';
+import AdminDashboard from './pages/Dashboard/Admindashboard';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -50,17 +52,8 @@ function App() {
         <Route path='/blog' element={<BlogPage />} />
         <Route path='/contact' element={<ContactPage />} />
         <Route path='/career' element={<CareersPage />} />
-
-
-
-
-
-
-
-
-
-
-
+        <Route path='/login' element={<AdminLogin />} />
+        <Route path='/armanadmin/dashboard' element={<AdminDashboard/>} />
 
 
       </Routes>

@@ -7,6 +7,9 @@ const AmranPremiumCarousel = () => {
   const [index, setIndex] = useState(0);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const navigate = useNavigate();
 
   const slides = [
@@ -155,11 +158,15 @@ const AmranPremiumCarousel = () => {
   const handleRequestQuote = () => {
     setSelectedProduct(slides[index]);
     setIsQuoteOpen(true);
+    setSubmitSuccess(false);
+    setSubmitError('');
   };
 
   const handleQuoteClose = () => {
     setIsQuoteOpen(false);
     setSelectedProduct(null);
+    setSubmitSuccess(false);
+    setSubmitError('');
   };
 
   const handleWhatsApp = () => {
@@ -167,6 +174,51 @@ const AmranPremiumCarousel = () => {
     const message = encodeURIComponent(`Hello, I'm interested in ${product.fullName}. Please share more details and quote.`);
     window.open(`https://wa.me/919998551985?text=${message}`, '_blank');
     setIsQuoteOpen(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    // Get form data
+    const formData = {
+      fullName: e.target.fullName.value,
+      companyName: e.target.companyName.value || '',
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      message: e.target.message.value,
+      productName: selectedProduct?.fullName || slides[index].fullName
+    };
+
+    try {
+      const response = await fetch('https://arman-backend-cwew.onrender.com/api/quotes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitSuccess(true);
+        // Reset form after 2 seconds and close modal
+        setTimeout(() => {
+          handleQuoteClose();
+          // Reset form fields
+          e.target.reset();
+        }, 2000);
+      } else {
+        setSubmitError(data.message || 'Failed to submit request. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -350,8 +402,26 @@ const AmranPremiumCarousel = () => {
                 </div>
               </div>
 
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className="bg-green-50 p-4 mx-5 md:mx-8 mt-5 md:mt-8 rounded-lg">
+                  <p className="text-green-700 text-sm font-bold text-center">
+                    ✓ Quote request submitted successfully! We'll contact you soon.
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {submitError && (
+                <div className="bg-red-50 p-4 mx-5 md:mx-8 mt-5 md:mt-8 rounded-lg">
+                  <p className="text-red-700 text-sm font-bold text-center">
+                    ✗ {submitError}
+                  </p>
+                </div>
+              )}
+
               {/* Form */}
-              <form className="p-5 md:p-8 space-y-4 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form onSubmit={handleSubmit} className="p-5 md:p-8 space-y-4 md:space-y-5">
                 <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                   <div>
                     <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
@@ -359,6 +429,7 @@ const AmranPremiumCarousel = () => {
                     </label>
                     <input
                       type="text"
+                      name="fullName"
                       required
                       className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="John Smith"
@@ -370,6 +441,7 @@ const AmranPremiumCarousel = () => {
                     </label>
                     <input
                       type="text"
+                      name="companyName"
                       className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="Company Name"
                     />
@@ -383,6 +455,7 @@ const AmranPremiumCarousel = () => {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       required
                       className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="john@company.com"
@@ -394,6 +467,7 @@ const AmranPremiumCarousel = () => {
                     </label>
                     <input
                       type="tel"
+                      name="phone"
                       required
                       className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
                       placeholder="+91 98765 43210"
@@ -403,20 +477,10 @@ const AmranPremiumCarousel = () => {
 
                 <div>
                   <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
-                    Quantity Required
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-b border-slate-200 py-2 md:py-3 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold"
-                    placeholder="e.g., 1 Unit, 50 Meters, etc."
-                  />
-                </div>
-
-                <div>
-                  <label className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-[#D4AF37] block mb-1 md:mb-2">
                     Message *
                   </label>
                   <textarea
+                    name="message"
                     rows="3"
                     required
                     className="w-full border border-slate-200 p-3 md:p-4 focus:border-[#D4AF37] outline-none transition-colors text-xs md:text-sm font-bold resize-none"
@@ -428,14 +492,27 @@ const AmranPremiumCarousel = () => {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2 md:pt-4">
                   <button
                     type="submit"
-                    className="w-full sm:flex-1 bg-[#0a0a0a] text-white py-3 md:py-4 text-[9px] md:text-[10px] font-black tracking-wider uppercase hover:bg-[#D4AF37] hover:text-black transition-colors flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className={`w-full sm:flex-1 bg-[#0a0a0a] text-white py-3 md:py-4 text-[9px] md:text-[10px] font-black tracking-wider uppercase hover:bg-[#D4AF37] hover:text-black transition-colors flex items-center justify-center gap-2 ${
+                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
                   >
-                    <Send size={12} className="md:w-3.5 md:h-3.5" />
-                    Submit Request
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        SUBMITTING...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={12} className="md:w-3.5 md:h-3.5" />
+                        Submit Request
+                      </>
+                    )}
                   </button>
                   <button
                     type="button"
                     onClick={handleWhatsApp}
+                    disabled={isSubmitting}
                     className="w-full sm:flex-1 bg-green-600 text-white py-3 md:py-4 text-[9px] md:text-[10px] font-black tracking-wider uppercase hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
                   >
                     <MessageCircle size={12} className="md:w-3.5 md:h-3.5" />

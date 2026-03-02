@@ -15,6 +15,7 @@ const RequestQuoteModal = ({ isOpen, onClose }) => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const whatsappNumber = "919898898219"; // Without + sign for URL
   const whatsappMessage = encodeURIComponent("Hello! I am interested in your processing plant solutions.");
@@ -24,32 +25,60 @@ const RequestQuoteModal = ({ isOpen, onClose }) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://arman-backend-cwew.onrender.com/api/enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsLoading(false);
+        setIsSubmitted(true);
+        
+        // Reset after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          onClose();
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            product: '',
+            quantity: '',
+            message: ''
+          });
+          setError('');
+        }, 3000);
+      } else {
+        setIsLoading(false);
+        setError(data.message || 'Failed to submit. Please try again.');
+        
+        // Auto clear error after 5 seconds
+        setTimeout(() => setError(''), 5000);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setIsLoading(false);
-      setIsSubmitted(true);
+      setError('Network error. Please check your connection and try again.');
       
-      // Reset after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        onClose();
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          product: '',
-          quantity: '',
-          message: ''
-        });
-      }, 3000);
-    }, 1500);
+      // Auto clear error after 5 seconds
+      setTimeout(() => setError(''), 5000);
+    }
   };
 
   return (
@@ -84,7 +113,7 @@ const RequestQuoteModal = ({ isOpen, onClose }) => {
                   </div>
                   <h3 className="text-3xl font-black text-slate-900 tracking-tighter mb-3">THANK YOU!</h3>
                   <p className="text-slate-500 mb-8 max-w-sm mx-auto">
-                    Your quote request has been submitted successfully. Our team will contact you within 24 hours.
+                    Your enquiry has been submitted successfully. Our team will contact you within 24 hours.
                   </p>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -119,6 +148,13 @@ const RequestQuoteModal = ({ isOpen, onClose }) => {
                       </motion.button>
                     </div>
                   </div>
+
+                  {/* Error Message */}
+                  {error && (
+                    <div className="mx-6 mt-4 p-3 bg-red-50 border border-red-200 rounded-sm">
+                      <p className="text-red-600 text-xs font-bold text-center">{error}</p>
+                    </div>
+                  )}
 
                   {/* Scrollable Form Body */}
                   <div className="p-6 bg-white overflow-y-auto flex-1">
